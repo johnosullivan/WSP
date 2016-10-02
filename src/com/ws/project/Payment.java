@@ -44,7 +44,7 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 			
 		}
 	}
-	//Make 
+	//Make Payment
 	public boolean makepayment(ArrayList<OrderItem> data) {
 		System.out.println("<<<<Payment Started>>>>");
 		for (OrderItem o: data) {
