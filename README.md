@@ -28,9 +28,10 @@ Supporting Libraries Needed For Java Project
 
 For detailed documentation of our architecture and implementation. View <a href="https://github.com/johnosullivan/WSP/blob/master/Documentation.md">Here</a>
 
+
 =============================================================================================================================
 
-# The JUnit Tests
+# The JUnit Tests (Test Log JUnitConsoleLog.txt)
 
 
 ### public void SearchTest() 

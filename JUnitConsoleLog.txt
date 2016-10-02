@@ -1,0 +1,144 @@
+[============================================================================================================]
+JUnit Test: setUpBeforeClass
+Setup Database
+Database setup done.
+Creating products for search function.
+Creating products for search complete.
+[============================================================================================================]
+JUnit Test: Order Test Cancel With processing, cancelling, and inventory restock.
+Starting Order Test 2
+Creating Partner and Product for Test
+Creates order with one product in cart.
+Creates the order object.
+Process the order and creates database entry.
+<<<<Payment Started>>>>
+Product: iPhone 7 Plus Cost: 2000 Pay Account: Apple, Inc.
+<<<<Payment Ended>>>>
+Check product inventory after processing order.
+Check customer order GET method.
+My Orders: John Nikolas O'Sullivan
+==============
+Order: 57f17896d4c61127d76619eb
+Shipping Address: 723 Ouilmette Wilmette Ln 60091
+iPhone 7 Plus - Q: 2
+==============
+Done checking customer my orders.
+Partner test of the order.
+Partner get orders that need to be shipped.
+==============
+Order: 57f17896d4c61127d76619ebStatus (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 723 Ouilmette Wilmette Ln 60091
+iPhone 7 Plus - Q: 2
+All order are receivied on both ends
+==============
+Order#:57f17896d4c61127d76619eb Refund: 2000
+Order Cancelled, Checking status and inventory...
+Inventory Check : Creates new product object to check inventory (5)
+Checks Orders : For Customer and Partner Side that they are cancelled.
+Checks Orders : Customer Orders
+==============
+Order#: 57f17896d4c61127d76619eb Status (CANCELED)
+==============
+Checks Orders : Partners Orders
+==============
+Order#: 57f17896d4c61127d76619eb Status (CANCELED)
+==============
+Checks Orders Done.
+Delete the test data and clean up the database.
+[============================================================================================================]
+JUnit Test: Partner Test
+Started Partner Test.
+Created a new partner. Testing database entry...
+Checked the updted partner data.
+Delete partner data clean database.
+[============================================================================================================]
+JUnit Test: Register Test
+Test register user.
+Done with test registering user.
+[============================================================================================================]
+JUnit Test: Partner Full Profile
+PartnerFullProfile begin.
+Created a new partner. Testing database entry...
+Delete partner data clean database.
+[============================================================================================================]
+JUnit Test: Customer Full Profile
+CustomerFullProfile begin.
+Created customer. Testing database entry...
+Deleted customer data / Clean database.
+[============================================================================================================]
+JUnit Test: Review Test will do the OrderTest simulate product delivered and reviewer.
+Creates Product that will be purchased.
+Create Product that will not be purchased. Catch Fake Reviews.
+<<<<Payment Started>>>>
+Product: iPhone 7 Plus Cost: 2000 Pay Account: MEO, Inc.
+<<<<Payment Ended>>>>
+The test starts by updating the order has been Delivered.
+Create a review for the tests.
+Submit review for product not bought check fake review.
+Submit review for product not delivered.
+Set order of test product to delivered and submit review
+Get Test to get reviews for a product to check.
+Review Get Method Checked Done.
+Review Edited and Saved.
+Review test finished.
+Delete the test data and clean up the database.
+[============================================================================================================]
+JUnit Test: Product Test
+Started product create test
+First created a new partner.
+Created a new product with partner link.
+Get Method Test checking data.
+Test selling more that is in stock.
+Test selling 3 of 5 products in stock.
+Test selling 2 of 2 products left in stock.
+Checks to make sure the product is unavailable
+Deletes Test data and cleans database.
+[============================================================================================================]
+JUnit Test: Login Test
+Test login user.
+Delete test user. / Cleaning database
+[============================================================================================================]
+JUnit Test: Customer Test Basic
+CustomerTest begin.
+Created customer. Testing database entry...
+Updated customer info.
+Checked saved updated customer data.
+Deleted customer data / Clean database.
+[============================================================================================================]
+JUnit Test: Search Test
+Starts the search test for the search term iphone
+Search test completed.
+[============================================================================================================]
+JUnit Test: OrderTest With processing, shipping, and comfirmation.
+Starting Order Test 1
+Creatomg Partner and Product for Test
+Creates order with one product in cart.
+Creates the order object.
+Process the order and creates database entry.
+<<<<Payment Started>>>>
+Product: iPhone 7 Plus Cost: 2000 Pay Account: MEO, Inc.
+<<<<Payment Ended>>>>
+Check customer order GET method.
+My Orders: John Nikolas O'Sullivan
+==============
+Order: 57f17896d4c61127d7661a02
+Shipping Address: 723 Ouilmette Wilmette Ln 60091
+iPhone 7 Plus - Q: 2
+==============
+Done checking customer my orders.
+Partner test of the order.
+Partner get orders that need to be shipped.
+==============
+Order: 57f17896d4c61127d7661a02Status (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 723 Ouilmette Wilmette Ln 60091
+iPhone 7 Plus - Q: 2
+Simulate the order being shipped and updating the order#: 57f17896d4c61127d7661a02
+Order has been shipped and updated by partner.
+==============
+Creating new order object to checking status. ID: 57f17896d4c61127d7661a02
+Trying to cancel its fails since its shipped already.
+(Status Changed) Order has been comfirmed as shipped by the partners of the products in order.
+Delete the test data and clean up the database.
+[============================================================================================================]
+JUnit Test: tearDownAfterClass
+Tear down tests
+Dropped all collection and closed database connection.
+*ALL TESTS COMPLETED!*
