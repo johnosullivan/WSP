@@ -31,8 +31,9 @@ For detailed documentation of our architecture and implementation. View <a href=
 
 =============================================================================================================================
 
-# The JUnit Tests (Test Log <a href="https://github.com/johnosullivan/WSP/blob/master/JUnitConsoleLog.txt">JUnitConsoleLog.txt</a>)
+# The JUnit Tests 
 
+#### (Test Log <a href="https://github.com/johnosullivan/WSP/blob/master/JUnitConsoleLog.txt">JUnitConsoleLog.txt</a>)
 
 ### public void SearchTest() 
 
