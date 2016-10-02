@@ -1,4 +1,4 @@
-# Web Services Project 
+# Web Services Project (Fall 2016) 
 
 By John O'Sullivan and Matthew Wojkowski
 
@@ -17,7 +17,7 @@ Supporting Libraries Needed For Java Project
 - bson-2.13.3.jar
 - hamcrest-core-1.3.jar
 - junit-4.12.jar
-- mongo-java-driver-2.13.3jar
+- mongo-java-driver-2.13.3.jar
 - Apache CXF Library [3.1.7]
 - Apache Tomcat 9.0
 - JRE System Library [Java SE 8 [1.8.0_101]]
