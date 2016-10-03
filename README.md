@@ -12,7 +12,7 @@ For project we decided to go the no-sql way. (MongoDB)
 
 3) Run the AppTest.java as a JUnit Test.
 
-Supporting Libraries Needed For Java Project
+Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 - bson-2.13.3.jar
 - hamcrest-core-1.3.jar
@@ -26,7 +26,7 @@ Supporting Libraries Needed For Java Project
 
 # Documentation
 
-For detailed documentation of our architecture and implementation. View <a href="https://github.com/johnosullivan/WSP/blob/master/Documentation.md">Here</a>
+For detailed documentation of our architecture and implementation. View <a href="https://github.com/johnosullivan/WSP/blob/master/Documentation.md">Here</a>. UML diagram <a href="https://github.com/johnosullivan/WSP/blob/master/diagram.png">Here</a>
 
 
 =============================================================================================================================
