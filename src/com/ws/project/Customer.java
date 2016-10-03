@@ -41,19 +41,20 @@ public class Customer {
 		Database db = Database.getInstance();
 		return db.getMyOrders(this);
 	}
+	//Return the payment ID to build Payment object or to update link in DB.
 	public String getPId() {
 		return this.payid;
 	}
-	//Updates the customer data
+	//Updates the customer data 
 	public boolean update() {
 		Database db = Database.getInstance();
-		db.updateCustomerById(this);
-		return true;
+		return db.updateCustomerById(this);
 	}
 	//Prints the details of customer
 	public void PrintDetail() {
 		System.out.println(this.first + " " + this.middle + " " + this.last);
 	}
+	//Default constructor for blank object.
 	public Customer() { 
 		this.first = "";
 		this.middle = "";
@@ -63,7 +64,7 @@ public class Customer {
 		this.phone = "";
 		this.propicURL = "";
 	}
-	//Creates the customer from a document in the database,
+	//Creates the customer from a document in the database.
 	public Customer(String id) {
 		Database db = Database.getInstance();
 		DBObject object = db.findCustomerById(id);

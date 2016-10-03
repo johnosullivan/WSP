@@ -1,15 +1,14 @@
 package com.ws.project;
 
+// Imported Libraries for support
 import com.mongodb.BasicDBObject;
 import com.mongodb.DB;
 import com.mongodb.DBCursor;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-//import com.ws.project.Order.OrderStatusType;
 import com.ws.project.Order.OrderStatusType;
 import com.ws.project.Payment.PaymentType;
-
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,11 +16,11 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.regex.Pattern;
-
 import org.bson.types.ObjectId;
 
+// Database object for Object Relation Mapping
 public class Database {
-	
+	//Create instances for java drivers
 	MongoClient mongoClient;
 	DB db;
 	DBCollection customers;
@@ -89,7 +88,6 @@ public class Database {
 		    list.add(idp);
 			ids.add(processedItem.getProduct().getSeller());		
 		}
-		
 		Iterator<String> partners = ids.iterator();
 		while(partners.hasNext()) {
 			String partnersid = partners.next();
@@ -100,7 +98,6 @@ public class Database {
 			BasicDBObject searchQuery = new BasicDBObject().append("orderid", ord.getID()).append("partner", partnersid);
 			orderlinks.update(searchQuery, updateorderlink);
 		}
-		
 		BasicDBObject neworder = new BasicDBObject();
 		neworder.append("comfirmnumber", ord.getConfirmNumber());
 		neworder.append("customer", ord.getBuyer().getID());
@@ -124,20 +121,16 @@ public class Database {
 		Report report = new Report();
 		BasicDBObject query = new BasicDBObject();
 		query.put("product", product.getID());
-		
 		DBCursor cursor = reports.find(query);
-		
 		while(cursor.hasNext()) {
 			DBObject object = cursor.next();
 			String str = (int)object.get("amount") + " Sold on: " + (String)object.get("date");
 			report.addReport(str);
 		}
-		
 		return report;
 	}
 	//Helper funciton for oder status codes
 	public int statuscode(OrderStatusType ord) {
-		
 		switch(ord) {
 			case PROCESSING:
 				return 1;
@@ -162,9 +155,7 @@ public class Database {
 	public String createOrder(Order ord) {
 		Iterator<OrderItem> itorder = ord.getProducts().iterator();
 		ArrayList<String> list = new ArrayList<String>();
-		
 		Set<String> ids = new HashSet<String>();
-		
 		while(itorder.hasNext()) {
 			OrderItem processedItem = itorder.next();
 			boolean status = processedItem.getProduct().sold(processedItem.getQuantity());
@@ -178,7 +169,6 @@ public class Database {
 				//System.out.println(idp);
 			}	
 		}
-		
 		BasicDBObject neworder = new BasicDBObject();
 		neworder.append("comfirmnumber", ord.getConfirmNumber());
 		neworder.append("customer", ord.getBuyer().getID());
@@ -186,11 +176,8 @@ public class Database {
 		neworder.append("shipping", ord.getShipping());
 		neworder.append("status", statuscode(ord.getOrderStatus()));
 		orders.insert(neworder);
-		
 		String orderid = "" + neworder.get("_id");
-		
 		Iterator<String> partners = ids.iterator();
-		
 		while(partners.hasNext()) {
 			BasicDBObject neworderlink = new BasicDBObject();
 			neworderlink.append("orderid", orderid);
@@ -198,7 +185,6 @@ public class Database {
 			neworderlink.append("status", statuscode(ord.getOrderStatus()));
 			orderlinks.insert(neworderlink);
 		}
-		
 		return "" + neworder.get("_id");
 	}
 	//Gets the my orders for the customers
@@ -223,7 +209,6 @@ public class Database {
 		    String idp = processedItem.getProduct().getID() + "_" + processedItem.getQuantity();
 		    list.add(idp);
 		}
-		
 		BasicDBObject neworder = new BasicDBObject();
 		neworder.append("comfirmnumber", ord.getConfirmNumber());
 		neworder.append("customer", ord.getBuyer().getID());

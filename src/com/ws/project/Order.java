@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
-//import com.ws.project.Order.OrderStatusType;
 
 public class Order {
 	//Different order types
