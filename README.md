@@ -26,6 +26,16 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 # Documentation
 
+Features:
+
+- Search in the database.
+- Create edit/remove/update products, partners, and customers.
+- Create orders and check status. Edit orders. 
+- Accept order. Ship orders. 
+- Track payment and create reports for products.
+- Cancel order, refund, restock the product's inventory.
+- Review products purchased by customers. 
+
 For detailed documentation of our architecture and implementation. View <a href="https://github.com/johnosullivan/WSP/blob/master/Documentation.md">Here</a>. UML diagram <a href="https://github.com/johnosullivan/WSP/blob/master/diagram.png">Here</a>
 
 
