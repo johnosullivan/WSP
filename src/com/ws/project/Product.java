@@ -1,5 +1,7 @@
 package com.ws.project;
 
+import java.util.Date;
+
 import com.mongodb.DBObject;
 
 public class Product {
@@ -87,6 +89,16 @@ public class Product {
 	public Partner getPartner() {
 		Partner p = new Partner(this.partnerid);
 		return p;
+	}
+	//Gets the report for this product
+	public Report getReport() {
+		Database db = Database.getInstance();
+		return db.createReportForProduct(this);
+	}
+	public String createReport(int amount) {
+		Database db = Database.getInstance();
+		Date dt = new Date();
+		return db.createNewReport(this, dt, amount);
 	}
 	//Creates the product from the database with id
 	public Product(String id) {

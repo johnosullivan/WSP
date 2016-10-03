@@ -50,6 +50,7 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 		for (OrderItem o: data) {
 			int amount = (o.getProduct().getCost() * o.getQuantity());
 			System.out.println("Product: " + o.getProduct().getName() + " Cost: " + amount + " Pay Account: " + o.getProduct().getPartner().getCompany());
+			System.out.println("Create Report ID:" + o.getProduct().createReport(o.getQuantity()));
 		}
 		System.out.println("<<<<Payment Ended>>>>");
 		return true;

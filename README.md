@@ -69,7 +69,7 @@ This is a simple test of partners object with just name and a product that the p
 
 ### public void OrderTest()
 
-This is a full test of a order. Customer and Partner with products are created. The customer creates a order with a product of partner. The order is process and status is checked on both ends. A simulated shipped of product of partner is done and status is checked yet again.
+This is a full test of a order. Customer and Partner with products are created. The customer creates a order with a product of partner. The order is process and status is checked on both ends. A simulated shipped of product of partner is done and status is checked yet again. Also gets the report for the product.
 
 ### public void OrderTestCancel()
 

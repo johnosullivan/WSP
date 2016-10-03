@@ -397,6 +397,14 @@ public class AppTest {
 		System.out.println("Trying to cancel its fails since its shipped already.");
 		assertEquals(neworderobject.cancelOrder(),false);
 		System.out.println("(Status Changed) Order has been comfirmed as shipped by the partners of the products in order.");
+		//Tests Report
+		System.out.println("Calls the product and creates an report.");
+		ArrayList<String> newreport = productone.getReport().getSummary();
+		System.out.println("Report Start ============== Product: " + productone.getName());
+		for (String str: newreport) {
+			System.out.println(str);
+		}
+		System.out.println("Report Ended ============== Product: " + productone.getName());
 		//Uses the customer id to delete the document in the collection (DELETE TEST)
 		assertEquals(db.deleteCustomerById(customeridtest),true);
 		//Uses the partner id to delete the document in the collection (DELETE TEST)

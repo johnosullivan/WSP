@@ -12,6 +12,7 @@ import com.ws.project.Payment.PaymentType;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
@@ -32,6 +33,7 @@ public class Database {
 	DBCollection user;
 	DBCollection review;
 	DBCollection payments;
+	DBCollection reports;
 	//Create instance of the database
 	private static Database instance = null;
 	public static Database getInstance(){
@@ -54,6 +56,7 @@ public class Database {
 	    user 				= db.getCollection("user");
 	    review 				= db.getCollection("review");
 	    payments 			= db.getCollection("payments");
+	    reports				= db.getCollection("reports");
 	}
 	//Search for products in product collections
 	public ArrayList<Product> searchService(String para) {
@@ -106,6 +109,31 @@ public class Database {
 		neworder.append("status", statuscode(ord.getOrderStatus()));
 		orders.update(new BasicDBObject("_id", new ObjectId(ord.getID())),new BasicDBObject("$set", neworder));
 		return true;
+	}
+	//Creates a new report
+	public String createNewReport(Product product, Date date, int q) {
+		BasicDBObject newreport = new BasicDBObject();
+		newreport.append("amount",q);
+		newreport.append("product", product.getID());
+		newreport.append("date", date.toString());
+	    reports.insert(newreport);
+	    return "" + newreport.get("_id");
+	}
+	//Create a report
+	public Report createReportForProduct(Product product) {
+		Report report = new Report();
+		BasicDBObject query = new BasicDBObject();
+		query.put("product", product.getID());
+		
+		DBCursor cursor = reports.find(query);
+		
+		while(cursor.hasNext()) {
+			DBObject object = cursor.next();
+			String str = (int)object.get("amount") + " Sold on: " + (String)object.get("date");
+			report.addReport(str);
+		}
+		
+		return report;
 	}
 	//Helper funciton for oder status codes
 	public int statuscode(OrderStatusType ord) {
@@ -473,5 +501,6 @@ public class Database {
 		orderlinks.drop();
 		review.drop();
 		payments.drop();
+		reports.drop();
 	}
 }
