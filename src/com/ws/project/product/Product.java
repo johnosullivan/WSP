@@ -1,5 +1,6 @@
 package com.ws.project.product;
 
+import java.net.UnknownHostException;
 import java.util.Date;
 
 import com.mongodb.DBObject;
@@ -43,13 +44,13 @@ public class Product {
 	public void setSeller(String sell) { this.partnerid = sell; }
 	public String getSeller() { return this.partnerid; }
 	//Creates the product in the database
-	public String create() {
+	public String create() throws UnknownHostException {
 		Database db = Database.getInstance();
 		id = db.createProduct(this);
 		return id;
 	}
 	//Sold the product
-	public boolean sold(int am) {
+	public boolean sold(int am) throws UnknownHostException {
 		if (this.invein - am < 0) {
 			return false;
 		}
@@ -64,22 +65,22 @@ public class Product {
 		return update();
 	}
 	//Updates the product info
-	public boolean update() {
+	public boolean update() throws UnknownHostException {
 		Database db = Database.getInstance();
-		db.updateProductById(this);
+		db.updateProductById(this); 
 		return true;
 	}
 	//Gets the id
 	public String getID() { return this.id; }
 	public Product() { }
 	//Prints the detail of product
-	public void PrintDetail() {
+	public void PrintDetail() throws UnknownHostException {
 		System.out.println(this.name + " " + this.description + " " + this.cost);
 		Partner thisproductpartner = new Partner(this.partnerid);
 		thisproductpartner.PrintDetail();
 	}
 	//Restock the product
-	public void restock(int am) {
+	public void restock(int am) throws UnknownHostException {
 		this.invein = this.invein + am;
 		if (this.invein == 0) {
 			this.available = false;
@@ -89,22 +90,22 @@ public class Product {
 		Database db = Database.getInstance();
 		db.updateProductById(this);
 	}
-	public Partner getPartner() {
+	public Partner getPartner() throws UnknownHostException {
 		Partner p = new Partner(this.partnerid);
 		return p;
 	}
 	//Gets the report for this product
-	public Report getReport() {
+	public Report getReport() throws UnknownHostException {
 		Database db = Database.getInstance();
 		return db.createReportForProduct(this);
 	}
-	public String createReport(int amount) {
+	public String createReport(int amount) throws UnknownHostException {
 		Database db = Database.getInstance();
 		Date dt = new Date();
 		return db.createNewReport(this, dt, amount);
 	}
 	//Creates the product from the database with id
-	public Product(String id) {
+	public Product(String id) throws UnknownHostException {
 		Database db = Database.getInstance();
 		DBObject object = db.findProductsById(id);
 		this.name = (String)object.get("name");

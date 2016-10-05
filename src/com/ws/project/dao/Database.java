@@ -12,7 +12,7 @@ import com.ws.project.order.Order;
 import com.ws.project.order.OrderItem;
 import com.ws.project.order.Order.OrderStatusType;
 import com.ws.project.partner.Partner;
-import com.ws.project.payment.Payment;
+//import com.ws.project.payment.Payment;
 import com.ws.project.payment.Payment.PaymentType;
 import com.ws.project.product.Product;
 import com.ws.project.report.Report;
@@ -44,17 +44,17 @@ public class Database {
 	DBCollection reports;
 	//Create instance of the database
 	private static Database instance = null;
-	public static Database getInstance(){
-	  if(instance==null){ instance = new Database(); }
+	public static Database getInstance() throws UnknownHostException {
+	  if(instance==null){ 
+		  instance = new Database(); 
+		  instance.connect(true);
+	  }
 	  return instance;
 	}
 	//Connects the the database for run queries
 	public void connect(boolean cleanstart) throws UnknownHostException {
 		mongoClient 		= new MongoClient();
 	    db 					= mongoClient.getDB("wsproject");
-	    if (cleanstart) {
-			this.dropCollection();
-		}
 	    customers 			= db.getCollection("customers");
 	    products 			= db.getCollection("products");
 	    partners 			= db.getCollection("partners");
@@ -161,7 +161,7 @@ public class Database {
 		return 0;
 	}
 	//Create order in the database
-	public String createOrder(Order ord) {
+	public String createOrder(Order ord) throws UnknownHostException {
 		Iterator<OrderItem> itorder = ord.getProducts().iterator();
 		ArrayList<String> list = new ArrayList<String>();
 		Set<String> ids = new HashSet<String>();
@@ -197,7 +197,7 @@ public class Database {
 		return "" + neworder.get("_id");
 	}
 	//Gets the my orders for the customers
-    public ArrayList<Order> getMyOrders(Customer customer) {
+    public ArrayList<Order> getMyOrders(Customer customer) throws UnknownHostException {
     	BasicDBObject query = new BasicDBObject();
 		query.put("customer", customer.getID());
 		DBCursor cursor = orders.find(query);
@@ -228,7 +228,7 @@ public class Database {
 		return true;
 	}
 	//Gets the order for the products the partner has list in the database.
-	public ArrayList<Order> getPartnerOrders(Partner part) {
+	public ArrayList<Order> getPartnerOrders(Partner part) throws UnknownHostException {
 		BasicDBObject query = new BasicDBObject();
 		query.put("partner", part.getID());
 		//query.put("status", statuscode(OrderStatusType.PROCESSED));

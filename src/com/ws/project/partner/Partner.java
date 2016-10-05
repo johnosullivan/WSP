@@ -1,5 +1,6 @@
 package com.ws.project.partner;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -35,13 +36,13 @@ public class Partner {
 	public void setCompany(String com) { this.company = com; }
 	public String getCompany() { return this.company; }
 	//Creates the partner
-	public String create() {
+	public String create() throws UnknownHostException {
 		Database db = Database.getInstance();
 		id = db.createPartner(this);
 		return id;
 	}
 	//Updates the partner object
-	public boolean update() {
+	public boolean update()  throws UnknownHostException{
 		Database db = Database.getInstance();
 		db.updatePartnerById(this);
 		return true;
@@ -51,7 +52,7 @@ public class Partner {
 		System.out.println(this.first + " " + this.middle + " " + this.last);
 	}
 	//Gets the orders of this partner
-	public ArrayList<PartnerOrder> getOrders() {
+	public ArrayList<PartnerOrder> getOrders() throws UnknownHostException {
 		Database db = Database.getInstance();
 		ArrayList<Order> orders = db.getPartnerOrders(this);
 		Iterator<Order> itorder = orders.iterator();
@@ -80,7 +81,7 @@ public class Partner {
 		return this.payid;
 	}
 	//Creates partner from the database with id
-	public Partner(String id) {
+	public Partner(String id) throws UnknownHostException {
 		Database db = Database.getInstance();
 		DBObject object = db.findPartnersById(id);
 		this.first = (String)object.get("first");

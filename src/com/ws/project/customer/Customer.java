@@ -1,5 +1,6 @@
 package com.ws.project.customer;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import com.mongodb.DBObject;
 import com.ws.project.dao.Database;
@@ -19,7 +20,7 @@ public class Customer {
 	private String payid;
 	private Payment payment;
 	//Creates the customer in the database
-	public String create() {
+	public String create() throws UnknownHostException {
 		Database db = Database.getInstance();
 		if (id == null) {
 			id = db.createCustomer(this);
@@ -40,7 +41,7 @@ public class Customer {
 	public void setPayment(Payment stat) { this.payment = stat; }
 	public Payment getPayment() { return this.payment; }
 	//Gets all orders created by users
-	public ArrayList<Order> getMyOrder() {
+	public ArrayList<Order> getMyOrder() throws UnknownHostException {
 		Database db = Database.getInstance();
 		return db.getMyOrders(this);
 	}
@@ -49,8 +50,9 @@ public class Customer {
 		return this.payid;
 	}
 	//Updates the customer data 
-	public boolean update() {
+	public boolean update() throws UnknownHostException{
 		Database db = Database.getInstance();
+		
 		return db.updateCustomerById(this);
 	}
 	//Prints the details of customer
@@ -68,7 +70,7 @@ public class Customer {
 		this.propicURL = "";
 	}
 	//Creates the customer from a document in the database.
-	public Customer(String id) {
+	public Customer(String id) throws UnknownHostException {
 		Database db = Database.getInstance();
 		DBObject object = db.findCustomerById(id);
 		this.first = (String)object.get("first");

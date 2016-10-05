@@ -1,5 +1,7 @@
 package com.ws.project.order;
 
+import java.net.UnknownHostException;
+
 import com.ws.project.product.Product;
 
 public class OrderItem {
@@ -14,7 +16,7 @@ public class OrderItem {
 	public int getQuantity() { return this.quantity; }
 	public OrderItem() { }
 	//Restock the order
-	public void cancelled() {
+	public void cancelled() throws UnknownHostException {
 		this.product.restock(this.quantity);
 	}
 	//Check if product is from partner
@@ -26,7 +28,7 @@ public class OrderItem {
 		return false;
 	}
 	//Creates a orderitem with paras
-	public OrderItem (String productid, int amount) {
+	public OrderItem (String productid, int amount) throws UnknownHostException {
 		this.quantity = amount;
 		this.product = new Product(productid);
 		

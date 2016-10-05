@@ -1,5 +1,6 @@
 package com.ws.project.order;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import com.mongodb.BasicDBList;
@@ -32,7 +33,7 @@ public class Order {
 	//Gets the confirm code
 	public String getConfirmNumber() { return this.comfirmnumber; }
 	//Sets the product as shipped
-	public boolean productsShipped(ArrayList<OrderItem> data) {
+	public boolean productsShipped(ArrayList<OrderItem> data) throws UnknownHostException {
 		this.orderstatus = OrderStatusType.SHIPPED;
 		Database db = Database.getInstance();
 		db.updateOrder(this);
@@ -63,14 +64,14 @@ public class Order {
 		return false;
 	}
 	//Sets the order and products as delivered
-	public boolean productsDelivered() {
+	public boolean productsDelivered() throws UnknownHostException {
 		this.orderstatus = OrderStatusType.DELIVERED;
 		Database db = Database.getInstance();
 		db.updateOrder(this);
 		return true;
 	}
 	//Processes the order
-	public String process() {
+	public String process() throws UnknownHostException {
 		this.orderstatus = OrderStatusType.PROCESSING;
 		Database db = Database.getInstance();
 		if (this.buyer.getPayment().makepayment(this.product)) {
@@ -94,7 +95,7 @@ public class Order {
 		return data;
 	}
 	//Cancels the order and refund the customer
-	public boolean cancelOrder() {
+	public boolean cancelOrder() throws UnknownHostException {
 		Database db = Database.getInstance();
 		if (db.statuscode(this.orderstatus) >= 3) { return false; }
 		System.out.println("Order#:" + this.id + " Refund: " + this.total());
@@ -129,7 +130,7 @@ public class Order {
 		return OrderStatusType.PROCESSING;
 	}
 	//Creates a order object from a database document with id	
-	public Order(String ordernumber) {
+	public Order(String ordernumber) throws UnknownHostException {
 		Database db = Database.getInstance();
 		DBObject object = db.findOrderById(ordernumber);
 		//System.out.println(object);

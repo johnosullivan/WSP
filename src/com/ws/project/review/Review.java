@@ -1,5 +1,7 @@
 package com.ws.project.review;
 
+import java.net.UnknownHostException;
+
 import com.mongodb.DBObject;
 import com.ws.project.dao.Database;
 import com.ws.project.order.Order;
@@ -41,7 +43,7 @@ public class Review {
 	public void setStars(int stars) { this.stars = stars; }
 	public int getStars() { return this.stars; }
 	//Submit the review in the database
-	public String submit() {
+	public String submit() throws UnknownHostException {
 		Order order = new Order(this.orderid);
 		if (order.isProductInOrder(this.productid)) {
 			int x = this.statuscode(order.getOrderStatus());
@@ -56,12 +58,12 @@ public class Review {
 	}
 	public Review() { }
 	//Updates the review
-	public boolean update() {
+	public boolean update() throws UnknownHostException {
 		Database db = Database.getInstance();
 		return db.updateReviewById(this);
 	}
 	//Creates the review from the database from id
-	public Review(String id) {
+	public Review(String id) throws UnknownHostException {
 		Database db = Database.getInstance();
 		DBObject object = db.findReviewById(id);
 		this.productid = (String)object.get("product");

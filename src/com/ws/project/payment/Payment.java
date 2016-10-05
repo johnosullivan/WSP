@@ -1,5 +1,6 @@
 package com.ws.project.payment;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import com.mongodb.DBObject;
@@ -35,7 +36,7 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 		}
 		return PaymentType.CC;
 	}
-	public Payment(String id) {
+	public Payment(String id) throws UnknownHostException {
 		if (!id.equals("")) {
 			Database db = Database.getInstance();
 			DBObject object = db.findPaymentById(id);
@@ -47,7 +48,7 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 		}
 	}
 	//Make Payment
-	public boolean makepayment(ArrayList<OrderItem> data) {
+	public boolean makepayment(ArrayList<OrderItem> data) throws UnknownHostException {
 		System.out.println("<<<<Payment Started>>>>");
 		for (OrderItem o: data) {
 			int amount = (o.getProduct().getCost() * o.getQuantity());
