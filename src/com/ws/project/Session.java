@@ -4,6 +4,8 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
+import com.ws.project.dao.Database;
+
 public class Session {
 	static Cipher cipher;
 	private static Session instance = null;

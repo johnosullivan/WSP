@@ -1,1 +1,9 @@
 com.ws.project
+com.ws.project.customer
+com.ws.project.dao
+com.ws.project.order
+com.ws.project.partner
+com.ws.project.payment
+com.ws.project.product
+com.ws.project.report
+com.ws.project.review

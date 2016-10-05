@@ -5,8 +5,19 @@ import static org.junit.Assert.assertNotEquals;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import com.ws.project.Order.OrderStatusType;
-import com.ws.project.Payment.PaymentType;
+
+import com.ws.project.customer.Customer;
+import com.ws.project.dao.Database;
+import com.ws.project.order.Order;
+import com.ws.project.order.OrderItem;
+import com.ws.project.order.Order.OrderStatusType;
+import com.ws.project.partner.Partner;
+import com.ws.project.partner.PartnerOrder;
+import com.ws.project.payment.Payment;
+import com.ws.project.payment.Payment.PaymentType;
+import com.ws.project.product.Product;
+import com.ws.project.review.Review;
+
 import java.util.ArrayList;
 
 public class AppTest { 
