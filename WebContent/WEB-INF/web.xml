@@ -10,7 +10,7 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   
-  <display-name>RESTful Employee Services</display-name>
+  <display-name>REST-Services</display-name>
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>WEB-INF/cxf.xml</param-value>

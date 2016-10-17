@@ -17,6 +17,8 @@
   <jaxrs:server name="CustomerService" address="http://localhost:8081">
 		<jaxrs:serviceBeans>
 			<ref bean="customerServiceRest" />
+			<ref bean="partnerServiceRest" />
+			<ref bean="productServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -24,9 +26,14 @@
 
 		<jaxrs:schemaLocations>
 			<jaxrs:schemaLocation>com.ws.project.service.representation.CustomerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.service.representation.ProductRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.service.representation.SearchRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
   	<bean id="customerServiceRest" class="com.ws.project.service.service.CustomerResource" />
+  	<bean id="partnerServiceRest" class="com.ws.project.service.service.PartnerResource" />
+  	<bean id="productServiceRest" class="com.ws.project.service.service.ProductResource" />
   
 </beans>

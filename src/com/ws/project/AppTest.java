@@ -6,8 +6,15 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.ws.project.address.Address;
+//import com.ws.project.address.Address;
 import com.ws.project.customer.Customer;
-import com.ws.project.dao.Database;
+import com.ws.project.dao.CustomerDAO;
+import com.ws.project.dao.MainDatabaseDAO;
+import com.ws.project.dao.OrderDAO;
+import com.ws.project.dao.PartnerDAO;
+import com.ws.project.dao.ProductDAO;
+import com.ws.project.dao.ReviewDAO;
 import com.ws.project.order.Order;
 import com.ws.project.order.OrderItem;
 import com.ws.project.order.Order.OrderStatusType;
@@ -15,6 +22,7 @@ import com.ws.project.partner.Partner;
 import com.ws.project.partner.PartnerOrder;
 import com.ws.project.payment.Payment;
 import com.ws.project.payment.Payment.PaymentType;
+import com.ws.project.phone.Phone;
 import com.ws.project.product.Product;
 import com.ws.project.review.Review;
 
@@ -27,14 +35,11 @@ public class AppTest {
 		System.out.println("JUnit Test: " + x);
 	}
 	//TESTS
-	static Database db;
 	static Session session;
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 		Space("setUpBeforeClass");
 		System.out.println("Setup Database");
-		db = Database.getInstance();
-		db.connect(false);
 		session = Session.getInstance();
 		System.out.println("Database setup done.");
 		System.out.println("Creating products for search function.");
@@ -88,6 +93,7 @@ public class AppTest {
 		Space("tearDownAfterClass");
 		// Empty the database and closes the database connection
 		System.out.println("Tear down tests"); 
+		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		db.dropCollection();
 		db.close();
 		System.out.println("Dropped all collection and closed database connection.");
@@ -95,15 +101,86 @@ public class AppTest {
 	}
 
 	@Test
-	public void SearchTest() {
+	public void SearchTest() throws Exception {
 		Space("Search Test");
 		//Gets all the results 
 		System.out.println("Starts the search test for the search term iphone");
+		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		ArrayList<Product> results = db.searchService("iPhone");
 		//There should be 3 results that all the results (4 went entered in tempdb)
 		assertEquals(results.size(),3);
 		System.out.println("Search test completed.");
 	}
+	
+	@Test
+	public void AddressTests() throws Exception {
+		Space("AddressTests");
+		//Test to create a user and save their info in database
+		Customer customerpost = new Customer();
+		customerpost.setFirst("John");
+		customerpost.setMiddle("Nikolas");
+		customerpost.setLast("O'Sullivan");
+		customerpost.setEmail("jnosullivan@mac.com");
+		assertNotEquals(customerpost.create(),"");	
+		
+		Address addressone = new Address();
+		addressone.setAddress("123 ABC Ln");
+		addressone.setCity("Wilimette");
+		addressone.setState("IL");
+		addressone.setZip(600091);
+		
+		Address addresstwo = new Address();
+		addresstwo.setAddress("456 ABC Ln");
+		addresstwo.setCity("Evanston");
+		addresstwo.setState("IL");
+		addresstwo.setZip(600091);
+		
+		customerpost.addAddress(addressone);
+		customerpost.addAddress(addresstwo);
+		
+		ArrayList<Address> array = customerpost.getAllAddress();
+		
+		for (Address a : array) {
+			System.out.println(a.getAddress());
+		}
+		
+		
+		
+	}
+	
+	@Test
+	public void PhoneTests() throws Exception {
+		Space("PhoneTests");
+		//Test to create a user and save their info in database
+		Customer customerpost = new Customer();
+		customerpost.setFirst("John");
+		customerpost.setMiddle("Nikolas");
+		customerpost.setLast("O'Sullivan");
+		customerpost.setEmail("jnosullivan@mac.com");
+		assertNotEquals(customerpost.create(),"");	
+		
+		Phone phoneone = new Phone();
+		phoneone.setType("Home");
+		phoneone.setPhone("12379846");
+	
+		Phone phonetwo = new Phone();
+		phonetwo.setType("Work");
+		phonetwo.setPhone("93875223");
+		
+		customerpost.addPhone(phoneone);
+		customerpost.addPhone(phonetwo);
+
+		
+		ArrayList<Phone> array = customerpost.getAllPhone();
+		
+		for (Phone a : array) {
+			System.out.println(a.getType() + " :" + a.getPhone());
+		}
+		
+		
+		
+	}
+	
 	
 	@Test
 	public void RegisterTest() throws Exception {
@@ -122,6 +199,7 @@ public class AppTest {
 		System.out.println("Test login user.");
 		boolean status = session.login("jnosullivan1", "WebServicesRocks");
 		assertEquals(status,true);
+		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		db.deleteUser("jnosullivan1");
 		System.out.println("Delete test user. / Cleaning database");
 	}
@@ -136,7 +214,7 @@ public class AppTest {
 		customerpost.setMiddle("Nikolas");
 		customerpost.setLast("O'Sullivan");
 		customerpost.setEmail("jnosullivan@mac.com");
-		customerpost.setPhone("8473457023");
+		//customerpost.setPhone("8473457023");
 		customerpost.setPP("http://google.com/pic/somepicture.png");
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
@@ -146,7 +224,7 @@ public class AppTest {
 		assertEquals(customerget.getMiddle(),"Nikolas");
 		assertEquals(customerget.getLast(),"O'Sullivan");
 		assertEquals(customerget.getEmail(),"jnosullivan@mac.com");
-		assertEquals(customerget.getPhone(),"8473457023");
+		//assertEquals(customerget.getPhone(),"8473457023");
 		assertEquals(customerget.getPP(),"http://google.com/pic/somepicture.png");
 		//Uses the customer id to delete the document in the collection (DELETE TEST)
 		//assertEquals(db.deleteCustomerById(customeridtest),true);
@@ -164,7 +242,7 @@ public class AppTest {
 		partnerpost.setLast("O'Sullivan");
 		partnerpost.setCompany("Apple, Inc.");
 		partnerpost.setHomepage("http://www.apple.com");
-		partnerpost.setPhone("8472567178");
+		//partnerpost.setPhone("8472567178");
 		partnerpost.setPP("http://google.com/pic/somepicture.png");
 		partnerpost.setEmail("apple@gmail.com");
 		partneridtest = partnerpost.create();
@@ -178,7 +256,8 @@ public class AppTest {
 		assertEquals(partnerget.getHomepage(),"http://www.apple.com");
 		assertEquals(partnerget.getCompany(),"Apple, Inc.");
 		assertEquals(partnerget.getPP(),"http://google.com/pic/somepicture.png");
-		assertEquals(partnerget.getPhone(),"8472567178");
+		//assertEquals(partnerget.getPhone(),"8472567178");
+		PartnerDAO db = PartnerDAO.getInstance();
 		assertEquals(db.deletePartnerById(partneridtest),true);
 		System.out.println("Delete partner data clean database.");
 	}
@@ -216,6 +295,7 @@ public class AppTest {
 		assertEquals(customergetafter.getLast(),"Jones");
 		System.out.println("Checked saved updated customer data.");
 		//Uses the customer id to delete the document in the collection (DELETE TEST)
+		CustomerDAO db = CustomerDAO.getInstance();
 		assertEquals(db.deleteCustomerById(customeridtest),true);
 		System.out.println("Deleted customer data / Clean database.");
 	}
@@ -252,6 +332,7 @@ public class AppTest {
 		assertEquals(partnergetafter.getMiddle(),"NoMiddle");
 		assertEquals(partnergetafter.getLast(),"Kimmy");
 		//Uses the partner id to delete the document in the collection (DELETE TEST)
+		PartnerDAO db = PartnerDAO.getInstance();
 		assertEquals(db.deletePartnerById(partneridtest),true);
 		System.out.println("Delete partner data clean database.");
 	}
@@ -312,9 +393,11 @@ public class AppTest {
 		assertEquals(productget2.getCost(),10000);
 		assertEquals(productget2.getInventory(),0);
 		//Uses the partner id to delete the document in the collection (DELETE TEST)
+		PartnerDAO db = PartnerDAO.getInstance();
 		assertEquals(db.deletePartnerById(partneridtest),true);
 		//Uses the product id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteProductById(productidtest),true);
+		ProductDAO dbp = ProductDAO.getInstance();
+		assertEquals(dbp.deleteProductById(productidtest),true);
 		System.out.println("Deletes Test data and cleans database.");
 	}
 	
@@ -333,7 +416,7 @@ public class AppTest {
 		customerpost.setLast("O'Sullivan");
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
-		payc.setBilling("232 Chicago Wilmette Ln 60660");
+		//payc.setBilling("232 Chicago Wilmette Ln 60660");
 		customerpost.setPayment(payc);
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
@@ -346,7 +429,7 @@ public class AppTest {
 	  	partnerpost.setCompany("MEO, Inc.");
 	  	Payment payp = new Payment();
 		payp.setPaymentType(PaymentType.PAYPAL);
-		payp.setBilling("723 Ouilmette Wilmette Ln 60091");
+		//payp.setBilling("723 Ouilmette Wilmette Ln 60091");
 		partnerpost.setPayment(payp);
 	  	partneridtest = partnerpost.create();
 	  	assertNotEquals(partneridtest,"");
@@ -418,13 +501,17 @@ public class AppTest {
 		}
 		System.out.println("Report Ended ============== Product: " + productone.getName());
 		//Uses the customer id to delete the document in the collection (DELETE TEST)
+		CustomerDAO db = CustomerDAO.getInstance();
 		assertEquals(db.deleteCustomerById(customeridtest),true);
 		//Uses the partner id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deletePartnerById(partneridtest),true);
+		PartnerDAO dbp = PartnerDAO.getInstance();
+		assertEquals(dbp.deletePartnerById(partneridtest),true);
 		//Uses the product id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteProductById(productidtest),true);
+		ProductDAO dbpp = ProductDAO.getInstance();
+		assertEquals(dbpp.deleteProductById(productidtest),true);
 		//Uses the order id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteOrderById(orderonetest),true);
+		OrderDAO dbo = OrderDAO.getInstance();
+		assertEquals(dbo.deleteOrderById(orderonetest),true);
 		System.out.println("Delete the test data and clean up the database.");
 	}
 	
@@ -443,7 +530,7 @@ public class AppTest {
 		customerpost.setLast("O'Sullivan");
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
-		payc.setBilling("232 Chicago Wilmette Ln 60660");
+		//payc.setBilling("232 Chicago Wilmette Ln 60660");
 		customerpost.setPayment(payc);
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
@@ -456,7 +543,7 @@ public class AppTest {
 	  	partnerpost.setCompany("Apple, Inc.");
 	  	Payment payp = new Payment();
 		payp.setPaymentType(PaymentType.PAYPAL);
-		payp.setBilling("723 Ouilmette Wilmette Ln 60091");
+		//payp.setBilling("723 Ouilmette Wilmette Ln 60091");
 		partnerpost.setPayment(payp);
 	  	partneridtest = partnerpost.create();
 	  	assertNotEquals(partneridtest,"");
@@ -536,15 +623,15 @@ public class AppTest {
 			System.out.println("Order#: " + po.getOrder().getID() + " Status (" + po.getOrder().orderStatusString() + ")");
 		}
 		System.out.println("==============");
-		System.out.println("Checks Orders Done.");
-		//Uses the customer id to delete the document in the collection (DELETE TEST)
+		System.out.println("Checks Orders Done.");	
+		CustomerDAO db = CustomerDAO.getInstance();
 		assertEquals(db.deleteCustomerById(customeridtest),true);
 		//Uses the partner id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deletePartnerById(partneridtest),true);
+		PartnerDAO dbp = PartnerDAO.getInstance();
+		assertEquals(dbp.deletePartnerById(partneridtest),true);
 		//Uses the product id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteProductById(productidtest),true);
-		//Uses the order id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteOrderById(orderonetest),true);
+		ProductDAO dbpp = ProductDAO.getInstance();
+		assertEquals(dbpp.deleteProductById(productidtest),true);
 		System.out.println("Delete the test data and clean up the database.");
 	}
 	
@@ -563,7 +650,7 @@ public class AppTest {
 		customerpost.setLast("O'Sullivan");
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
-		payc.setBilling("232 Chicago Wilmette Ln 60660");
+		//payc.setBilling("232 Chicago Wilmette Ln 60660");
 		customerpost.setPayment(payc);
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
@@ -575,7 +662,7 @@ public class AppTest {
 	  	partnerpost.setCompany("MEO, Inc.");
 	  	Payment payp = new Payment();
 		payp.setPaymentType(PaymentType.PAYPAL);
-		payp.setBilling("723 Ouilmette Wilmette Ln 60091");
+		//payp.setBilling("723 Ouilmette Wilmette Ln 60091");
 		partnerpost.setPayment(payp);
 	  	partneridtest = partnerpost.create();
 	  	assertNotEquals(partneridtest,"");
@@ -644,16 +731,21 @@ public class AppTest {
 		Review checkreviewfinal = new Review(reviewid);
 		assertEquals(checkreviewfinal.getStars(),5);
 		System.out.println("Review test finished.");
+		ReviewDAO db = ReviewDAO.getInstance();
 		assertEquals(db.deleteReview(reviewid),true);
 		//Uses the review id to delete the document in collection (DELETE TEST)
-		assertEquals(db.deleteCustomerById(customeridtest),true);
+		CustomerDAO dbc = CustomerDAO.getInstance();
+		assertEquals(dbc.deleteCustomerById(customeridtest),true);
 		//Uses the partner id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deletePartnerById(partneridtest),true);
+		PartnerDAO dbp = PartnerDAO.getInstance();
+		assertEquals(dbp.deletePartnerById(partneridtest),true);
 		//Uses the product id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteProductById(productidtest),true);
-		assertEquals(db.deleteProductById(productidtestnotb),true);
+		ProductDAO dbro = ProductDAO.getInstance();
+		assertEquals(dbro.deleteProductById(productidtest),true);
+		assertEquals(dbro.deleteProductById(productidtestnotb),true);
 		//Uses the order id to delete the document in the collection (DELETE TEST)
-		assertEquals(db.deleteOrderById(orderonetest),true);
+		OrderDAO dbor = OrderDAO.getInstance();
+		assertEquals(dbor.deleteOrderById(orderonetest),true);
 		System.out.println("Delete the test data and clean up the database.");
 	}	
 }

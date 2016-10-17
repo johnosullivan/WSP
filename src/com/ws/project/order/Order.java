@@ -6,7 +6,9 @@ import java.util.Iterator;
 import com.mongodb.BasicDBList;
 import com.mongodb.DBObject;
 import com.ws.project.customer.Customer;
-import com.ws.project.dao.Database;
+//import com.ws.project.dao.Database;
+import com.ws.project.dao.OrderDAO;
+import com.ws.project.helper.Helper;
 
 public class Order {
 	//Different order types
@@ -35,7 +37,7 @@ public class Order {
 	//Sets the product as shipped
 	public boolean productsShipped(ArrayList<OrderItem> data) throws UnknownHostException {
 		this.orderstatus = OrderStatusType.SHIPPED;
-		Database db = Database.getInstance();
+		OrderDAO db = OrderDAO.getInstance();
 		db.updateOrder(this);
 		return true;
 	}
@@ -66,14 +68,14 @@ public class Order {
 	//Sets the order and products as delivered
 	public boolean productsDelivered() throws UnknownHostException {
 		this.orderstatus = OrderStatusType.DELIVERED;
-		Database db = Database.getInstance();
+		OrderDAO db = OrderDAO.getInstance();
 		db.updateOrder(this);
 		return true;
 	}
 	//Processes the order
 	public String process() throws UnknownHostException {
 		this.orderstatus = OrderStatusType.PROCESSING;
-		Database db = Database.getInstance();
+		OrderDAO db = OrderDAO.getInstance();
 		if (this.buyer.getPayment().makepayment(this.product)) {
 			this.orderstatus = OrderStatusType.PROCESSED;
 			this.comfirmnumber = "754754667396675466739739";
@@ -96,8 +98,8 @@ public class Order {
 	}
 	//Cancels the order and refund the customer
 	public boolean cancelOrder() throws UnknownHostException {
-		Database db = Database.getInstance();
-		if (db.statuscode(this.orderstatus) >= 3) { return false; }
+		OrderDAO db = OrderDAO.getInstance();
+		if (Helper.statuscode(this.orderstatus) >= 3) { return false; }
 		System.out.println("Order#:" + this.id + " Refund: " + this.total());
 		this.orderstatus = OrderStatusType.CANCELED;
 		for (OrderItem o: this.product) { o.cancelled(); }
@@ -131,7 +133,7 @@ public class Order {
 	}
 	//Creates a order object from a database document with id	
 	public Order(String ordernumber) throws UnknownHostException {
-		Database db = Database.getInstance();
+		OrderDAO db = OrderDAO.getInstance();
 		DBObject object = db.findOrderById(ordernumber);
 		//System.out.println(object);
 		this.comfirmnumber = (String)object.get("comfirmnumber");

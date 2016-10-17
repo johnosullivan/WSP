@@ -3,9 +3,14 @@ package com.ws.project.customer;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import com.mongodb.DBObject;
-import com.ws.project.dao.Database;
+import com.ws.project.address.Address;
+import com.ws.project.dao.AddressDAO;
+import com.ws.project.dao.CustomerDAO;
+import com.ws.project.dao.OrderDAO;
+import com.ws.project.dao.PhoneDAO;
 import com.ws.project.order.Order;
 import com.ws.project.payment.Payment;
+import com.ws.project.phone.Phone;
 
 public class Customer {
 	/* attrs */
@@ -16,18 +21,42 @@ public class Customer {
 	// Added
 	private String email;
 	private String propicURL;
-	private String phone;
+	//private String phone;
 	private String payid;
 	private Payment payment;
+	
 	//Creates the customer in the database
 	public String create() throws UnknownHostException {
-		Database db = Database.getInstance();
-		if (id == null) {
-			id = db.createCustomer(this);
-			return id;
+		CustomerDAO db = CustomerDAO.getInstance();
+		if (this.id == null) {
+			this.id = db.createCustomer(this);	
+			return this.id;
 		} 
-		return id;
+		return this.id;
 	}
+	public String addAddress(Address add) throws UnknownHostException {
+		add.setUser(this.id);
+		String newadd = add.save();
+		//System.out.println(newadd);
+		return newadd;
+	}
+	public String addPhone(Phone add) throws UnknownHostException {
+		add.setUser(this.id);
+		String newadd = add.save();
+		///System.out.println(newadd);
+		return newadd;
+	}
+	
+	public ArrayList<Address> getAllAddress() throws UnknownHostException {
+		AddressDAO db = AddressDAO.getInstance();
+		return db.allAddressFor(this.id);
+	}
+	
+	public ArrayList<Phone> getAllPhone() throws UnknownHostException {
+		PhoneDAO db = PhoneDAO.getInstance();
+		return db.allPhoneFor(this.id);
+	}
+	
 	//Sets and Gets Email
 	public void setEmail(String stat) { this.email = stat; }
 	public String getEmail() { return this.email; }
@@ -35,14 +64,14 @@ public class Customer {
 	public void setPP(String stat) { this.propicURL = stat; }
 	public String getPP() { return this.propicURL; }
 	//Sets and Gets Phone
-	public void setPhone(String stat) { this.phone = stat; }
-	public String getPhone() { return this.phone; }
+	//public void setPhone(String stat) { this.phone = stat; }
+	//public String getPhone() { return this.phone; }
 	//Sets and Gets Payment
 	public void setPayment(Payment stat) { this.payment = stat; }
 	public Payment getPayment() { return this.payment; }
 	//Gets all orders created by users
 	public ArrayList<Order> getMyOrder() throws UnknownHostException {
-		Database db = Database.getInstance();
+		OrderDAO db = OrderDAO.getInstance();
 		return db.getMyOrders(this);
 	}
 	//Return the payment ID to build Payment object or to update link in DB.
@@ -51,7 +80,7 @@ public class Customer {
 	}
 	//Updates the customer data 
 	public boolean update() throws UnknownHostException{
-		Database db = Database.getInstance();
+		CustomerDAO db = CustomerDAO.getInstance();
 		
 		return db.updateCustomerById(this);
 	}
@@ -66,18 +95,20 @@ public class Customer {
 		this.last = "";
 		this.payid = "";
 		this.email = "";
-		this.phone = "";
+		//this.phone = "";
 		this.propicURL = "";
 	}
 	//Creates the customer from a document in the database.
 	public Customer(String id) throws UnknownHostException {
-		Database db = Database.getInstance();
+		//System.out.println("Building: " + id);
+		CustomerDAO db = CustomerDAO.getInstance();
 		DBObject object = db.findCustomerById(id);
+		//System.out.println("Building: " + object);
 		this.first = (String)object.get("first");
 		this.middle = (String)object.get("middle");
 		this.last = (String)object.get("last");
 		this.email = (String)object.get("email");
-		this.phone = (String)object.get("phone");
+		//this.phone = (String)object.get("phone");
 		this.propicURL = (String)object.get("propicURL");
 		this.id = id;
 		this.payid = (String)object.get("payid");

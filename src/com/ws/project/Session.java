@@ -4,7 +4,7 @@ import java.util.Base64;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 
-import com.ws.project.dao.Database;
+import com.ws.project.dao.MainDatabaseDAO;
 
 public class Session {
 	static Cipher cipher;
@@ -14,7 +14,7 @@ public class Session {
 	  return instance;
 	}
 	public boolean login(String username, String password) throws Exception {
-		Database db = Database.getInstance();		
+		MainDatabaseDAO db = MainDatabaseDAO.getInstance();		
 		String pass = db.findUser(username);
 		if (pass.equals(password)) {
 			return true;
@@ -22,7 +22,7 @@ public class Session {
 		return false;
 	}
 	public boolean register(String username, String password, String email, String phone, String age,String displayname) throws Exception {
-		Database db = Database.getInstance();
+		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		return db.registerUser(username, password, email);
 	}
 	public static String encrypt(String plainText, SecretKey secretKey)

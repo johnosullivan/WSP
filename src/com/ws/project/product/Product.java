@@ -4,7 +4,8 @@ import java.net.UnknownHostException;
 import java.util.Date;
 
 import com.mongodb.DBObject;
-import com.ws.project.dao.Database;
+//import com.ws.project.dao.Database;
+import com.ws.project.dao.ProductDAO;
 import com.ws.project.partner.Partner;
 import com.ws.project.report.Report;
 
@@ -45,7 +46,7 @@ public class Product {
 	public String getSeller() { return this.partnerid; }
 	//Creates the product in the database
 	public String create() throws UnknownHostException {
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		id = db.createProduct(this);
 		return id;
 	}
@@ -66,12 +67,13 @@ public class Product {
 	}
 	//Updates the product info
 	public boolean update() throws UnknownHostException {
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		db.updateProductById(this); 
 		return true;
 	}
 	//Gets the id
 	public String getID() { return this.id; }
+	public void setID(String s) { this.id = s; }
 	public Product() { }
 	//Prints the detail of product
 	public void PrintDetail() throws UnknownHostException {
@@ -87,7 +89,7 @@ public class Product {
 		} else {
 			this.available = true;
 		}
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		db.updateProductById(this);
 	}
 	public Partner getPartner() throws UnknownHostException {
@@ -96,23 +98,23 @@ public class Product {
 	}
 	//Gets the report for this product
 	public Report getReport() throws UnknownHostException {
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		return db.createReportForProduct(this);
 	}
 	public String createReport(int amount) throws UnknownHostException {
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		Date dt = new Date();
 		return db.createNewReport(this, dt, amount);
 	}
 	//Creates the product from the database with id
 	public Product(String id) throws UnknownHostException {
-		Database db = Database.getInstance();
+		ProductDAO db = ProductDAO.getInstance();
 		DBObject object = db.findProductsById(id);
 		this.name = (String)object.get("name");
 		this.description = (String)object.get("des");
 		this.cost = (int)object.get("cost");
 		this.invein = (int)object.get("inventory");
-		this.curcode = (String)object.get("curcode");
+		this.curcode = (String)object.get("costcode");
 		this.partnerid = (String)object.get("partnerid");
 		this.id = id;
 		if (this.invein == 0) {

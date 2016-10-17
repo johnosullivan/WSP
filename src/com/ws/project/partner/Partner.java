@@ -7,10 +7,12 @@ import java.util.Iterator;
 //import java.util.ArrayList;
 
 import com.mongodb.DBObject;
-import com.ws.project.dao.Database;
+import com.ws.project.address.Address;
+import com.ws.project.dao.PartnerDAO;
 import com.ws.project.order.Order;
 import com.ws.project.order.OrderItem;
 import com.ws.project.payment.Payment;
+import com.ws.project.phone.Phone;
 
 public class Partner {
 	//attrs
@@ -24,7 +26,7 @@ public class Partner {
 	private String company;
 	private String email;
 	private String propicURL;
-	private String phone;
+	//private String phone;
 	private String homepage;
 	//Sets and Gets Payment
 	public void setPayment(Payment stat) { this.payment = stat; }
@@ -37,15 +39,26 @@ public class Partner {
 	public String getCompany() { return this.company; }
 	//Creates the partner
 	public String create() throws UnknownHostException {
-		Database db = Database.getInstance();
-		id = db.createPartner(this);
-		return id;
+		PartnerDAO db = PartnerDAO.getInstance();
+		this.id = db.createPartner(this);
+		return this.id;
 	}
 	//Updates the partner object
 	public boolean update()  throws UnknownHostException{
-		Database db = Database.getInstance();
+		PartnerDAO db = PartnerDAO.getInstance();
 		db.updatePartnerById(this);
 		return true;
+	}
+	public void addAddress(Address add) throws UnknownHostException {
+		add.setUser(this.id);
+		String newadd = add.save();
+		System.out.println(newadd);
+		
+	}
+	public void addPhone(Phone add) throws UnknownHostException {
+		add.setUser(this.id);
+		String newadd = add.save();
+		System.out.println(newadd);
 	}
 	//Prints the details
 	public void PrintDetail() {
@@ -53,7 +66,7 @@ public class Partner {
 	}
 	//Gets the orders of this partner
 	public ArrayList<PartnerOrder> getOrders() throws UnknownHostException {
-		Database db = Database.getInstance();
+		PartnerDAO db = PartnerDAO.getInstance();
 		ArrayList<Order> orders = db.getPartnerOrders(this);
 		Iterator<Order> itorder = orders.iterator();
 		ArrayList<PartnerOrder> finalorder = new ArrayList<PartnerOrder>();
@@ -73,7 +86,7 @@ public class Partner {
 		this.payid = "";
 		this.company = "";
 		this.email = "";
-		this.phone = "";
+		//this.phone = "";
 		this.propicURL = "";
 		this.homepage = "";
 	}
@@ -82,7 +95,7 @@ public class Partner {
 	}
 	//Creates partner from the database with id
 	public Partner(String id) throws UnknownHostException {
-		Database db = Database.getInstance();
+		PartnerDAO db = PartnerDAO.getInstance();
 		DBObject object = db.findPartnersById(id);
 		this.first = (String)object.get("first");
 		this.middle = (String)object.get("middle");
@@ -91,7 +104,7 @@ public class Partner {
 		this.payid = (String)object.get("payid");
 		this.company = (String)object.get("company");
 		this.email = (String)object.get("email");
-		this.phone = (String)object.get("phone");
+		//this.phone = (String)object.get("phone");
 		this.propicURL = (String)object.get("propicURL");
 		this.homepage = (String)object.get("homepage");
 		this.payment = new Payment(this.payid);
@@ -103,8 +116,8 @@ public class Partner {
 	public void setPP(String stat) { this.propicURL = stat; }
 	public String getPP() { return this.propicURL; }
 	//Sets and Gets Phone
-	public void setPhone(String stat) { this.phone = stat; }
-	public String getPhone() { return this.phone; }
+	//public void setPhone(String stat) { this.phone = stat; }
+	//public String getPhone() { return this.phone; }
 	//Sets and Gets Phone
 	public void setHomepage(String stat) { this.homepage = stat; }
 	public String getHomepage() { return this.homepage; }
