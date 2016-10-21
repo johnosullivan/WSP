@@ -4,7 +4,7 @@ By John O'Sullivan
 
 =============================================================================================================================
 
-For project we decided to go the no-sql way. (MongoDB)
+For project I decided to go the no-sql way. (MongoDB)
 
 1) Install MongoDB at https://docs.mongodb.com/manual/installation/
 
@@ -23,6 +23,22 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 - JRE System Library [Java SE 8 [1.8.0_101]]
 
 =============================================================================================================================
+
+# API ApacheCXF/Tomcat
+
+##### POST /customerservice/customer
+```
+Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com" }
+
+Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"
+}
+```
+
+##### GET /customerservice/customer/58097cd698686961f6fada50
+```
+Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"
+}
+```
 
 # Documentation
 
