@@ -24,21 +24,63 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat
+# API ApacheCXF/Tomcat (IN DEV)
 
-##### POST /customerservice/customer
+## Customer/Partner
+
+##### POST /customerservice/customer or /partnerservice/partner
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com" }
 
-Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"
-}
+Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
 ```
 
 ##### GET /customerservice/customer/58097cd698686961f6fada50
 ```
-Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"
+Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+```
+
+## Product
+
+##### POST /productservice/search
+
+```
+Payload: { "searchterm":"iPhone"}
+
+Return: {
+  "searchterm": "iPhone",
+  "results": [
+    {
+      "name": "iPhone 5s",
+      "description": "This is the iPhone 5s",
+      "cost": "10000",
+      "invein": "5",
+      "curcode": "USD",
+      "partner": "Apple, Inc.",
+      "id": "5809804f9868df2341045b21"
+    },
+    {
+      "name": "iPhone 6s",
+      "description": "This is the iPhone 6s",
+      "cost": "10000",
+      "invein": "5",
+      "curcode": "USD",
+      "partner": "Apple, Inc.",
+      "id": "5809804f9868df2341045b22"
+    },
+    {
+      "name": "iPhone 7 plus",
+      "description": "This is the iPhone 7 plus",
+      "cost": "10000",
+      "invein": "5",
+      "curcode": "USD",
+      "partner": "Apple, Inc.",
+      "id": "5809804f9868df2341045b23"
+    }
+  ]
 }
 ```
+
 
 # Documentation
 
