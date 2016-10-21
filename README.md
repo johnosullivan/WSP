@@ -24,7 +24,7 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat (IN DEV)
+# API ApacheCXF/Tomcat (In Progress)
 
 ## Customer
 
