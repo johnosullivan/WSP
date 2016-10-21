@@ -22,8 +22,6 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 	public void setBilling(String nam) { this.billing = nam; }
 	public String getBilling() { return this.billing; }
 	public Billing getBillingObject() { return this.billingobject; }
-
-
 	//Do the fund
 	public void doRefund(int cost) {
 		System.out.println("Order Refunded.");
@@ -57,12 +55,11 @@ public enum PaymentType { CC, PAYPAL, BITCOIN }
 			
 		}
 	}
-	
+	// Saves the payment 
 	public String save() throws UnknownHostException {
 		PaymentDAO db = PaymentDAO.getInstance();
 		return db.createPayment(this);
 	}
-	
 	//Make Payment
 	public boolean makepayment(ArrayList<OrderItem> data) throws UnknownHostException {
 		System.out.println("<<<<Payment Started>>>>");

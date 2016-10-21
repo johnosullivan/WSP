@@ -40,7 +40,6 @@ public class AppTest {
 	public static void setUpBeforeClass() throws Exception {
 		Space("setUpBeforeClass");
 		System.out.println("Setup Database");
-		
 		session = Session.getInstance();
 		System.out.println("Database setup done.");
 		System.out.println("Creating products for search function.");
@@ -146,9 +145,7 @@ public class AppTest {
 		for (CustomerAddress a : array) {
 			System.out.println(a.getAddress());
 		}
-		
-		
-		
+
 	}
 	
 	@Test
@@ -170,20 +167,15 @@ public class AppTest {
 		CustomerPhone phonetwo = new CustomerPhone();
 		phonetwo.setType("Work");
 		phonetwo.setPhone("93875223");
-		
+
 		customerpost.addPhone(phoneone);
 		customerpost.addPhone(phonetwo);
-
 		Customer customernew = new Customer(id);
-
 		ArrayList<CustomerPhone> array = customernew.getAllPhone();
-		
 		for (CustomerPhone a : array) {
 			System.out.println(a.getType() + " :" + a.getPhone());
 		}
-		
-		
-		
+
 	}
 	
 	

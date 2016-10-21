@@ -18,5 +18,4 @@ public class Report {
 	public ArrayList<String> getSummary() {
 		return this.data;
 	}
-	
 }

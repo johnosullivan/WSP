@@ -16,8 +16,7 @@ public class BillingAddress {
 	public void setAddress(String address) { this.address = address; }
 	public String getAddress() { return this.address; }
 	
-	public void setUser(String user) { 	
-this.user = user; }
+	public void setUser(String user) { 	this.user = user; }
 	public String getUser() { return this.user; }
 	
 	public void setID(String id) { this.id = id; }

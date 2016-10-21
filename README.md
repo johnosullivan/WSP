@@ -32,12 +32,24 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com" }
 
-Output: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+Output: {
+  "id": "58097cd698686961f6fada50",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve"
+}
 ```
 
 ##### GET /customerservice/customer/58097cd698686961f6fada50
 ```
-Output: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+Output: {
+  "id": "58097cd698686961f6fada50",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve"
+}
 ```
 
 ## Partner

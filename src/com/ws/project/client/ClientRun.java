@@ -17,7 +17,7 @@ public class ClientRun {
 
 	static String address = "http://localhost:8081";
 	
-	public static void Start(String x) { System.out.println("[============================================================================================================]"); System.out.println("METHOD: " + x); }
+	public static void Start(String x) { System.out.println("[============================================================================================================]"); System.out.println("CLIENT: " + x); }
 	public static void End() { System.out.println("[============================================================================================================]"); }
 	
 	public static void main(String args[]) throws Exception {
