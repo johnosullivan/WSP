@@ -7,12 +7,12 @@ import java.util.Iterator;
 //import java.util.ArrayList;
 
 import com.mongodb.DBObject;
-import com.ws.project.address.Address;
+import com.ws.project.dao.AddressDAO;
 import com.ws.project.dao.PartnerDAO;
+import com.ws.project.dao.PhoneDAO;
 import com.ws.project.order.Order;
 import com.ws.project.order.OrderItem;
 import com.ws.project.payment.Payment;
-import com.ws.project.phone.Phone;
 
 public class Partner {
 	//attrs
@@ -28,6 +28,9 @@ public class Partner {
 	private String propicURL;
 	//private String phone;
 	private String homepage;
+	//All phone and address
+	private ArrayList<PartnerAddress> alladdress;
+	private ArrayList<PartnerPhone> allphone;
 	//Sets and Gets Payment
 	public void setPayment(Payment stat) { this.payment = stat; }
 	public Payment getPayment() { return this.payment; }
@@ -49,16 +52,12 @@ public class Partner {
 		db.updatePartnerById(this);
 		return true;
 	}
-	public void addAddress(Address add) throws UnknownHostException {
-		add.setUser(this.id);
-		String newadd = add.save();
-		System.out.println(newadd);
-		
+	public ArrayList<PartnerAddress> getAllAddress() throws UnknownHostException {
+		return this.alladdress;
 	}
-	public void addPhone(Phone add) throws UnknownHostException {
-		add.setUser(this.id);
-		String newadd = add.save();
-		System.out.println(newadd);
+	
+	public ArrayList<PartnerPhone> getAllPhone() throws UnknownHostException {
+		return this.allphone;
 	}
 	//Prints the details
 	public void PrintDetail() {
@@ -108,6 +107,12 @@ public class Partner {
 		this.propicURL = (String)object.get("propicURL");
 		this.homepage = (String)object.get("homepage");
 		this.payment = new Payment(this.payid);
+		
+		AddressDAO dbaddress = AddressDAO.getInstance();
+		this.alladdress =  dbaddress.allAddressForPartner(this.id);
+		
+		PhoneDAO dbphone = PhoneDAO.getInstance();
+		this.allphone = dbphone.allPhoneForPartner(this.id);
 	}
 	//Sets and Gets Email
 	public void setEmail(String stat) { this.email = stat; }

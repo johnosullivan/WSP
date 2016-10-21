@@ -25,15 +25,15 @@
 		</jaxrs:providers> 
 
 		<jaxrs:schemaLocations>
-			<jaxrs:schemaLocation>com.ws.project.service.representation.CustomerRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.service.representation.ProductRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.service.representation.SearchRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.customer.service.representation.CustomerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.partner.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.product.service.representation.ProductRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>com.ws.project.product.service.representation.SearchRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
-  	<bean id="customerServiceRest" class="com.ws.project.service.service.CustomerResource" />
-  	<bean id="partnerServiceRest" class="com.ws.project.service.service.PartnerResource" />
-  	<bean id="productServiceRest" class="com.ws.project.service.service.ProductResource" />
+  	<bean id="customerServiceRest" class="com.ws.project.customer.service.service.CustomerResource" />
+  	<bean id="partnerServiceRest" class="com.ws.project.partner.service.service.PartnerResource" />
+  	<bean id="productServiceRest" class="com.ws.project.product.service.service.ProductResource" />
   
 </beans>

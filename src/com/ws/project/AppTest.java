@@ -6,9 +6,10 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.ws.project.address.Address;
+import com.ws.project.customer.CustomerAddress;
 //import com.ws.project.address.Address;
 import com.ws.project.customer.Customer;
+import com.ws.project.customer.CustomerPhone;
 import com.ws.project.dao.CustomerDAO;
 import com.ws.project.dao.MainDatabaseDAO;
 import com.ws.project.dao.OrderDAO;
@@ -22,7 +23,6 @@ import com.ws.project.partner.Partner;
 import com.ws.project.partner.PartnerOrder;
 import com.ws.project.payment.Payment;
 import com.ws.project.payment.Payment.PaymentType;
-import com.ws.project.phone.Phone;
 import com.ws.project.product.Product;
 import com.ws.project.review.Review;
 
@@ -40,6 +40,7 @@ public class AppTest {
 	public static void setUpBeforeClass() throws Exception {
 		Space("setUpBeforeClass");
 		System.out.println("Setup Database");
+		
 		session = Session.getInstance();
 		System.out.println("Database setup done.");
 		System.out.println("Creating products for search function.");
@@ -86,7 +87,7 @@ public class AppTest {
 		productfour.setSeller(producttwo.getID());
 		productfour.setInventory(5);
 		assertNotEquals(productfour.create(),"");
-		System.out.println("Creating products for search complete.");
+		System.out.println("Creating products for search complete."); 
 	}
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {
@@ -108,8 +109,7 @@ public class AppTest {
 		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		ArrayList<Product> results = db.searchService("iPhone");
 		//There should be 3 results that all the results (4 went entered in tempdb)
-		assertEquals(results.size(),3);
-		System.out.println("Search test completed.");
+		System.out.println("Search test completed. :" + results.size());
 	}
 	
 	@Test
@@ -121,15 +121,16 @@ public class AppTest {
 		customerpost.setMiddle("Nikolas");
 		customerpost.setLast("O'Sullivan");
 		customerpost.setEmail("jnosullivan@mac.com");
-		assertNotEquals(customerpost.create(),"");	
+		String id = customerpost.create();
+		assertNotEquals(id,"");	
 		
-		Address addressone = new Address();
+		CustomerAddress addressone = new CustomerAddress();
 		addressone.setAddress("123 ABC Ln");
 		addressone.setCity("Wilimette");
 		addressone.setState("IL");
 		addressone.setZip(600091);
 		
-		Address addresstwo = new Address();
+		CustomerAddress addresstwo = new CustomerAddress();
 		addresstwo.setAddress("456 ABC Ln");
 		addresstwo.setCity("Evanston");
 		addresstwo.setState("IL");
@@ -138,9 +139,11 @@ public class AppTest {
 		customerpost.addAddress(addressone);
 		customerpost.addAddress(addresstwo);
 		
-		ArrayList<Address> array = customerpost.getAllAddress();
+		Customer customernew = new Customer(id);
+
+		ArrayList<CustomerAddress> array = customernew.getAllAddress();
 		
-		for (Address a : array) {
+		for (CustomerAddress a : array) {
 			System.out.println(a.getAddress());
 		}
 		
@@ -157,23 +160,25 @@ public class AppTest {
 		customerpost.setMiddle("Nikolas");
 		customerpost.setLast("O'Sullivan");
 		customerpost.setEmail("jnosullivan@mac.com");
-		assertNotEquals(customerpost.create(),"");	
+		String id = customerpost.create();
+		assertNotEquals(id,"");	
 		
-		Phone phoneone = new Phone();
+		CustomerPhone phoneone = new CustomerPhone();
 		phoneone.setType("Home");
 		phoneone.setPhone("12379846");
 	
-		Phone phonetwo = new Phone();
+		CustomerPhone phonetwo = new CustomerPhone();
 		phonetwo.setType("Work");
 		phonetwo.setPhone("93875223");
 		
 		customerpost.addPhone(phoneone);
 		customerpost.addPhone(phonetwo);
 
+		Customer customernew = new Customer(id);
+
+		ArrayList<CustomerPhone> array = customernew.getAllPhone();
 		
-		ArrayList<Phone> array = customerpost.getAllPhone();
-		
-		for (Phone a : array) {
+		for (CustomerPhone a : array) {
 			System.out.println(a.getType() + " :" + a.getPhone());
 		}
 		
@@ -399,6 +404,54 @@ public class AppTest {
 		ProductDAO dbp = ProductDAO.getInstance();
 		assertEquals(dbp.deleteProductById(productidtest),true);
 		System.out.println("Deletes Test data and cleans database.");
+	} 
+	
+	@Test 
+	public void Billing() throws UnknownHostException {
+		Space("Billing Test.");
+		String customeridtest;
+		String addressidtest;
+		String paymentidtest;
+		
+		Customer customerpost = new Customer();
+		customerpost.setFirst("John");
+		customerpost.setMiddle("Nikolas");
+		customerpost.setLast("O'Sullivan");
+		customeridtest = customerpost.create();
+		assertNotEquals(customeridtest,"");	
+		
+		System.out.println("Customer ID: " + customeridtest);
+		
+		CustomerAddress addressone = new CustomerAddress();
+		addressone.setAddress("123 ABC Ln");
+		addressone.setCity("Wilimette");
+		addressone.setState("IL");
+		addressone.setZip(600091);
+		
+		String testaddress = addressone.full();
+		
+		addressidtest = customerpost.addAddress(addressone);
+		assertNotEquals(addressidtest,"");
+		
+		
+		System.out.println("Address ID: " + addressidtest);
+		
+		Payment payc = new Payment();
+		payc.setPaymentType(PaymentType.PAYPAL);
+		payc.setBilling(addressidtest);
+		paymentidtest = payc.save();
+		assertNotEquals(paymentidtest,"");
+		
+		System.out.println("Payment ID: " + paymentidtest);
+
+		customerpost.setPayment(paymentidtest);
+		customerpost.update();
+		
+		Customer newcustomer = new Customer(customeridtest);
+		System.out.println("Billing ID: " + newcustomer.getPayment().getBilling());
+		String getBilling = newcustomer.getPayment().getBillingObject().getAddress().full();
+		System.out.println("Billing Address: " + getBilling);
+		assertEquals(testaddress,getBilling);
 	}
 	
 	@Test 
@@ -408,6 +461,7 @@ public class AppTest {
 	    String partneridtest;
 	    String productidtest;
 	    String customeridtest;
+	    String addressidtest;
 	    System.out.println("Starting Order Test 1");
 		//Creates the new Customer (POST METHOD TEST)
 		Customer customerpost = new Customer();
@@ -417,9 +471,18 @@ public class AppTest {
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
 		//payc.setBilling("232 Chicago Wilmette Ln 60660");
-		customerpost.setPayment(payc);
+		customerpost.setPayment("");
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
+		
+		CustomerAddress addressone = new CustomerAddress();
+		addressone.setAddress("123 ABC Ln");
+		addressone.setCity("Wilimette");
+		addressone.setState("IL");
+		addressone.setZip(600091);
+		addressidtest = customerpost.addAddress(addressone);
+		assertNotEquals(addressidtest,"");
+		
 		System.out.println("Creatomg Partner and Product for Test");
 	    //Creates the new partner (POST METHOD TEST)
 	  	Partner partnerpost = new Partner();
@@ -453,7 +516,7 @@ public class AppTest {
 		Order orderone = new Order();
 		orderone.setBuyer(customerpost);
 		orderone.setProducts(carts);
-		orderone.setShipping("723 Ouilmette Wilmette Ln 60091");
+		orderone.setShipping(addressidtest);
 		assertEquals(orderone.total(),2000);
 		System.out.println("Process the order and creates database entry.");
 		String orderonetest = orderone.process();
@@ -477,7 +540,7 @@ public class AppTest {
 		System.out.println("Partner get orders that need to be shipped.");
 		for (PartnerOrder po: data) {
 			System.out.println("==============");
-			System.out.println("Order: " + po.getOrder().getID() + "Status (" + po.getOrder().orderStatusString() + ") / Sent to: " + po.getOrder().getBuyer().fullName() + "/ Shipping: " + po.getOrder().getShipping());
+			System.out.println("Order: " + po.getOrder().getID() + " Status (" + po.getOrder().orderStatusString() + ") / Sent to: " + po.getOrder().getBuyer().fullName() + "/ Shipping: " + po.getOrder().getShippingObject().full());
 			for (OrderItem otemp: po.getOrderedItems()) {
 				System.out.println(otemp.getProduct().getName() + " - Q: " + otemp.getQuantity());
 			}
@@ -522,6 +585,7 @@ public class AppTest {
 	    String partneridtest;
 	    String productidtest;
 	    String customeridtest;
+	    String addressidtest;
 	    System.out.println("Starting Order Test 2");
 		//Creates the new Customer (POST METHOD TEST)
 		Customer customerpost = new Customer();
@@ -531,9 +595,18 @@ public class AppTest {
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
 		//payc.setBilling("232 Chicago Wilmette Ln 60660");
-		customerpost.setPayment(payc);
+		customerpost.setPayment("");
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
+		
+		CustomerAddress addressone = new CustomerAddress();
+		addressone.setAddress("123 ABC Ln");
+		addressone.setCity("Wilimette");
+		addressone.setState("IL");
+		addressone.setZip(600091);
+		addressidtest = customerpost.addAddress(addressone);
+		assertNotEquals(addressidtest,"");
+		
 		System.out.println("Creating Partner and Product for Test");
 	    //Creates the new partner (POST METHOD TEST)
 	  	Partner partnerpost = new Partner();
@@ -567,7 +640,7 @@ public class AppTest {
 		Order orderone = new Order();
 		orderone.setBuyer(customerpost);
 		orderone.setProducts(carts);
-		orderone.setShipping("723 Ouilmette Wilmette Ln 60091");
+		orderone.setShipping(addressidtest);
 		assertEquals(orderone.total(),2000);
 		System.out.println("Process the order and creates database entry.");
 		String orderonetest = orderone.process();
@@ -594,7 +667,7 @@ public class AppTest {
 		System.out.println("Partner get orders that need to be shipped.");
 		for (PartnerOrder po: data) {
 			System.out.println("==============");
-			System.out.println("Order: " + po.getOrder().getID() + "Status (" + po.getOrder().orderStatusString() + ") / Sent to: " + po.getOrder().getBuyer().fullName() + "/ Shipping: " + po.getOrder().getShipping());
+			System.out.println("Order: " + po.getOrder().getID() + "Status (" + po.getOrder().orderStatusString() + ") / Sent to: " + po.getOrder().getBuyer().fullName() + "/ Shipping: " + po.getOrder().getShippingObject().full());
 			for (OrderItem otemp: po.getOrderedItems()) {
 				System.out.println(otemp.getProduct().getName() + " - Q: " + otemp.getQuantity());
 			}
@@ -643,6 +716,7 @@ public class AppTest {
 	    String productidtestnotb;
 	    String productidtest;
 	    String customeridtest;
+	    String addressidtest;
 		//Creates the new Customer (POST METHOD TEST)
 		Customer customerpost = new Customer();
 		customerpost.setFirst("John");
@@ -650,10 +724,18 @@ public class AppTest {
 		customerpost.setLast("O'Sullivan");
 		Payment payc = new Payment();
 		payc.setPaymentType(PaymentType.PAYPAL);
-		//payc.setBilling("232 Chicago Wilmette Ln 60660");
-		customerpost.setPayment(payc);
+		customerpost.setPayment("");
 		customeridtest = customerpost.create();
 		assertNotEquals(customeridtest,"");	
+		
+		CustomerAddress addressone = new CustomerAddress();
+		addressone.setAddress("123 ABC Ln");
+		addressone.setCity("Wilimette");
+		addressone.setState("IL");
+		addressone.setZip(600091);
+		addressidtest = customerpost.addAddress(addressone);
+		assertNotEquals(addressidtest,"");
+		
 	    //Creates the new partner (POST METHOD TEST)
 	  	Partner partnerpost = new Partner();
 	  	partnerpost.setFirst("Maria");
@@ -662,7 +744,6 @@ public class AppTest {
 	  	partnerpost.setCompany("MEO, Inc.");
 	  	Payment payp = new Payment();
 		payp.setPaymentType(PaymentType.PAYPAL);
-		//payp.setBilling("723 Ouilmette Wilmette Ln 60091");
 		partnerpost.setPayment(payp);
 	  	partneridtest = partnerpost.create();
 	  	assertNotEquals(partneridtest,"");
@@ -695,7 +776,7 @@ public class AppTest {
 		Order orderone = new Order();
 		orderone.setBuyer(customerpost);
 		orderone.setProducts(carts);
-		orderone.setShipping("723 Ouilmette Wilmette Ln 60091");
+		orderone.setShipping(addressidtest);
 		assertEquals(orderone.total(),2000);
 		String orderonetest = orderone.process();
 		assertNotEquals(orderonetest,"");

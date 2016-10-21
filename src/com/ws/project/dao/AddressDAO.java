@@ -11,8 +11,10 @@ import com.mongodb.DBCollection;
 import com.mongodb.DBCursor;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
-import com.ws.project.address.Address;
-
+import com.ws.project.billing.BillingAddress;
+import com.ws.project.customer.CustomerAddress;
+import com.ws.project.order.ShippingAddress;
+import com.ws.project.partner.PartnerAddress;
 
 public class AddressDAO {
 	static MongoClient mongoClient;
@@ -31,7 +33,7 @@ public class AddressDAO {
 		return instance;
 	}
 
-	public String createAddres(Address add) {
+	public String createAddres(CustomerAddress add) {
 		BasicDBObject newa = new BasicDBObject();
 		newa.append("address", add.getAddress());
 		newa.append("city", add.getCity());
@@ -42,24 +44,108 @@ public class AddressDAO {
 		String id = "" + newa.get("_id");
 		return id;
 	}
-	
-	public ArrayList<Address> allAddressFor(String para) {
-		ArrayList<Address> array = new ArrayList<Address>();
+
+	public String createAddresBilling(BillingAddress add) {
+		BasicDBObject newa = new BasicDBObject();
+		newa.append("address", add.getAddress());
+		newa.append("city", add.getCity());
+		newa.append("state", add.getState());
+		newa.append("zip", add.getZip());
+		newa.append("user", add.getUser());
+		address.insert(newa);
+		String id = "" + newa.get("_id");
+		return id;
+	}
+
+	public String createAddresShipping(ShippingAddress add) {
+		BasicDBObject newa = new BasicDBObject();
+		newa.append("address", add.getAddress());
+		newa.append("city", add.getCity());
+		newa.append("state", add.getState());
+		newa.append("zip", add.getZip());
+		newa.append("user", add.getUser());
+		address.insert(newa);
+		String id = "" + newa.get("_id");
+		return id;
+	}
+
+	public String createAddresPartner(PartnerAddress add) {
+		BasicDBObject newa = new BasicDBObject();
+		newa.append("address", add.getAddress());
+		newa.append("city", add.getCity());
+		newa.append("state", add.getState());
+		newa.append("zip", add.getZip());
+		newa.append("user", add.getUser());
+		address.insert(newa);
+		String id = "" + newa.get("_id");
+		return id;
+	}
+
+	// Updates the customer with id in database
+	public boolean updateCustomerAddressById(CustomerAddress add) {
+		BasicDBObject updated = new BasicDBObject();
+		updated.append("address", add.getAddress());
+		updated.append("city", add.getCity());
+		updated.append("state", add.getState());
+		updated.append("zip", add.getZip());
+		updated.append("user", add.getUser());
+		address.update(new BasicDBObject("_id", new ObjectId(add.getID())), new BasicDBObject("$set", updated));
+		return true;
+	}
+
+	// Updates the customer with id in database
+	public boolean updatePartnerAddressById(PartnerAddress add) {
+		BasicDBObject updated = new BasicDBObject();
+		updated.append("address", add.getAddress());
+		updated.append("city", add.getCity());
+		updated.append("state", add.getState());
+		updated.append("zip", add.getZip());
+		updated.append("user", add.getUser());
+		address.update(new BasicDBObject("_id", new ObjectId(add.getID())), new BasicDBObject("$set", updated));
+		return true;
+	}
+
+	// Deletes the customer with id
+	public boolean deleteAddressById(String id) {
+		BasicDBObject query = new BasicDBObject();
+		query.put("_id", new ObjectId(id));
+		address.remove(query);
+		return true;
+	}
+
+	public ArrayList<CustomerAddress> allAddressFor(String para) {
+		ArrayList<CustomerAddress> array = new ArrayList<CustomerAddress>();
 		BasicDBObject query = new BasicDBObject();
 		query.put("user", para);
 		DBCursor cursor = address.find(query);
 		while (cursor.hasNext()) {
 			DBObject s = cursor.next();
-			Address temp = new Address();
-			temp.setAddress("" + (String)s.get("address"));
-			temp.setCity("" + (String)s.get("city"));
-			temp.setState("" + (String)s.get("state"));
-			temp.setZip((int)s.get("zip"));
+			CustomerAddress temp = new CustomerAddress();
+			temp.setAddress("" + (String) s.get("address"));
+			temp.setCity("" + (String) s.get("city"));
+			temp.setState("" + (String) s.get("state"));
+			temp.setZip((int) s.get("zip"));
 			array.add(temp);
 		}
 		return array;
 	}
 
+	public ArrayList<PartnerAddress> allAddressForPartner(String para) {
+		ArrayList<PartnerAddress> array = new ArrayList<PartnerAddress>();
+		BasicDBObject query = new BasicDBObject();
+		query.put("user", para);
+		DBCursor cursor = address.find(query);
+		while (cursor.hasNext()) {
+			DBObject s = cursor.next();
+			PartnerAddress temp = new PartnerAddress();
+			temp.setAddress("" + (String) s.get("address"));
+			temp.setCity("" + (String) s.get("city"));
+			temp.setState("" + (String) s.get("state"));
+			temp.setZip((int) s.get("zip"));
+			array.add(temp);
+		}
+		return array;
+	}
 
 	// Find the address from id
 	public DBObject findAddressById(String id) {

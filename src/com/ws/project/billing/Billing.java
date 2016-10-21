@@ -1,17 +1,15 @@
 package com.ws.project.billing;
 
-import com.ws.project.address.Address;
-
 public class Billing {
 
-	private Address address;
+	private BillingAddress address;
 
 	// Sets and Gets Address
-	public void setAddress(Address address) {
+	public void setAddress(BillingAddress address) {
 		this.address = address;
 	}
 
-	public Address getAddress() {
+	public BillingAddress getAddress() {
 		return this.address;
 	}
 
@@ -20,7 +18,10 @@ public class Billing {
 	}
 
 	public Billing(String id) {
-		this.address = new Address(id);
+		if (!id.equals("")) {
+			System.out.println("Building Billing Address");
+			this.address = new BillingAddress(id);
+		}
 	}
 
 }

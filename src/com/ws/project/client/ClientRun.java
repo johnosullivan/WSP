@@ -8,7 +8,7 @@ import javax.xml.ws.Response;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 
-import com.ws.project.service.representation.CustomerRequest;
+import com.ws.project.customer.service.representation.CustomerRequest;
 
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;

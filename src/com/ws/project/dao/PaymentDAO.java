@@ -9,6 +9,8 @@ import com.mongodb.DB;
 import com.mongodb.DBCollection;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
+import com.ws.project.helper.Helper;
+import com.ws.project.payment.Payment;
 
 public class PaymentDAO {
 
@@ -28,6 +30,15 @@ public class PaymentDAO {
 		return instance;
 	}
 
+	// Create customer with customer object
+	public String createPayment(Payment data) {	
+		BasicDBObject newpayment = new BasicDBObject();
+		newpayment.append("billing", data.getBilling());
+		newpayment.append("paytype", Helper.codeForPayment(data.getPaymentType()));
+		payments.insert(newpayment);	
+		return "" + newpayment.get("_id");
+	}
+	
 	// Find the customer from id
 	public DBObject findPaymentById(String id) {
 		BasicDBObject query = new BasicDBObject();

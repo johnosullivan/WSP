@@ -18,17 +18,21 @@ public class Order {
 	private Customer buyer;
 	private OrderStatusType orderstatus;
 	private String shippingaddress;
+	private ShippingAddress shippingobject;
 	private String comfirmnumber;
 	private String id;
 	//Sets and Get shipping address
 	public void setShipping(String stat) { this.shippingaddress = stat; }
 	public String getShipping() { return this.shippingaddress; }
+	public ShippingAddress getShippingObject() { return this.shippingobject; }
+	
 	//Sets and Gets the order status
 	public void setOrderStatus(OrderStatusType stat) { this.orderstatus = stat; }
 	public OrderStatusType getOrderStatus() { return this.orderstatus; }
 	//Sets and Gets the product list
 	public void setProducts(ArrayList<OrderItem> pro) { this.product = pro; }
 	public ArrayList<OrderItem> getProducts() { return this.product; }
+	
 	//Sets and Gets the buyer
 	public void setBuyer(Customer us) { this.buyer = us; }
 	public Customer getBuyer() { return this.buyer; }
@@ -76,14 +80,14 @@ public class Order {
 	public String process() throws UnknownHostException {
 		this.orderstatus = OrderStatusType.PROCESSING;
 		OrderDAO db = OrderDAO.getInstance();
-		if (this.buyer.getPayment().makepayment(this.product)) {
-			this.orderstatus = OrderStatusType.PROCESSED;
-			this.comfirmnumber = "754754667396675466739739";
-			return db.createOrder(this);
-		} else {
+		//if (this.buyer.getPayment().makepayment(this.product)) {
+		this.orderstatus = OrderStatusType.PROCESSED;
+		this.comfirmnumber = "754754667396675466739739";
+		return db.createOrder(this);
+		/*} else {
 			this.orderstatus = OrderStatusType.PAYMENTFAILED;
 		}
-		return "";
+		return "";*/
 	}
 	public Order() { }
 	//Gets all product managed by partner id
@@ -135,10 +139,10 @@ public class Order {
 	public Order(String ordernumber) throws UnknownHostException {
 		OrderDAO db = OrderDAO.getInstance();
 		DBObject object = db.findOrderById(ordernumber);
-		//System.out.println(object);
 		this.comfirmnumber = (String)object.get("comfirmnumber");
 		this.buyer = new Customer((String)object.get("customer"));
 		this.shippingaddress = (String)object.get("shipping");
+		this.shippingobject = new ShippingAddress(this.shippingaddress);
 		this.orderstatus = getStatusTypeFInt((int)object.get("status"));
 		this.id = "" + object.get("_id");
 		this.product = new ArrayList<OrderItem>();
