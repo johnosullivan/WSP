@@ -16,6 +16,33 @@ public class OrderRepresentation {
 	private ArrayList<OrderItemRepresentation> items;
 	private String address;
 	private String customer;
+	private String comfirm;
+	private String status;
+	private String id;
+	
+	public String getId() {
+		return this.id;
+	}
+	
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public String getComfirm() {
+		return this.comfirm;
+	}
+	
+	public void setComfirm(String comfirm) {
+		this.comfirm = comfirm;
+	}
+	
+	public String getStatus() {
+		return this.status;
+	}
+	
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	
 	public ArrayList<OrderItemRepresentation> getItems() {
 		return this.items;
@@ -40,6 +67,8 @@ public class OrderRepresentation {
 	public void setCustomer(String customer) {
 		this.customer = customer;
 	}
+	
+	
 	
 
 }
