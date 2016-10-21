@@ -7,41 +7,38 @@ Creating products for search complete.
 [============================================================================================================]
 JUnit Test: Order Test Cancel With processing, cancelling, and inventory restock.
 Starting Order Test 2
+Create the customer
 Creating Partner and Product for Test
 Creates order with one product in cart.
 Creates the order object.
 Process the order and creates database entry.
-<<<<Payment Started>>>>
-Product: iPhone 7 Plus Cost: 2000 Pay Account: Apple, Inc.
-Create Report ID:57f29376d4c68df82964099d
-<<<<Payment Ended>>>>
 Check product inventory after processing order.
 Check customer order GET method.
 My Orders: John Nikolas O'Sullivan
 ==============
-Order: 57f29376d4c68df82964099e
-Shipping Address: 723 Ouilmette Wilmette Ln 60091
+Order: 58096d799868a566757aa8ce
+Shipping Address: 58096d799868a566757aa8ca
 iPhone 7 Plus - Q: 2
 ==============
 Done checking customer my orders.
 Partner test of the order.
 Partner get orders that need to be shipped.
 ==============
-Order: 57f29376d4c68df82964099eStatus (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 723 Ouilmette Wilmette Ln 60091
+Order: 58096d799868a566757aa8ceStatus (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 123 ABC Ln Wilimette IL 600091
 iPhone 7 Plus - Q: 2
 All order are receivied on both ends
 ==============
-Order#:57f29376d4c68df82964099e Refund: 2000
+Order#:58096d799868a566757aa8ce Refund: 2000
 Order Cancelled, Checking status and inventory...
 Inventory Check : Creates new product object to check inventory (5)
 Checks Orders : For Customer and Partner Side that they are cancelled.
 Checks Orders : Customer Orders
 ==============
-Order#: 57f29376d4c68df82964099e Status (CANCELED)
+Order#: 58096d799868a566757aa8ce Status (CANCELED)
 ==============
 Checks Orders : Partners Orders
 ==============
-Order#: 57f29376d4c68df82964099e Status (CANCELED)
+Order#: 58096d799868a566757aa8ce Status (CANCELED)
 ==============
 Checks Orders Done.
 Delete the test data and clean up the database.
@@ -63,16 +60,14 @@ Delete partner data clean database.
 [============================================================================================================]
 JUnit Test: Customer Full Profile
 CustomerFullProfile begin.
+Create the customer
 Created customer. Testing database entry...
 Deleted customer data / Clean database.
 [============================================================================================================]
 JUnit Test: Review Test will do the OrderTest simulate product delivered and reviewer.
+Create the customer
 Creates Product that will be purchased.
 Create Product that will not be purchased. Catch Fake Reviews.
-<<<<Payment Started>>>>
-Product: iPhone 7 Plus Cost: 2000 Pay Account: MEO, Inc.
-Create Report ID:57f29376d4c68df8296409aa
-<<<<Payment Ended>>>>
 The test starts by updating the order has been Delivered.
 Create a review for the tests.
 Submit review for product not bought check fake review.
@@ -83,6 +78,11 @@ Review Get Method Checked Done.
 Review Edited and Saved.
 Review test finished.
 Delete the test data and clean up the database.
+[============================================================================================================]
+JUnit Test: PhoneTests
+Create the customer
+Home :12379846
+Work :93875223
 [============================================================================================================]
 JUnit Test: Product Test
 Started product create test
@@ -99,8 +99,14 @@ JUnit Test: Login Test
 Test login user.
 Delete test user. / Cleaning database
 [============================================================================================================]
+JUnit Test: AddressTests
+Create the customer
+123 ABC Ln
+456 ABC Ln
+[============================================================================================================]
 JUnit Test: Customer Test Basic
 CustomerTest begin.
+Create the customer
 Created customer. Testing database entry...
 Updated customer info.
 Checked saved updated customer data.
@@ -108,40 +114,45 @@ Deleted customer data / Clean database.
 [============================================================================================================]
 JUnit Test: Search Test
 Starts the search test for the search term iphone
-Search test completed.
+Search test completed. :3
+[============================================================================================================]
+JUnit Test: Billing Test.
+Create the customer
+Customer ID: 58096d799868a566757aa8e6
+Address ID: 58096d799868a566757aa8e7
+Payment ID: 58096d799868a566757aa8e8
+Building Billing Address
+Billing ID: 58096d799868a566757aa8e7
+Billing Address: 123 ABC Ln Wilimette IL 600091
 [============================================================================================================]
 JUnit Test: OrderTest With processing, shipping, and comfirmation.
 Starting Order Test 1
+Create the customer
 Creatomg Partner and Product for Test
 Creates order with one product in cart.
 Creates the order object.
 Process the order and creates database entry.
-<<<<Payment Started>>>>
-Product: iPhone 7 Plus Cost: 2000 Pay Account: MEO, Inc.
-Create Report ID:57f29376d4c68df8296409b6
-<<<<Payment Ended>>>>
 Check customer order GET method.
 My Orders: John Nikolas O'Sullivan
 ==============
-Order: 57f29376d4c68df8296409b7
-Shipping Address: 723 Ouilmette Wilmette Ln 60091
+Order: 58096d799868a566757aa8ee
+Shipping Address: 58096d799868a566757aa8ea
 iPhone 7 Plus - Q: 2
 ==============
 Done checking customer my orders.
 Partner test of the order.
 Partner get orders that need to be shipped.
 ==============
-Order: 57f29376d4c68df8296409b7Status (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 723 Ouilmette Wilmette Ln 60091
+Order: 58096d799868a566757aa8ee Status (PROCESSED) / Sent to: John Nikolas O'Sullivan/ Shipping: 123 ABC Ln Wilimette IL 600091
 iPhone 7 Plus - Q: 2
-Simulate the order being shipped and updating the order#: 57f29376d4c68df8296409b7
+Simulate the order being shipped and updating the order#: 58096d799868a566757aa8ee
 Order has been shipped and updated by partner.
 ==============
-Creating new order object to checking status. ID: 57f29376d4c68df8296409b7
+Creating new order object to checking status. ID: 58096d799868a566757aa8ee
 Trying to cancel its fails since its shipped already.
 (Status Changed) Order has been comfirmed as shipped by the partners of the products in order.
 Calls the product and creates an report.
 Report Start ============== Product: iPhone 7 Plus
-2 Sold on: Mon Oct 03 12:20:54 CDT 2016
 Report Ended ============== Product: iPhone 7 Plus
 Delete the test data and clean up the database.
 [============================================================================================================]

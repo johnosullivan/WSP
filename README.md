@@ -1,6 +1,6 @@
 # Web Services Project (Fall 2016) 
 
-By John O'Sullivan and Matthew Wojkowski
+By John O'Sullivan
 
 =============================================================================================================================
 
@@ -44,6 +44,14 @@ For detailed documentation of our architecture and implementation. View <a href=
 # The JUnit Tests 
 
 #### (Test Log <a href="https://github.com/johnosullivan/WSP/blob/master/JUnitConsoleLog.txt">JUnitConsoleLog.txt</a>)
+
+### public void PhoneTests / AddressTests
+
+This test to show the phone and address entity separate from the customer object.
+
+### public void Billing()
+
+This test will create an address object and save it to a customer. So customers can have many address on the site. Then create a payment object to which is sets the address as billing.
 
 ### public void SearchTest() 
 
