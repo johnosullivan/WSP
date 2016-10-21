@@ -26,28 +26,91 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 # API ApacheCXF/Tomcat (IN DEV)
 
-## Customer/Partner
+## Customer
 
-##### POST /customerservice/customer or /partnerservice/partner
+##### POST /customerservice/customer
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com" }
 
-Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+Output: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
 ```
 
 ##### GET /customerservice/customer/58097cd698686961f6fada50
 ```
-Return: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+Output: { "id": "58097cd698686961f6fada50","lastName": "Jobs","middleName": "Nick", "email": "jno@mac.com","firstName": "Steve"}
+```
+
+## Partner
+
+##### POST /partnerservice/partner
+
+```
+Payload: { "lastName":"Jobs","middleName":"Paul","firstName":"Steve","email":"spj@mac.com", "company":"Apple, Inc.","homepage":"www.apple.com" }
+
+Output: {
+  "id": "5809894b9868aa2b76ef10d4",
+  "lastName": "Jobs",
+  "middleName": "Paul",
+  "email": "spj@mac.com",
+  "firstName": "Steve",
+  "company": "Apple, Inc.",
+  "homepage": "www.apple.com"
+}
+```
+
+##### GET /partnerservice/partner/5809894b9868aa2b76ef10d4
+
+```
+Output: {
+  "id": "5809894b9868aa2b76ef10d4",
+  "lastName": "Jobs",
+  "middleName": "Paul",
+  "email": "spj@mac.com",
+  "firstName": "Steve",
+  "company": "Apple, Inc.",
+  "homepage": "www.apple.com"
+}
 ```
 
 ## Product
+
+##### POST /productservice/product
+
+```
+Payload:  { "name":"Macbook Pro","description":"A Laptop","cost":"2000","invein":"5", "curcode":"USD", "partnerid":"5809804f9868df2341045b20" }
+
+Output: {
+  "name": "Macbook Pro",
+  "description": "A Laptop",
+  "cost": "2000",
+  "invein": "5",
+  "curcode": "USD",
+  "partner": "Apple, Inc.",
+  "id": "580987a99868aa2b76ef10d3"
+}
+
+```
+
+##### GET /productservice/product/580987a99868aa2b76ef10d3
+
+```
+Output: {
+  "name": "Macbook Pro",
+  "description": "A Laptop",
+  "cost": "2000",
+  "invein": "5",
+  "curcode": "USD",
+  "partner": "Apple, Inc.",
+  "id": "580987a99868aa2b76ef10d3"
+}
+```
 
 ##### POST /productservice/search
 
 ```
 Payload: { "searchterm":"iPhone"}
 
-Return: {
+Output: {
   "searchterm": "iPhone",
   "results": [
     {
