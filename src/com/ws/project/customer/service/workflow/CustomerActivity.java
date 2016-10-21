@@ -3,6 +3,9 @@ package com.ws.project.customer.service.workflow;
 import java.net.UnknownHostException;
 
 import com.ws.project.customer.Customer;
+import com.ws.project.customer.CustomerAddress;
+import com.ws.project.customer.service.representation.AddressRepresention;
+import com.ws.project.customer.service.representation.AddressRequest;
 import com.ws.project.customer.service.representation.CustomerRepresentation;
 import com.ws.project.customer.service.representation.CustomerRequest;
 import com.ws.project.dao.CustomerDAO;
@@ -18,6 +21,24 @@ public class CustomerActivity {
 		cusRep.setEmail(customer.getEmail());
 		cusRep.setMiddleName(customer.getMiddle());
 		return cusRep;
+	}
+	
+	public AddressRepresention addressCustomer(AddressRequest request) throws UnknownHostException {
+		CustomerAddress req = new CustomerAddress();
+		req.setAddress(request.getAddress());
+		req.setCity(request.getCity());
+		req.setState(request.getState());
+		req.setZip(request.getZip());
+		req.setUser(request.getUser());
+		String id = req.save();
+		AddressRepresention ret = new AddressRepresention();
+		ret.setAddress(request.getAddress());
+		ret.setCity(request.getCity());
+		ret.setState(request.getState());
+		ret.setZip(request.getZip());
+		ret.setUser(request.getUser());
+		ret.setId(id);
+		return ret;
 	}
 	
 	public boolean deleteCustomer(String id) throws UnknownHostException {

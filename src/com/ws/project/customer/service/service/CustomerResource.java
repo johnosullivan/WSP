@@ -14,6 +14,8 @@ import javax.ws.rs.core.Response;
 //import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.PathParam;
 
+import com.ws.project.customer.service.representation.AddressRepresention;
+import com.ws.project.customer.service.representation.AddressRequest;
 import com.ws.project.customer.service.representation.CustomerRepresentation;
 import com.ws.project.customer.service.representation.CustomerRequest;
 import com.ws.project.customer.service.workflow.CustomerActivity;
@@ -38,6 +40,16 @@ public class CustomerResource {
 		System.out.println("POST METHOD");
 		CustomerActivity cusActivity = new CustomerActivity();
 		return cusActivity.createCustomer(customerRequest);
+	}
+	
+	@POST
+	@Consumes({"application/json" , "application/xml"})
+	@Produces({"application/json" , "application/xml"})
+	@Path("/address")
+	public AddressRepresention addAddressCustomer(AddressRequest  req) throws UnknownHostException {
+		System.out.println("POST ADDRESS");
+		CustomerActivity cusActivity = new CustomerActivity();
+		return cusActivity.addressCustomer(req);
 	}
 	
 	@PUT

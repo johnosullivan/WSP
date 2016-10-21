@@ -52,6 +52,21 @@ Output: {
 }
 ```
 
+##### POST /customerservice/address 
+
+```
+Payload: { "address":"723 Ouilmette","city":"Wilmette","state":"IL","zip":60091, "user":"58097cd698686961f6fada50" }
+
+Output: {
+  "address": "723 Ouilmette",
+  "city": "Wilmette",
+  "state": "IL",
+  "id": "5809a4ee9868c41ca5e007f3",
+  "user": "58097cd698686961f6fada50",
+  "zip": "60091"
+}
+```
+
 ## Partner
 
 ##### POST /partnerservice/partner
@@ -156,6 +171,26 @@ Output: {
 }
 ```
 
+## Order
+
+POST /orderservice/order
+
+```
+Payload: { "items": [ {"q":3,"productid":"5809804f9868df2341045b22"} ], "address":"5809a4ee9868c41ca5e007f3", "customer":"58097cd698686961f6fada50" }
+
+Output: {
+  "items": [
+    {
+      "q": "3",
+      "productid": "productoneid"
+    }
+  ],
+  "address": "5809a4ee9868c41ca5e007f3",
+  "customer": "58097cd698686961f6fada50",
+  "comfirm": "SDFS-SDFW-LFKJ-WEFD-OPOL",
+  "status": "Processed"
+}
+```
 
 # Documentation
 
