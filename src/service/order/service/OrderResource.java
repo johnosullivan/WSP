@@ -134,6 +134,21 @@ public class OrderResource {
 			return Response.status(400).build();
 		}
 	}
+	
+	@PUT
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
+	@Path("/order/customer")
+	public Response orderUpdateCustomer(OrderPartnerStatusRequest req) throws UnknownHostException {
+		try {
+		OrderActivity activity = new OrderActivity();
+		boolean status = activity.updateStatusCustomer(req);
+		System.out.println("PUT STATUS :" + status);
+		return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
+	}
 
 	@PUT
 	@Consumes({ "application/json", "application/xml" })

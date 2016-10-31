@@ -1,6 +1,4 @@
-# Web Services Project (Fall 2016) 
-
-John O'Sullivan
+# Web Services Project (Fall 2016) John O'Sullivan 
 
 =============================================================================================================================
 
@@ -26,11 +24,13 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 # API ApacheCXF/Tomcat 
 
-### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper sure. <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a> </b> 
+### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper use. <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a> </b> 
 
 Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokuapp.com/</a>
 
+Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
 
+The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse.
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 

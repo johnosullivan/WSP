@@ -59,6 +59,15 @@ public class OrderActivity {
 		return true;
 	}
 	
+	public boolean updateStatusCustomer(OrderPartnerStatusRequest req) throws UnknownHostException {
+		Order order = new Order(req.getOrderid());
+		if (req.getCode() == 1) {
+			boolean status = order.productsDelivered();
+			return status;
+		}
+		return true;
+	}
+	
 	public OrderCustomerRepresentation getOrdersCustomer(String id) throws UnknownHostException {
 		Customer cus = new Customer(id);
 		OrderCustomerRepresentation o = new OrderCustomerRepresentation();
