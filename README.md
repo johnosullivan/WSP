@@ -28,10 +28,13 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokuapp.com/</a>
 
+Deployment CLI: <a href="https://github.com/heroku/heroku-cli-deploy">https://github.com/heroku/heroku-cli-deploy</a>
+
 Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
 
-The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created.
+The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created. For more details please review the API documentation.
 
+# Service Documentation
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
@@ -543,7 +546,7 @@ Respsone: {
 
 The review will only work if you have purchase a product and the status of the order is delivered.
 
-* POST "/api/reviewservice/review" Posting to this address will create a new product review from the payload and review the review with its unique id. 
+* POST "/api/reviewservice/review" Posting to this address will create a new product review from the payload and return the review with its unique id. 
 
 ```
 Payload { "order":"581774aee4b0cccc91834032", "review":"this is a good iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
@@ -598,7 +601,7 @@ Payload: {
 }
 ```
 
-# Documentation
+# DAL/Model Documentation
 
 Features:
 
