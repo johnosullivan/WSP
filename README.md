@@ -22,9 +22,9 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat 
+# API ApacheCXF/Tomcat
 
-### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper use. <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a> </b> 
+### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper use, <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a>. This requests below are examples with mock data. Make sure to have valid IDs or you will get a 400 status code.</b> 
 
 Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokuapp.com/</a>
 
@@ -37,7 +37,7 @@ The following rest call for the documentation were made with a Mac app called Co
 ###### Customer Object 
 The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data object like phone and address.
 
-* POST /api/customerservice/customer 
+* POST "/api/customerservice/customer" Creates a new customer from the payload.
 
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
@@ -53,7 +53,7 @@ Response: {
 }
 ```
 
-* PUT /api/customerservice/customer
+* PUT "/api/customerservice/customer" Updates the customer from the payload. Make sure to include the ID or the request will fail.
 
 ```
 Payload: { "id": "5817584ae4b0cccc9183401a", "lastName":"O'Sullivan","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
@@ -69,7 +69,7 @@ Response: {
 }
 ```
 
-* GET /api/customerservice/customer/{id}
+* GET "/api/customerservice/customer/{customerid}" Gets the customer with the customerid from url.
 
 ```
 Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
@@ -85,7 +85,7 @@ Response: {
 }
 ```
 
-* DELETE /api/customerservice/customer/{id}
+* DELETE "/api/customerservice/customer/{customerid}" Deletes the customer from database.
 
 ```
 Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
@@ -94,7 +94,7 @@ Response:
 ###### Customer's Phone Object
 
 
-* POST /api/customerservice/customer/phone
+* POST "/api/customerservice/customer/phone" Creates a new phone for customer from the payload.
 
 ```
 Payload: { "type":"Cell","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
@@ -106,7 +106,7 @@ Response: {
 }
 ```
 
-* PUT /api/customerservice/customer/phone
+* PUT "/api/customerservice/customer/phone" Updates the phone of customer from the payload.
 
 ```
 Payload: { "id": "58175989e4b0cccc9183401c", "type":"Home","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
@@ -118,7 +118,8 @@ Response: {
 }
 ```
 
-* GET /api/customerservice/customer/{customerid}
+* GET "/api/customerservice/customer/{customerid}" Gets the customer from customerid in url to shows the phones in response.
+
 
 ```
 Call: /api/customerservice/customer/58175932e4b0cccc9183401b
@@ -142,7 +143,7 @@ Response: {
 }
 ```
 
-* DELETE /api/customerservice/customer/phone/{phoneid}
+* DELETE "/api/customerservice/customer/phone/{phoneid}" Deletes an phone number with the phoneid.
 
 ```
 Call: /api/customerservice/customer/phone/58175989e4b0cccc9183401c
@@ -151,7 +152,7 @@ Respsonse: 200 Status Code
 
 ###### Customer's Address Object
 
-* POST /api/customerservice/customer/address
+* POST "/api/customerservice/customer/address" Creates a new address for the customer from the payload.
 
 ```
 Payload: { "address":"700 Ouilmette Ln","city":"Wilmette","state":"WI","user":"","zip":60091, "user":"58175932e4b0cccc9183401b" }
@@ -165,7 +166,7 @@ Response: {
 }
 ```
 
-* GET /api/customerservice/customer/{customerid}
+* GET "/api/customerservice/customer/{customerid}" Gets the customer from customerid in url to shows the addresses in response.
 
 ```
 Call: /api/customerservice/customer/58175932e4b0cccc9183401b
@@ -191,7 +192,7 @@ Response: {
 }
 ```
 
-* DELETE /api/customerservice/customer/address/{addressid}
+* DELETE "/api/customerservice/customer/address/{addressid}" Deletes the customer from the database.
 
 ```
 Call: /api/customerservice/customer/address/58175a88e4b0cccc9183401d
@@ -205,7 +206,7 @@ Response: 200 Status Code
 
 The partner object has the following api calls to which they will allow you to create, edit, delete the partner object and the support object's supporting data object like phone and address.
 
-* POST /api/customerservice/partner
+* POST "/api/partnerservice/partner" Creates a new partner from the payload.
 
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
@@ -222,7 +223,7 @@ Response: {
 }
 ```
 
-* PUT /api/customerservice/partner
+* PUT "/api/partnerservice/partner" Takes the payload and uses the ID to update the partner information.
 
 ```
 Payload: { "id": "58175ba4e4b0cccc9183401e", "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
@@ -239,7 +240,7 @@ Response: {
 }
 ```
 
-* GET /api/customerservice/partner/{partnerid}
+* GET "/api/partnerservice/partner/{partnerid}" Gets the partner info from the ID in the url.
 
 ```
 Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
@@ -258,7 +259,7 @@ Response: {
 }
 ```
 
-* DELETE /api/customerservice/partner/{partnerid}
+* DELETE "/api/partnerservice/partner/{partnerid}" Deletes the partner from the database.
 
 ```
 Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
@@ -277,21 +278,21 @@ The phone and address supporting object for partner follow the same design patte
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/payment/service/PaymentResource.java">Payment Service</a>
 
-* POST /api/paymentservice/payment/customer OR /api/paymentservice/payment/partner
+* POST "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will create a new payment for the customer or partner. Be sure to include the user's ID or an 400 status code will return.
 
 ```
 Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"1234432112344321", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
 Response: 200 Status Code 
 ```
 
-* PUT /api/paymentservice/payment/customer OR /api/paymentservice/payment/partner
+* PUT "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will take the payload an update the payment information in file, be sure to include the user's ID or an 400 status code will return.
 
 ```
 Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
 Response: 200 Status Code
 ```
 
-* GET /api/paymentservice/payment/customer/{customerid} OR /api/paymentservice/payment/partner/{partnerid}
+* GET "/api/paymentservice/payment/customer/{customerid}" OR "/api/paymentservice/payment/partner/{partnerid}" This gets the customer's or partner's payment information. 
 
 ```
 Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
@@ -303,7 +304,7 @@ Response: {
 }
 ```
 
-* DELETE /api/paymentservice/payment/customer/{customerid} OR /api/paymentservice/payment/partner/{partnerid}
+* DELETE "/api/paymentservice/payment/customer/{customerid}" OR "/api/paymentservice/payment/partner/{partnerid}" Will remove the customer's or partner's payment information from the server.
 
 ```
 Call: /api/paymentservice/payment/customer/58176fdee4b0cccc9183402d
@@ -316,7 +317,7 @@ Response: 200 Status Code
 
 ###### Product Object
 
-* POST /api/productservice/product
+* POST "/api/productservice/product" This will take the payload and create a new product and return the product with a unique ID.
 
 ```
 Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"5817727ee4b0cccc91834030" }
@@ -331,13 +332,22 @@ Response: {
 }
 ```
 
-* PUT /api/productservice/product
+* PUT "/api/productservice/product" Will update the product info with payload, but requires the productid in the payload to allow the server to update the correct product. Once a product is create the partner who owns it cannot change. Only the information about the product can change.
 
 ```
 Payload: { "name":"iPhone 6 Plus", "description":"This is a cool iphone", "cost":650, "curcode":"US", "invein":20, "id":"58177308e4b0cccc91834031" }
+Response: {
+  "name": "iPhone 6 Plus",
+  "description": "This is a cool iphone",
+  "cost": "650",
+  "invein": "20",
+  "curcode": "US",
+  "partnerid": "Apple, Inc.",
+  "id": "58177308e4b0cccc91834031"
+}
 ```
 
-* GET /api/productservice/product/{id}
+* GET "/api/productservice/product/{productid}" Will get the product with the productid in url.
 
 ```
 Call: /api/productservice/product/58177308e4b0cccc91834031
@@ -351,7 +361,7 @@ Response: {
   "id": "58177308e4b0cccc91834031"
 }
 ```
-* DELETE /api/productservice/product/{id}
+* DELETE "/api/productservice/product/{productid}" Will delete the product with the given productid.
 
 ```
 Call: /api/productservice/product/58177308e4b0cccc91834031
@@ -360,7 +370,7 @@ Response: 200 Status Code
 
 ###### Product Search
 
-* POST /api/productservice/search
+* POST "/api/productservice/search" Will use the payload to to search the product table for product related to serach term and return a JSON array of results.
 
 ```
 Payload: { "searchterm":"iPhone"}
@@ -382,7 +392,7 @@ Response: {
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/order/service/OrderResource.java">Order Service</a>
 
-* POST /api/orderservice/order
+* POST "/api/orderservice/order" Will create an order with the payload. This payload requires a valid address and customer ID. The items are an JSON array with an valid product ID and the number ordered.
 
 ```
 Payload: { "items": [ {"q":2,"productid":"58177308e4b0cccc91834031"} ], "address":"58177005e4b0cccc9183402e", "customer":"58176fdee4b0cccc9183402d" }
@@ -402,10 +412,10 @@ Response: {
 }
 ```
 
-* GET /api/orderservice/order/581774aee4b0cccc91834032
+* GET "/api/orderservice/order/{orderid}" Will get the order with the orderid.
 
 ```
-Call: /api/orderservice/order/{orderid}
+Call: /api/orderservice/order/581774aee4b0cccc91834032
 Response: {
   "items": [
     {
@@ -424,7 +434,7 @@ Response: {
 
 ###### Get Customer Orders
 
-GET /api/orderservice/orders/customer/{customerid}
+GET "/api/orderservice/orders/customer/{customerid}" This we get all the orders the customer has made and cancelled.
 
 ```
 Call: /api/orderservice/orders/customer/58176fdee4b0cccc9183402d
@@ -451,7 +461,7 @@ Response: {
 ###### Status Code:
 1 => Delivered
 
-* PUT (Delivered Order) /api/orderservice/order/customer
+* PUT (Delivered Order) "/api/orderservice/order/customer" Will change the status of the order for the customer to delivered. This will allow the customer to write a review on the product in said order.
 
 ```
 Payload: { "orderid":"581774aee4b0cccc91834032", "code":1 }
@@ -460,7 +470,7 @@ Response: 200 Status Code
 
 ###### Get Partners Orders
 
-* GET /api/orderservice/orders/partner/{partnerid}
+* GET "/api/orderservice/orders/partner/{partnerid}" Will get all the order that relate to the products the partner has in the database.
 
 ```
 Call: /api/orderservice/orders/partner/5817727ee4b0cccc91834030
@@ -481,7 +491,7 @@ Response: {
 }
 ```
 
-* PUT (Shipped Order) /api/orderservice/order/partner
+* PUT (Shipped Order) "/api/orderservice/order/partner" Will change the status of the order view to shipped.
 
 ###### Status Code:
 1 => Shipped
@@ -493,7 +503,7 @@ Response: 200 Status Code
 
 ###### Simple Status Check
 
-* GET /api/orderservice/order/status/{orderid}
+* GET "/api/orderservice/order/status/{orderid}" Will get the order from the orderid and return just the status.
 
 ```
 Call: /api/orderservice/order/status/581774aee4b0cccc91834032
@@ -502,11 +512,37 @@ Respsone: {
 }
 ```
 
+###### Cancel Order
+
+* DELETE "/api/orderservice/order/{orderid}" Will cancel the order with the orderid
+
+```
+Call: /api/orderservice/order/status/581774aee4b0cccc91834032
+Respsone: {
+  "orders": [
+    {
+      "items": [
+        {
+          "q": "2",
+          "productid": "58177308e4b0cccc91834031"
+        }
+      ],
+      "address": "723 Ouilmette Ln Wilmette IL 60091",
+      "customer": "Steve Nick Jobs",
+      "comfirm": "754754667396675466739739",
+      "status": "CANCELED",
+      "id": "58176fdee4b0cccc9183402d",
+      "total": "1300"
+    }
+  ]
+}
+```
+
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/review/service/ReviewResource.java">Review Service</a>
 
 The review will only work if you have purchase a product and the status of the order is delivered.
 
-* POST /api/reviewservice/review
+* POST "/api/reviewservice/review" Posting to this address will create a new product review from the payload and review the review with its unique id. 
 
 ```
 Payload { "order":"581774aee4b0cccc91834032", "review":"this is a good iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
@@ -519,7 +555,7 @@ Response: {
 }
 ```
 
-* PUT /api/reviewservice/review
+* PUT "/api/reviewservice/review" This will update the review with the new payload of information. Make sure to include the review id or the request will failed, due to not knowing what review to actually update.
 
 ```
 Payload: { "id": "581779c7e4b06220b38227f3", "order":"581774aee4b0cccc91834032", "review":"this is a great iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
@@ -532,7 +568,7 @@ Response: {
 }
 ```
 
-* GET /api/reviewservice/review/{reviewid}
+* GET "/api/reviewservice/review/{reviewid}" This will get the single review from the reviewid in the url.
 
 ```
 Call: /api/reviewservice/review/581779c7e4b06220b38227f3
@@ -547,7 +583,7 @@ Response: {
 
 ###### Get Reviews for a Product 
 
-* Get /api/reviewservice/reviews/product/{productid}
+* Get "/api/reviewservice/reviews/product/{productid}" This request will gets all the reviews for the productid that is in the url.
 
 ```
 Call: /api/reviewservice/reviews/product/58177308e4b0cccc91834031
