@@ -16,12 +16,13 @@ import service.customer.representation.CustomerAddressRepresentation;
 import service.customer.representation.CustomerRepresentation;
 import service.customer.representation.CustomerRequest;
 import service.order.representation.OrderItemRepresentation;
+import service.order.representation.OrderRepresentation;
 import service.order.representation.OrderRequest;
 import service.partner.representation.PartnerRepresentation;
 import service.partner.representation.PartnerRequest;
 import service.product.representation.ProductRequest;
 
-public class ClientOrder {
+public class ClientOrderReview {
 
 	static String address = ClientConfig.address;
 
@@ -149,12 +150,12 @@ public class ClientOrder {
 		String productobj = product.getID();
 		System.out.println("Product's id: " + productobj);
 
-		
 		Start("Post Create Order");
 		WebClient postClientorder = WebClient.create(address, providers);
 		WebClient.getConfig(postClientorder).getOutInterceptors().add(new LoggingOutInterceptor());
 		WebClient.getConfig(postClientorder).getInInterceptors().add(new LoggingInInterceptor());
-		postClientorder = postClientorder.accept("application/json").type("application/json").path("/orderservice/order");
+		postClientorder = postClientorder.accept("application/json").type("application/json")
+				.path("/orderservice/order");
 		String postRequestURIorder = postClientorder.getCurrentURI().toString();
 		System.out.println("Client POST METHOD Request URI:  " + postRequestURIorder);
 		String postRequestHeadersorder = postClientorder.getHeaders().toString();
@@ -169,10 +170,45 @@ public class ClientOrder {
 		orditem.setQ(5);
 		items.add(orditem);
 		orderreq.setItems(items);
-		
+
 		String responsePostorder = postClientorder.post(orderreq, String.class);
 		System.out.println("POST Order METHOD Response: " + responsePostorder);
-		End(); 
+		End();
+
+		ObjectMapper objectMapper3 = new ObjectMapper();
+		OrderRepresentation order = objectMapper3.readValue(responsePostorder, OrderRepresentation.class);
+		String orderid = order.getId();
+		System.out.println("Order's id: " + orderid);
+
+		// Get Customer
+		Start("Get MyOrders Customer");
+		WebClient getClientmyorders = WebClient.create(address, providers);
+		WebClient.getConfig(getClientmyorders).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(getClientmyorders).getInInterceptors().add(new LoggingInInterceptor());
+		getClientmyorders = getClientmyorders.accept("application/json").type("application/json")
+				.path("/orderservice/orders/customer/" + customerid);
+		String getAllRequestURImo = getClientmyorders.getCurrentURI().toString();
+		System.out.println("Client GET METHOD Request URI:  " + getAllRequestURImo);
+		String getAllRequestHeadersmo = getClientmyorders.getHeaders().toString();
+		System.out.println("Client GET METHOD Request Headers:  " + getAllRequestHeadersmo);
+		String getAllResponsemo = getClientmyorders.get(String.class);
+		System.out.println("GET METHOD Response: " + getAllResponsemo);
+		End();
+
+		// Get Customer
+		Start("Get Partner's Orders");
+		WebClient getClientporders = WebClient.create(address, providers);
+		WebClient.getConfig(getClientporders).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(getClientporders).getInInterceptors().add(new LoggingInInterceptor());
+		getClientporders = getClientporders.accept("application/json").type("application/json")
+				.path("/orderservice/orders/partner/" + partnerid);
+		String getAllRequestURIpo = getClientporders.getCurrentURI().toString();
+		System.out.println("Client GET METHOD Request URI:  " + getAllRequestURIpo);
+		String getAllRequestHeaderspo = getClientporders.getHeaders().toString();
+		System.out.println("Client GET METHOD Request Headers:  " + getAllRequestHeaderspo);
+		String getAllResponsepo = getClientporders.get(String.class);
+		System.out.println("GET METHOD Response: " + getAllResponsepo);
+		End();
 
 		// DELETE Customer
 		Start("DELETE Customer");

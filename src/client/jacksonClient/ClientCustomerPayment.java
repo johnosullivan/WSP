@@ -10,8 +10,10 @@ import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import model.customer.CustomerAddress;
+import service.customer.representation.CustomerAddressRepresentation;
 import service.customer.representation.CustomerRepresentation;
 import service.customer.representation.CustomerRequest;
+import service.payment.representation.PaymentRequest;
 
 import org.apache.cxf.interceptor.LoggingInInterceptor;
 import org.apache.cxf.interceptor.LoggingOutInterceptor;
@@ -96,6 +98,48 @@ public class ClientCustomerPayment {
 		customerRequestaddress.setUser(customerid);
 		String responsePost1cusad = postClientad.post(customerRequestaddress, String.class);
 		System.out.println("POST Address Response: " + responsePost1cusad);
+		End();
+
+		ObjectMapper objectMapperaddress = new ObjectMapper();
+		CustomerAddressRepresentation addressobject = objectMapperaddress.readValue(responsePost1cusad,
+				CustomerAddressRepresentation.class);
+		String addressid = addressobject.getId();
+		System.out.println("Address id: " + addressid);
+		// Add Address
+		Start("POST Add Payment");
+		WebClient postClientpay = WebClient.create(address, providers);
+		WebClient.getConfig(postClientpay).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(postClientpay).getInInterceptors().add(new LoggingInInterceptor());
+		postClientpay = postClientpay.accept("application/json").type("application/json")
+				.path("/paymentservice/payment/customer");
+		String postRequestURIpay = postClientpay.getCurrentURI().toString();
+		System.out.println("Client POST METHOD Request URI:  " + postRequestURIpay);
+		String postRequestHeaderspay = postClientpay.getHeaders().toString();
+		System.out.println("Client POST METHOD Request Headers:  " + postRequestHeaderspay);
+		PaymentRequest payreq = new PaymentRequest();
+		payreq.setBilling(addressid);
+		payreq.setType("CC");
+		payreq.setccnum("1234432112344321");
+		payreq.setccexp("01/12");
+		payreq.setccsec("123");
+		payreq.setUser(customerid);
+		String payreqs = postClientpay.post(payreq, String.class);
+		System.out.println("POST Payment Response: " + payreqs);
+		End();
+
+		// Get Customer
+		Start("Get Customer's Payment");
+		WebClient getClientgpay = WebClient.create(address, providers);
+		WebClient.getConfig(getClientgpay).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(getClientgpay).getInInterceptors().add(new LoggingInInterceptor());
+		getClientgpay = getClientgpay.accept("application/json").type("application/json")
+				.path("/paymentservice/payment/customer/" + customerid);
+		String getAllRequestURIgpay = getClientgpay.getCurrentURI().toString();
+		System.out.println("Client GET METHOD Request URI:  " + getAllRequestURIgpay);
+		String getAllRequestHeadersgpay = getClientgpay.getHeaders().toString();
+		System.out.println("Client GET METHOD Request Headers:  " + getAllRequestHeadersgpay);
+		String getAllResponsegpay = getClientgpay.get(String.class);
+		System.out.println("GET METHOD Response: " + getAllResponsegpay);
 		End();
 
 		// PUT Customer

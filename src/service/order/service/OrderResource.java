@@ -1,4 +1,5 @@
 package service.order.service;
+
 import java.net.UnknownHostException;
 
 import javax.jws.WebParam;
@@ -22,97 +23,125 @@ import service.order.representation.OrderRequest;
 import service.order.representation.OrderStatusRepresentation;
 import service.order.workflow.OrderActivity;
 
-
 @Path("/orderservice/")
 public class OrderResource {
 	/*
-	 * GET /order/{orderId}
-	 * Gets the order with the id.
+	 * GET /order/{orderId} Gets the order with the id.
 	 */
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/order/{orderId}")
-	public OrderRepresentation getOrder(@PathParam("orderId") @WebParam(name = "arg0") String id) throws UnknownHostException {
-		System.out.println("GET METHOD (Order) :" + id);
-		OrderActivity activity = new OrderActivity(); 
-		return activity.getOrder(id);
+	public Response getOrder(@PathParam("orderId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+		try {
+			System.out.println("GET METHOD (Order) :" + id);
+			OrderActivity activity = new OrderActivity();
+			OrderRepresentation status = activity.getOrder(id);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * DELETE /order/{orderId}
-	 * This is to cancel on order with order id.
+	 * DELETE /order/{orderId} This is to cancel on order with order id.
 	 */
 	@DELETE
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/order/{orderId}")
-	public OrderRepresentation cancelOrder(@PathParam("orderId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+	public Response cancelOrder(@PathParam("orderId") @WebParam(name = "arg0") String id)
+			throws UnknownHostException {
+		try {
 		System.out.println("GET METHOD (Cancel) :" + id);
-		OrderActivity activity = new OrderActivity(); 
-		return activity.cancelOrder(id);
+		OrderActivity activity = new OrderActivity();
+		OrderRepresentation status = activity.cancelOrder(id);
+		return Response.ok(status).build();
+	} catch (NullPointerException e) {
+		return Response.status(400).build();
 	}
-	
+	}
+
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/order")
-	public OrderRepresentation orderPost(OrderRequest orderRequest) throws UnknownHostException {
+	public Response orderPost(OrderRequest orderRequest) throws UnknownHostException {
+		try {
 		System.out.println("POST ORDER");
 		OrderActivity activity = new OrderActivity();
-		return activity.postOrder(orderRequest);
+		OrderRepresentation status = activity.postOrder(orderRequest);
+		return Response.ok(status).build();
+	} catch (NullPointerException e) {
+		return Response.status(400).build();
 	}
-	
-	
+	}
+
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/order/status/{orderId}")
-	public OrderStatusRepresentation getOrderStatus(@PathParam("orderId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+	public Response getOrderStatus(@PathParam("orderId") @WebParam(name = "arg0") String id)
+			throws UnknownHostException {
+		try {
 		System.out.println("GET METHOD (Order) :" + id);
-		OrderActivity activity = new OrderActivity(); 
-		return activity.getOrderStatus(id);
+		OrderActivity activity = new OrderActivity();
+		OrderStatusRepresentation status = activity.getOrderStatus(id);
+		return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
-	
+
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/orders/partner/{partnerId}")
-	public OrderPartnerRepresentation getPartnerOrders(@PathParam("partnerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+	public Response getPartnerOrders(@PathParam("partnerId") @WebParam(name = "arg0") String id)
+			throws UnknownHostException {
+		try {
 		System.out.println("GET METHOD (Order) :" + id);
-		OrderActivity activity = new OrderActivity(); 
-		return activity.getOrdersPartner(id);
+		OrderActivity activity = new OrderActivity();
+		OrderPartnerRepresentation status =  activity.getOrdersPartner(id);
+		return Response.ok(status).build();
+	} catch (NullPointerException e) {
+		return Response.status(400).build();
 	}
-	
+	}
+
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/orders/customer/{customerId}")
-	public OrderCustomerRepresentation getCustomerOrders(@PathParam("customerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+	public Response getCustomerOrders(@PathParam("customerId") @WebParam(name = "arg0") String id)
+			throws UnknownHostException {
+		try {
 		System.out.println("GET METHOD (Order) :" + id);
-		OrderActivity activity = new OrderActivity(); 
-		return activity.getOrdersCustomer(id);
+		OrderActivity activity = new OrderActivity();
+		OrderCustomerRepresentation status = activity.getOrdersCustomer(id);
+		return Response.ok(status).build();
+	} catch (NullPointerException e) {
+		return Response.status(400).build();
 	}
-	
+	}
+
 	@PUT
 	@Consumes({ "application/json", "application/xml" })
 	@Produces({ "application/json", "application/xml" })
 	@Path("/order/partner")
 	public Response orderUpdatePartner(OrderPartnerStatusRequest req) throws UnknownHostException {
-		OrderActivity activity = new OrderActivity(); 
+		try {
+		OrderActivity activity = new OrderActivity();
 		boolean status = activity.updateStatus(req);
 		System.out.println("PUT STATUS :" + status);
-		return Response.ok().build();
+		return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
-	
+
 	@PUT
 	@Consumes({ "application/json", "application/xml" })
 	@Produces({ "application/json", "application/xml" })
 	@Path("/order/customer")
 	public Response orderUpdateCustomer(CustomerRepresentation customerRequest) throws UnknownHostException {
-		
+
 		return Response.ok().build();
 	}
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

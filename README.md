@@ -1,6 +1,6 @@
 # Web Services Project (Fall 2016) 
 
-By John O'Sullivan
+John O'Sullivan
 
 =============================================================================================================================
 
@@ -26,76 +26,174 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 # API ApacheCXF/Tomcat  
 
-Hosted: <a>https://fall2016wsp.herokuapp.com/api/</a>
+Hosted: <a>https://fall2016wsp.herokuapp.com/</a>
 
 Note: This is running on a free dyno thus it is unactive. Requests will initially take longer to allow server to boot up.
 
 ## Customer
 
-###### Customer Object
+###### Customer Object 
+The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data object like phone and address.
 
-* POST /customerservice/customer
-
-```
-```
-
-* PUT /customerservice/customer
+* POST /api/customerservice/customer 
 
 ```
+Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
+Response: {
+  "id": "5817584ae4b0cccc9183401a",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "propic": "http://www.google.com/somepic",
+  "addresses": null,
+  "phones": null
+}
 ```
 
-* GET /customerservice/customer/{id}
+* PUT /api/customerservice/customer
 
 ```
+Payload: { "id": "5817584ae4b0cccc9183401a", "lastName":"O'Sullivan","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
+Response: {
+  "id": "5817584ae4b0cccc9183401a",
+  "lastName": "O'Sullivan",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "propic": "http://www.google.com/somepic",
+  "addresses": null,
+  "phones": null
+}
 ```
 
-* DELETE /customerservice/customer/{id}
+* GET /api/customerservice/customer/{id}
 
 ```
+Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
+Response: {
+  "id": "5817584ae4b0cccc9183401a",
+  "lastName": "O'Sullivan",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "propic": "http://www.google.com/somepic",
+  "addresses": null,
+  "phones": null
+}
+```
+
+* DELETE /api/customerservice/customer/{id}
+
+```
+Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
+Response: 
 ```
 ###### Customer's Phone Object
 
 
-* POST /customerservice/customer/phone
+* POST /api/customerservice/customer/phone
 
 ```
+Payload: { "type":"Cell","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
+Response: {
+  "phone": "1-847-256-7071",
+  "type": "Cell",
+  "id": "58175989e4b0cccc9183401c",
+  "user": "58175932e4b0cccc9183401b"
+}
 ```
 
-* PUT /customerservice/customer/phone
+* PUT /api/customerservice/customer/phone
 
 ```
+Payload: { "id": "58175989e4b0cccc9183401c", "type":"Home","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
+Response: {
+  "phone": "1-847-256-7071",
+  "type": "Home",
+  "id": "58175989e4b0cccc9183401c",
+  "user": "58175932e4b0cccc9183401b"
+}
 ```
 
-* GET /customerservice/customer/phone/{id}
+* GET /api/customerservice/customer/{customerid}
 
 ```
+Call: /api/customerservice/customer/58175932e4b0cccc9183401b
+Response: {
+  "id": "58175932e4b0cccc9183401b",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "propic": "http://www.google.com/somepic",
+  "addresses": [
+  ],
+  "phones": [
+    {
+      "phone": "1-847-256-7071",
+      "type": "Home",
+      "id": "58175989e4b0cccc9183401c",
+      "user": "58175932e4b0cccc9183401b"
+    }
+  ]
+}
 ```
 
-* DELETE /customerservice/customer/phone/{id}
+* DELETE /api/customerservice/customer/phone/{phoneid}
 
 ```
+Call: /api/customerservice/customer/phone/58175989e4b0cccc9183401c
+Respsonse: 200 Status Code
 ```
 
 ###### Customer's Address Object
 
-* POST /customerservice/customer/address
+* POST /api/customerservice/customer/address
 
 ```
+Payload: { "address":"700 Ouilmette Ln","city":"Wilmette","state":"WI","user":"","zip":60091, "user":"58175932e4b0cccc9183401b" }
+Response: {
+  "address": "700 Ouilmette Ln",
+  "city": "Wilmette",
+  "state": "WI",
+  "id": "58175a88e4b0cccc9183401d",
+  "user": "58175932e4b0cccc9183401b",
+  "zip": "60091"
+}
 ```
 
-* PUT /customerservice/customer/address
+* GET /api/customerservice/customer/{customerid}
 
 ```
+Call: /api/customerservice/customer/58175932e4b0cccc9183401b
+Response: {
+  "id": "58175932e4b0cccc9183401b",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "propic": "http://www.google.com/somepic",
+  "addresses": [
+    {
+      "address": "700 Ouilmette Ln",
+      "city": "Wilmette",
+      "state": "WI",
+      "id": "58175a88e4b0cccc9183401d",
+      "user": "58175932e4b0cccc9183401b",
+      "zip": "60091"
+    }
+  ],
+  "phones": [
+  ]
+}
 ```
 
-* GET /customerservice/customer/address/{id}
+* DELETE /api/customerservice/customer/address/{addressid}
 
 ```
-```
-
-* DELETE /customerservice/customer/address/{id}
-
-```
+Call: /api/customerservice/customer/address/58175a88e4b0cccc9183401d
+Response: 200 Status Code
 ```
 
 
@@ -103,95 +201,104 @@ Note: This is running on a free dyno thus it is unactive. Requests will initiall
 
 #### Partner Object
 
-* POST /customerservice/partner
+The partner object has the following api calls to which they will allow you to create, edit, delete the partner object and the support object's supporting data object like phone and address.
+
+* POST /api/customerservice/partner
 
 ```
+Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
+Response: {
+  "id": "58175ba4e4b0cccc9183401e",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jno@mac.com",
+  "firstName": "Steve",
+  "company": "Apple, Inc.",
+  "homepage": "http://www.apple.com",
+  "addresses": null,
+  "phones": null
+}
 ```
 
-* PUT /customerservice/partner
+* PUT /api/customerservice/partner
 
 ```
+Payload: { "id": "58175ba4e4b0cccc9183401e", "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
+Response: {
+  "id": "58175ba4e4b0cccc9183401e",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jimmy@mac.com",
+  "firstName": "Jimmy",
+  "company": "Apple, Inc.",
+  "homepage": "http://www.iphone.com",
+  "addresses": null,
+  "phones": null
+}
 ```
 
-* GET /customerservice/partner/{id}
+* GET /api/customerservice/partner/{partnerid}
 
 ```
+Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
+Response: {
+  "id": "58175ba4e4b0cccc9183401e",
+  "lastName": "Jobs",
+  "middleName": "Nick",
+  "email": "jimmy@mac.com",
+  "firstName": "Jimmy",
+  "company": "Apple, Inc.",
+  "homepage": "http://www.apple.com",
+  "addresses": [
+  ],
+  "phones": [
+  ]
+}
 ```
 
-* DELETE /customerservice/partner/{id}
+* DELETE /api/customerservice/partner/{partnerid}
 
 ```
+Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
+Respsonse: 200 Status Code
 ```
 
-###### Partner's Phone Object
+###### Partner's Phone Object and Address Object
 
-* POST /partnerservice/partner/phone
+The phone and address supporting object for partner follow the same design pattern as the customer. Please refer to the customer example with the follow chanages,
 
-```
-```
+"/customerservice/customer" changes to "/partnerservice/partner"
 
-* PUT /partnerservice/partner/phone
-
-```
-```
-
-* GET /partnerservice/partner/phone/{id}
-
-```
-```
-
-* DELETE /partnerservice/partner/phone/{id}
-
-```
-```
+"customerid" changes to "partnerid"
 
 ###### Partner's Address Object
 
-* POST /partnerservice/partner/address
-
-```
-```
-
-* PUT /partnerservice/partner/address
-
-```
-```
-
-* GET /partnerservice/partner/address/{id}
-
-```
-```
-
-* DELETE /partnerservice/partner/address/{id}
-
-```
-```
 
 
 ## Product
 
 ###### Product Object
 
-* POST /productservice/product
+* POST /api/productservice/product
 
 ```
 ```
 
-* GET /productservice/product/{id}
+* GET /api/productservice/product/{id}
 
 ```
 ```
 
 ###### Product Search
 
-* POST /productservice/search
+* POST /api/productservice/search
 
 ```
 ```
 
 ## Order
 
-* POST /orderservice/order
+* POST /api/orderservice/order
 
 ```
 ```

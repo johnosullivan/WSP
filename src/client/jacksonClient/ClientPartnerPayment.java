@@ -11,8 +11,11 @@ import org.apache.cxf.jaxrs.client.WebClient;
 import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
 import org.codehaus.jackson.map.ObjectMapper;
 
+import model.partner.PartnerAddress;
+import service.customer.representation.CustomerAddressRepresentation;
 import service.partner.representation.PartnerRepresentation;
 import service.partner.representation.PartnerRequest;
+import service.payment.representation.PaymentRequest;
 
 public class ClientPartnerPayment {
 
@@ -75,6 +78,69 @@ public class ClientPartnerPayment {
 		System.out.println("GET METHOD Response: " + getAllResponse);
 		End();
 
+		// Add Address
+		Start("POST Add Address");
+		WebClient postClientad = WebClient.create(address, providers);
+		WebClient.getConfig(postClientad).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(postClientad).getInInterceptors().add(new LoggingInInterceptor());
+		postClientad = postClientad.accept("application/json").type("application/json")
+				.path("/partnerservice/partner/address");
+		String postRequestURI1cusad = postClientad.getCurrentURI().toString();
+		System.out.println("Client POST METHOD Request URI:  " + postRequestURI1cusad);
+		String postRequestHeaders1cusad = postClientad.getHeaders().toString();
+		System.out.println("Client POST METHOD Request Headers:  " + postRequestHeaders1cusad);
+		PartnerAddress customerRequestaddress = new PartnerAddress();
+		customerRequestaddress.setAddress("723 Ouilmette Ln");
+		customerRequestaddress.setState("IL");
+		customerRequestaddress.setCity("Wilmette");
+		customerRequestaddress.setZip(60091);
+		customerRequestaddress.setUser(partnerid);
+		String responsePost1cusad = postClientad.post(customerRequestaddress, String.class);
+		System.out.println("POST Address Response: " + responsePost1cusad);
+		End();
+		
+		ObjectMapper objectMapperaddress = new ObjectMapper();
+		CustomerAddressRepresentation addressobject = objectMapperaddress.readValue(responsePost1cusad,
+				CustomerAddressRepresentation.class);
+		String addressid = addressobject.getId();
+		System.out.println("Address id: " + addressid);
+
+		Start("POST Add Payment");
+		WebClient postClientpay = WebClient.create(address, providers);
+		WebClient.getConfig(postClientpay).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(postClientpay).getInInterceptors().add(new LoggingInInterceptor());
+		postClientpay = postClientpay.accept("application/json").type("application/json")
+				.path("/paymentservice/payment/partner");
+		String postRequestURIpay = postClientpay.getCurrentURI().toString();
+		System.out.println("Client POST METHOD Request URI:  " + postRequestURIpay);
+		String postRequestHeaderspay = postClientpay.getHeaders().toString();
+		System.out.println("Client POST METHOD Request Headers:  " + postRequestHeaderspay);
+		PaymentRequest payreq = new PaymentRequest();
+		payreq.setBilling(addressid);
+		payreq.setType("CC");
+		payreq.setccnum("1234432112344321");
+		payreq.setccexp("01/12");
+		payreq.setccsec("123");
+		payreq.setUser(partnerid);
+		String payreqs = postClientpay.post(payreq, String.class);
+		System.out.println("POST Payment Response: " + payreqs);
+		End();
+
+		// Get Customer
+		Start("Get Partner's Payment");
+		WebClient getClientgpay = WebClient.create(address, providers);
+		WebClient.getConfig(getClientgpay).getOutInterceptors().add(new LoggingOutInterceptor());
+		WebClient.getConfig(getClientgpay).getInInterceptors().add(new LoggingInInterceptor());
+		getClientgpay = getClientgpay.accept("application/json").type("application/json")
+				.path("/paymentservice/payment/partner/" + partnerid);
+		String getAllRequestURIgpay = getClientgpay.getCurrentURI().toString();
+		System.out.println("Client GET METHOD Request URI:  " + getAllRequestURIgpay);
+		String getAllRequestHeadersgpay = getClientgpay.getHeaders().toString();
+		System.out.println("Client GET METHOD Request Headers:  " + getAllRequestHeadersgpay);
+		String getAllResponsegpay = getClientgpay.get(String.class);
+		System.out.println("GET METHOD Response: " + getAllResponsegpay);
+		End();
+		
 		// PUT Partner
 		Start("PUT Partner");
 		WebClient putClient3 = WebClient.create(address, providers);

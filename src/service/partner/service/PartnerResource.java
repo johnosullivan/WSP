@@ -12,7 +12,6 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.PathParam;
 
-
 import service.partner.representation.PartnerAddressRepresentation;
 import service.partner.representation.PartnerAddressRequest;
 import service.partner.representation.PartnerPhoneRepresentation;
@@ -24,134 +23,177 @@ import service.partner.workflow.PartnerActivity;
 @Path("/partnerservice/")
 public class PartnerResource {
 	/*
-	 * GET /partner/{partnerId}
-	 * Will get the partner object with id
+	 * GET /partner/{partnerId} Will get the partner object with id
 	 */
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/{partnerId}")
-	public PartnerRepresentation getPartner(@PathParam("partnerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity(); 
-		return activity.getPartner(id);
+	public Response getPartner(@PathParam("partnerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerRepresentation status = activity.getPartner(id);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * POST /partner
-	 * Will create new partner object with id
+	 * POST /partner Will create new partner object with id
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner")
-	public PartnerRepresentation createPartner(PartnerRequest  PartnerRequest) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		return activity.createPartner(PartnerRequest);
+	public Response createPartner(PartnerRequest PartnerRequest) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerRepresentation status = activity.createPartner(PartnerRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * PUT /partner
-	 * Will update the partner object from the payload
+	 * PUT /partner Will update the partner object from the payload
 	 */
 	@PUT
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner")
-	public PartnerRepresentation updatePartner(PartnerRepresentation  PartnerRequest) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		return activity.updatePartner(PartnerRequest);
+	public Response updatePartner(PartnerRepresentation PartnerRequest) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerRepresentation status = activity.updatePartner(PartnerRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * DELETE /partner/{partnerId}
-	 * Will delete the partner with id
+	 * DELETE /partner/{partnerId} Will delete the partner with id
 	 */
 	@DELETE
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/{partnerId}")
 	public Response deletePartner(@PathParam("partnerId") String id) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		if (activity.deletePartner(id)) {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			if (activity.deletePartner(id)) {
+				return Response.ok().build();
+			}
 			return Response.ok().build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
 		}
-		return Response.ok().build();
 	}
+
 	/*
-	 * POST /partner/phone
-	 * Will create a customer's phone object
+	 * POST /partner/phone Will create a customer's phone object
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/phone")
-	public Response createPartnerPhone(PartnerPhoneRequest  customerRequest) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		PartnerPhoneRepresentation status = activity.createPartnerPhone(customerRequest);
-		System.out.println(status);
-		return Response.ok(status).build();
+	public Response createPartnerPhone(PartnerPhoneRequest customerRequest) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerPhoneRepresentation status = activity.createPartnerPhone(customerRequest);
+			System.out.println(status);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * POST /partner/address
-	 * Will create a customer's address object
+	 * POST /partner/address Will create a customer's address object
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/address")
 	public Response createPartnerAddress(PartnerAddressRequest req) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		PartnerAddressRepresentation status = activity.createPartnerAddress(req);
-		System.out.println(status);
-		return Response.ok(status).build();
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerAddressRepresentation status = activity.createPartnerAddress(req);
+			System.out.println(status);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * DELETE /partner/address/{addressId}
-	 * Will delete partner's address with id
+	 * DELETE /partner/address/{addressId} Will delete partner's address with id
 	 */
 	@DELETE
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/address/{addressId}")
 	public Response deletePartnerAddress(@PathParam("addressId") String id) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		if (activity.deletePartnerAddress(id)) {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			if (activity.deletePartnerAddress(id)) {
+				return Response.ok().build();
+			}
 			return Response.ok().build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
 		}
-		return Response.ok().build();
 	}
+
 	/*
-	 * DELETE /partner/phone/{phoneId}
-	 * Will delete partner's phone with id
+	 * DELETE /partner/phone/{phoneId} Will delete partner's phone with id
 	 */
 	@DELETE
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/phone/{phoneId}")
 	public Response deletePartnerPhone(@PathParam("phoneId") String id) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		if (activity.deletePartnerPhone(id)) {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			if (activity.deletePartnerPhone(id)) {
+				return Response.ok().build();
+			}
 			return Response.ok().build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
 		}
-		return Response.ok().build();
 	}
+
 	/*
-	 * PUT partner/address
-	 * Will update partner's address with payload
+	 * PUT partner/address Will update partner's address with payload
 	 */
 	@PUT
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/address")
-	public PartnerAddressRepresentation updatePartnerAddress(PartnerAddressRepresentation  customerRequest) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		return activity.updatePartnerAddress(customerRequest);
+	public Response updatePartnerAddress(PartnerAddressRepresentation customerRequest) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerAddressRepresentation status = activity.updatePartnerAddress(customerRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * PUT partner/phone
-	 * Will update partner's phone with payload
+	 * PUT partner/phone Will update partner's phone with payload
 	 */
 	@PUT
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/partner/phone")
-	public PartnerPhoneRepresentation updatePartnerPhone(PartnerPhoneRepresentation  customerRequest) throws UnknownHostException {
-		PartnerActivity activity = new PartnerActivity();
-		return activity.updatePartnerPhone(customerRequest);
+	public Response updatePartnerPhone(PartnerPhoneRepresentation customerRequest) throws UnknownHostException {
+		try {
+			PartnerActivity activity = new PartnerActivity();
+			PartnerPhoneRepresentation status = activity.updatePartnerPhone(customerRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
-	
-	
+
 }

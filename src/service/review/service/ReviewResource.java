@@ -22,30 +22,33 @@ import service.review.workflow.ReviewActivity;
 public class ReviewResource {
 
 	/*
-	 * POST /review
-	 * This will create the review from the payload of request.
+	 * POST /review This will create the review from the payload of request.
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/review")
 	public Response createProduct(ReviewRequest req) throws UnknownHostException {
-		System.out.println("POST METHOD");
-		ReviewActivity activity = new ReviewActivity();
-		ReviewRepresentation status = activity.createReview(req);
-		
-		if (!status.getId().equals("")) {
-			return Response.ok(status).build();
-		} else {
+		try {
+			System.out.println("POST METHOD");
+			ReviewActivity activity = new ReviewActivity();
+			ReviewRepresentation status = activity.createReview(req);
+
+			if (!status.getId().equals("")) {
+				return Response.ok(status).build();
+			} else {
+				return Response.status(400).build();
+			}
+		} catch (NullPointerException e) {
 			return Response.status(400).build();
 		}
 	}
+
 	/*
-	 * GET /review/{reviewId}
-	 * This get the review at an id.
+	 * GET /review/{reviewId} This get the review at an id.
 	 */
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/review/{reviewId}")
 	public Response getReview(@PathParam("reviewId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		System.out.println("GET METHOD (Product) :" + id);
@@ -57,14 +60,15 @@ public class ReviewResource {
 			return Response.status(400).build();
 		}
 	}
+
 	/*
-	 * GET /reviews/product/{productId}
-	 * This get the reviews at an id.
+	 * GET /reviews/product/{productId} This get the reviews at an id.
 	 */
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/reviews/product/{productId}")
-	public Response getProductReviews(@PathParam("productId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+	public Response getProductReviews(@PathParam("productId") @WebParam(name = "arg0") String id)
+			throws UnknownHostException {
 		System.out.println("GET METHOD (Review) :" + id);
 		ReviewActivity activity = new ReviewActivity();
 		try {
@@ -74,9 +78,9 @@ public class ReviewResource {
 			return Response.status(400).build();
 		}
 	}
+
 	/*
-	 * DELETE /review
-	 * This will remove the customer's review
+	 * DELETE /review This will remove the customer's review
 	 */
 	@DELETE
 	@Produces({ "application/json", "application/xml" })
@@ -86,20 +90,20 @@ public class ReviewResource {
 			ReviewActivity activity = new ReviewActivity();
 			if (activity.deleteReview(id)) {
 				return Response.ok().build();
-			} 
+			}
 			return Response.ok().build();
 		} catch (NullPointerException e) {
 			return Response.status(400).build();
 		}
-		
+
 	}
+
 	/*
-	 * PUT /review
-	 * This will update the reviewed info in the database.
+	 * PUT /review This will update the reviewed info in the database.
 	 */
 	@PUT
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/review")
 	public Response updateReview(ReviewRequest req) throws UnknownHostException {
 		System.out.println("PUT METHOD");
@@ -111,6 +115,5 @@ public class ReviewResource {
 			return Response.status(400).build();
 		}
 	}
-	
-	
+
 }

@@ -92,6 +92,8 @@ public class PhoneDAO {
 			PartnerPhone temp = new PartnerPhone();
 			temp.setPhone("" + (String) s.get("phone"));
 			temp.setType("" + (String) s.get("type"));
+			ObjectId id = (ObjectId)s.get( "_id" );
+			temp.setID(id.toString());
 			array.add(temp);
 		}
 		return array;

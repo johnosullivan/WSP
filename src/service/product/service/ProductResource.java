@@ -22,71 +22,95 @@ import service.product.workflow.ProductActivity;
 @Path("/productservice/")
 public class ProductResource {
 	/*
-	 * GET /product/{productId}
-	 * This get the product at an id.
+	 * GET /product/{productId} This get the product at an id.
 	 */
 	@GET
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/product/{productId}")
-	public ProductRepresentation getProduct(@PathParam("productId") @WebParam(name = "arg0") String id) throws UnknownHostException {
-		System.out.println("GET METHOD (Product) :" + id);
-		ProductActivity activity = new ProductActivity(); 
-		return activity.getProduct(id);
+	public Response getProduct(@PathParam("productId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+		try {
+			System.out.println("GET METHOD (Product) :" + id);
+			ProductActivity activity = new ProductActivity();
+			ProductRepresentation status = activity.getProduct(id);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * POST /product
-	 * This will create the product from the payload of request.
+	 * POST /product This will create the product from the payload of request.
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/product")
-	public ProductRepresentation createProduct(ProductRequest productRequest) throws UnknownHostException {
-		System.out.println("POST METHOD");
-		ProductActivity activity = new ProductActivity();
-		return activity.createProduct(productRequest);
+	public Response createProduct(ProductRequest productRequest) throws UnknownHostException {
+		try {
+			System.out.println("POST METHOD");
+			ProductActivity activity = new ProductActivity();
+			ProductRepresentation status = activity.createProduct(productRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * POST /search
-	 * This will take the payload info and search the database.
+	 * POST /search This will take the payload info and search the database.
 	 */
 	@POST
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/search")
-	public SearchRepresentation productSearch(SearchRequest productRequest) throws UnknownHostException {
-		System.out.println("POST SEARCH");
-		ProductActivity activity = new ProductActivity();
-		activity.searchProduct(productRequest);
-		return activity.searchProduct(productRequest);
+	public Response productSearch(SearchRequest productRequest) throws UnknownHostException {
+		try {
+			System.out.println("POST SEARCH");
+			ProductActivity activity = new ProductActivity();
+			activity.searchProduct(productRequest);
+			SearchRepresentation status = activity.searchProduct(productRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * PUT /product
-	 * This will update the products info in the database.
+	 * PUT /product This will update the products info in the database.
 	 */
 	@PUT
-	@Consumes({"application/json" , "application/xml"})
-	@Produces({"application/json" , "application/xml"})
+	@Consumes({ "application/json", "application/xml" })
+	@Produces({ "application/json", "application/xml" })
 	@Path("/product")
-	public ProductRepresentation updateProduct(ProductRepresentation  ProductRequest) throws UnknownHostException {
-		System.out.println("PUT METHOD");
-		ProductActivity activity = new ProductActivity();
-		return activity.updateProduct(ProductRequest);
+	public Response updateProduct(ProductRepresentation ProductRequest) throws UnknownHostException {
+		try {
+			System.out.println("PUT METHOD");
+			ProductActivity activity = new ProductActivity();
+			ProductRepresentation status = activity.updateProduct(ProductRequest);
+			return Response.ok(status).build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
+		}
 	}
+
 	/*
-	 * DELETE /product/{productId}
-	 * This will delete the product with a certain id.
+	 * DELETE /product/{productId} This will delete the product with a certain
+	 * id.
 	 */
 	@DELETE
-	@Produces({"application/json" , "application/xml"})
+	@Produces({ "application/json", "application/xml" })
 	@Path("/product/{productId}")
 	public Response deleteProduct(@PathParam("productId") String id) throws UnknownHostException {
-		System.out.println("DELETE METHOD: " + id);
-		ProductActivity activity = new ProductActivity();
-		if (activity.deleteProduct(id)) {
+		try {
+			System.out.println("DELETE METHOD: " + id);
+			ProductActivity activity = new ProductActivity();
+			if (activity.deleteProduct(id)) {
+				return Response.ok().build();
+			}
 			return Response.ok().build();
+		} catch (NullPointerException e) {
+			return Response.status(400).build();
 		}
-		return Response.ok().build();
 	}
-	
+
 }

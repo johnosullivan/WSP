@@ -152,7 +152,8 @@ public class AddressDAO {
 			temp.setAddress("" + (String) s.get("address"));
 			temp.setCity("" + (String) s.get("city"));
 			temp.setState("" + (String) s.get("state"));
-			temp.setID("" + (String) s.get("_id"));
+			ObjectId id = (ObjectId)s.get( "_id" );
+			temp.setID(id.toString());
 			temp.setUser("" + (String) s.get("user"));
 			temp.setZip((int) s.get("zip"));
 			array.add(temp);
