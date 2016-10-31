@@ -75,6 +75,15 @@ public class ProductActivity {
 	}
 	
 	public ProductRepresentation createProduct(ProductRequest request) throws UnknownHostException {
+		
+		// Catches Bad Requests
+		if (request.getName().equals("")) {
+			 throw new UnknownHostException();
+		}
+		if (request.getDescription().equals("")) {
+			 throw new UnknownHostException();
+		}
+	
 		Product newproduct = new Product();
 		newproduct.setName(request.getName());
 		newproduct.setDescription(request.getDescription());

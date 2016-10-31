@@ -25,14 +25,14 @@ public class PartnerActivity {
 		PartnerRepresentation cusRep = new PartnerRepresentation();
 		cusRep.setFirstName(partner.getFirst());
 		cusRep.setLastName(partner.getLast());
-		cusRep.setid(partner.getID());	
+		cusRep.setid(partner.getID());
 		cusRep.setEmail(partner.getEmail());
 		cusRep.setMiddleName(partner.getMiddle());
 		cusRep.setCompany(partner.getCompany());
 		cusRep.setHomepage(partner.getHomepage());
-		
+
 		ArrayList<PartnerAddressRepresentation> addressdata = new ArrayList<PartnerAddressRepresentation>();
-		
+
 		for (PartnerAddress temp : partner.getAllAddress()) {
 			PartnerAddressRepresentation tempa = new PartnerAddressRepresentation();
 			tempa.setAddress(temp.getAddress());
@@ -43,7 +43,7 @@ public class PartnerActivity {
 			tempa.setZip(temp.getZip());
 			addressdata.add(tempa);
 		}
-		
+
 		ArrayList<PartnerPhoneRepresentation> phonedata = new ArrayList<PartnerPhoneRepresentation>();
 
 		for (PartnerPhone temp : partner.getAllPhone()) {
@@ -54,20 +54,20 @@ public class PartnerActivity {
 			tempa.setUser(temp.getUser());
 			phonedata.add(tempa);
 		}
-		
+
 		cusRep.setAddresses(addressdata);
 		cusRep.setPhones(phonedata);
-		
-		
+
 		return cusRep;
 	}
-	
+
 	public boolean deletePartner(String id) throws UnknownHostException {
 		PartnerDAO db = PartnerDAO.getInstance();
-		return db.deletePartnerById(id);	
+		return db.deletePartnerById(id);
 	}
-	
-	public PartnerAddressRepresentation createPartnerAddress(PartnerAddressRequest request) throws UnknownHostException {
+
+	public PartnerAddressRepresentation createPartnerAddress(PartnerAddressRequest request)
+			throws UnknownHostException {
 		CustomerAddress canew = new CustomerAddress();
 		canew.setAddress(request.getAddress());
 		canew.setCity(request.getCity());
@@ -85,7 +85,7 @@ public class PartnerActivity {
 		s.setId(id);
 		return s;
 	}
-	
+
 	public PartnerPhoneRepresentation createPartnerPhone(PartnerPhoneRequest request) throws UnknownHostException {
 		CustomerPhone canew = new CustomerPhone();
 		canew.setPhone(request.getPhone());
@@ -100,8 +100,9 @@ public class PartnerActivity {
 		s.setId(id);
 		return s;
 	}
-	
-	public PartnerAddressRepresentation updatePartnerAddress(PartnerAddressRepresentation request) throws UnknownHostException {
+
+	public PartnerAddressRepresentation updatePartnerAddress(PartnerAddressRepresentation request)
+			throws UnknownHostException {
 		PartnerAddress partaddress = new PartnerAddress(request.getId());
 		partaddress.setAddress(request.getAddress());
 		partaddress.setCity(request.getCity());
@@ -117,8 +118,9 @@ public class PartnerActivity {
 		s.setId(request.getId());
 		return s;
 	}
-	
-	public PartnerPhoneRepresentation updatePartnerPhone(PartnerPhoneRepresentation request) throws UnknownHostException {
+
+	public PartnerPhoneRepresentation updatePartnerPhone(PartnerPhoneRepresentation request)
+			throws UnknownHostException {
 		PartnerPhone partphone = new PartnerPhone(request.getId());
 		partphone.setPhone(request.getPhone());
 		partphone.setType(request.getType());
@@ -130,30 +132,52 @@ public class PartnerActivity {
 		s.setId(request.getId());
 		return s;
 	}
-	
+
 	public boolean deletePartnerPhone(String id) throws UnknownHostException {
 		PhoneDAO db = PhoneDAO.getInstance();
-		return db.deletePhoneById(id);	
+		return db.deletePhoneById(id);
 	}
-	
+
 	public boolean deletePartnerAddress(String id) throws UnknownHostException {
 		AddressDAO db = AddressDAO.getInstance();
-		return db.deleteAddressById(id);	
+		return db.deleteAddressById(id);
 	}
-	
+
 	public PartnerRepresentation updatePartner(PartnerRepresentation request) throws UnknownHostException {
+		// Catches Bad Requests
+		if (request.getFirstName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getLastName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getEmail().equals("")) {
+			throw new UnknownHostException();
+		}
+
 		Partner Partner = new Partner(request.getid());
 		Partner.setFirst(request.getFirstName());
 		Partner.setMiddle(request.getMiddleName());
 		Partner.setLast(request.getLastName());
 		Partner.setEmail(request.getEmail());
-		if(Partner.update()) {
+		if (Partner.update()) {
 			return request;
-		} 
+		}
 		return new PartnerRepresentation();
 	}
-	
+
 	public PartnerRepresentation createPartner(PartnerRequest request) throws UnknownHostException {
+		// Catches Bad Requests
+		if (request.getFirstName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getLastName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getEmail().equals("")) {
+			throw new UnknownHostException();
+		}
+
 		Partner newcusomter = new Partner();
 		newcusomter.setFirst(request.getFirstName());
 		newcusomter.setMiddle(request.getMiddleName());
@@ -165,12 +189,12 @@ public class PartnerActivity {
 		PartnerRepresentation cusRep = new PartnerRepresentation();
 		cusRep.setFirstName(newcusomter.getFirst());
 		cusRep.setLastName(newcusomter.getLast());
-		cusRep.setid(newid);	
+		cusRep.setid(newid);
 		cusRep.setEmail(newcusomter.getEmail());
 		cusRep.setMiddleName(newcusomter.getMiddle());
 		cusRep.setCompany(newcusomter.getCompany());
 		cusRep.setHomepage(newcusomter.getHomepage());
 		return cusRep;
 	}
-	
+
 }

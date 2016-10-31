@@ -41,6 +41,8 @@ The following rest call for the documentation were made with a Mac app called Co
 ###### Customer Object 
 The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data object like phone and address.
 
+Required in request: firstName,lastName,email
+
 * POST "/api/customerservice/customer" Creates a new customer from the payload.
 
 ```
@@ -210,6 +212,8 @@ Response: 200 Status Code
 
 The partner object has the following api calls to which they will allow you to create, edit, delete the partner object and the support object's supporting data object like phone and address.
 
+Required in request: firstName,lastName,email
+
 * POST "/api/partnerservice/partner" Creates a new partner from the payload.
 
 ```
@@ -322,6 +326,8 @@ Response: 200 Status Code
 ###### Product Object
 
 * POST "/api/productservice/product" This will take the payload and create a new product and return the product with a unique ID.
+
+Required in request: name,description
 
 ```
 Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"5817727ee4b0cccc91834030" }

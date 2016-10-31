@@ -17,7 +17,6 @@ import service.customer.representation.CustomerPhoneRequest;
 import service.customer.representation.CustomerRepresentation;
 import service.customer.representation.CustomerRequest;
 
-
 public class CustomerActivity {
 
 	public CustomerRepresentation getCustomer(String id) throws UnknownHostException {
@@ -58,8 +57,7 @@ public class CustomerActivity {
 
 		return cusRep;
 	}
-	
-	
+
 	public CustomerAddressRepresentation addressCustomer(CustomerAddressRequest request) throws UnknownHostException {
 		CustomerAddress req = new CustomerAddress();
 		req.setAddress(request.getAddress());
@@ -127,6 +125,17 @@ public class CustomerActivity {
 	}
 
 	public CustomerRepresentation updateCustomer(CustomerRepresentation request) throws UnknownHostException {
+		// Catches Bad Requests
+		if (request.getFirstName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getLastName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getEmail().equals("")) {
+			throw new UnknownHostException();
+		}
+
 		Customer customer = new Customer(request.getid());
 		customer.setFirst(request.getFirstName());
 		customer.setMiddle(request.getMiddleName());
@@ -139,6 +148,17 @@ public class CustomerActivity {
 	}
 
 	public CustomerRepresentation createCustomer(CustomerRequest request) throws UnknownHostException {
+		// Catches Bad Requests
+		if (request.getFirstName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getLastName().equals("")) {
+			throw new UnknownHostException();
+		}
+		if (request.getEmail().equals("")) {
+			throw new UnknownHostException();
+		}
+
 		Customer newcusomter = new Customer();
 		newcusomter.setFirst(request.getFirstName());
 		newcusomter.setMiddle(request.getMiddleName());
@@ -156,7 +176,8 @@ public class CustomerActivity {
 		return cusRep;
 	}
 
-	public CustomerAddressRepresentation createCustomerAddress(CustomerAddressRequest request) throws UnknownHostException {
+	public CustomerAddressRepresentation createCustomerAddress(CustomerAddressRequest request)
+			throws UnknownHostException {
 		CustomerAddress canew = new CustomerAddress();
 		canew.setAddress(request.getAddress());
 		canew.setCity(request.getCity());
