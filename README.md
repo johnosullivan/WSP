@@ -303,7 +303,7 @@ Response: 200 Status Code
 * GET "/api/paymentservice/payment/customer/{customerid}" OR "/api/paymentservice/payment/partner/{partnerid}" This gets the customer's or partner's payment information. 
 
 ```
-Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Call: /api/paymentservice/payment/customer/58176fdee4b0cccc9183402d
 Response: {
   "billing": "723 Ouilmette Ln Wilmette IL 60091",
   "ccnum": "0000000000000000",
@@ -327,7 +327,7 @@ Response: 200 Status Code
 
 * POST "/api/productservice/product" This will take the payload and create a new product and return the product with a unique ID.
 
-Required in request: name,description
+Required in request: All parameters
 
 ```
 Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"5817727ee4b0cccc91834030" }
