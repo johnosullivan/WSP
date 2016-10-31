@@ -24,172 +24,176 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat (In Progress)
+# API ApacheCXF/Tomcat  
+
+Hosted: <a>https://fall2016wsp.herokuapp.com/api/</a>
+
+Note: This is running on a free dyno thus it is unactive. Requests will initially take longer to allow server to boot up.
 
 ## Customer
 
-##### POST /customerservice/customer
-```
-Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com" }
+###### Customer Object
 
-Output: {
-  "id": "58097cd698686961f6fada50",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve"
-}
-```
-
-##### GET /customerservice/customer/58097cd698686961f6fada50
-```
-Output: {
-  "id": "58097cd698686961f6fada50",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve"
-}
-```
-
-##### POST /customerservice/address 
+* POST /customerservice/customer
 
 ```
-Payload: { "address":"723 Ouilmette","city":"Wilmette","state":"IL","zip":60091, "user":"58097cd698686961f6fada50" }
-
-Output: {
-  "address": "723 Ouilmette",
-  "city": "Wilmette",
-  "state": "IL",
-  "id": "5809a4ee9868c41ca5e007f3",
-  "user": "58097cd698686961f6fada50",
-  "zip": "60091"
-}
 ```
+
+* PUT /customerservice/customer
+
+```
+```
+
+* GET /customerservice/customer/{id}
+
+```
+```
+
+* DELETE /customerservice/customer/{id}
+
+```
+```
+###### Customer's Phone Object
+
+
+* POST /customerservice/customer/phone
+
+```
+```
+
+* PUT /customerservice/customer/phone
+
+```
+```
+
+* GET /customerservice/customer/phone/{id}
+
+```
+```
+
+* DELETE /customerservice/customer/phone/{id}
+
+```
+```
+
+###### Customer's Address Object
+
+* POST /customerservice/customer/address
+
+```
+```
+
+* PUT /customerservice/customer/address
+
+```
+```
+
+* GET /customerservice/customer/address/{id}
+
+```
+```
+
+* DELETE /customerservice/customer/address/{id}
+
+```
+```
+
 
 ## Partner
 
-##### POST /partnerservice/partner
+#### Partner Object
+
+* POST /customerservice/partner
 
 ```
-Payload: { "lastName":"Jobs","middleName":"Paul","firstName":"Steve","email":"spj@mac.com", "company":"Apple, Inc.","homepage":"www.apple.com" }
-
-Output: {
-  "id": "5809894b9868aa2b76ef10d4",
-  "lastName": "Jobs",
-  "middleName": "Paul",
-  "email": "spj@mac.com",
-  "firstName": "Steve",
-  "company": "Apple, Inc.",
-  "homepage": "www.apple.com"
-}
 ```
 
-##### GET /partnerservice/partner/5809894b9868aa2b76ef10d4
+* PUT /customerservice/partner
 
 ```
-Output: {
-  "id": "5809894b9868aa2b76ef10d4",
-  "lastName": "Jobs",
-  "middleName": "Paul",
-  "email": "spj@mac.com",
-  "firstName": "Steve",
-  "company": "Apple, Inc.",
-  "homepage": "www.apple.com"
-}
 ```
+
+* GET /customerservice/partner/{id}
+
+```
+```
+
+* DELETE /customerservice/partner/{id}
+
+```
+```
+
+###### Partner's Phone Object
+
+* POST /partnerservice/partner/phone
+
+```
+```
+
+* PUT /partnerservice/partner/phone
+
+```
+```
+
+* GET /partnerservice/partner/phone/{id}
+
+```
+```
+
+* DELETE /partnerservice/partner/phone/{id}
+
+```
+```
+
+###### Partner's Address Object
+
+* POST /partnerservice/partner/address
+
+```
+```
+
+* PUT /partnerservice/partner/address
+
+```
+```
+
+* GET /partnerservice/partner/address/{id}
+
+```
+```
+
+* DELETE /partnerservice/partner/address/{id}
+
+```
+```
+
 
 ## Product
 
-##### POST /productservice/product
+###### Product Object
+
+* POST /productservice/product
 
 ```
-Payload:  { "name":"Macbook Pro","description":"A Laptop","cost":"2000","invein":"5", "curcode":"USD", "partnerid":"5809804f9868df2341045b20" }
-
-Output: {
-  "name": "Macbook Pro",
-  "description": "A Laptop",
-  "cost": "2000",
-  "invein": "5",
-  "curcode": "USD",
-  "partner": "Apple, Inc.",
-  "id": "580987a99868aa2b76ef10d3"
-}
-
 ```
 
-##### GET /productservice/product/580987a99868aa2b76ef10d3
+* GET /productservice/product/{id}
 
 ```
-Output: {
-  "name": "Macbook Pro",
-  "description": "A Laptop",
-  "cost": "2000",
-  "invein": "5",
-  "curcode": "USD",
-  "partner": "Apple, Inc.",
-  "id": "580987a99868aa2b76ef10d3"
-}
 ```
 
-##### POST /productservice/search
+###### Product Search
+
+* POST /productservice/search
 
 ```
-Payload: { "searchterm":"iPhone"}
-
-Output: {
-  "searchterm": "iPhone",
-  "results": [
-    {
-      "name": "iPhone 5s",
-      "description": "This is the iPhone 5s",
-      "cost": "10000",
-      "invein": "5",
-      "curcode": "USD",
-      "partner": "Apple, Inc.",
-      "id": "5809804f9868df2341045b21"
-    },
-    {
-      "name": "iPhone 6s",
-      "description": "This is the iPhone 6s",
-      "cost": "10000",
-      "invein": "5",
-      "curcode": "USD",
-      "partner": "Apple, Inc.",
-      "id": "5809804f9868df2341045b22"
-    },
-    {
-      "name": "iPhone 7 plus",
-      "description": "This is the iPhone 7 plus",
-      "cost": "10000",
-      "invein": "5",
-      "curcode": "USD",
-      "partner": "Apple, Inc.",
-      "id": "5809804f9868df2341045b23"
-    }
-  ]
-}
 ```
 
 ## Order
 
-POST /orderservice/order
+* POST /orderservice/order
 
 ```
-Payload: { "items": [ {"q":3,"productid":"5809804f9868df2341045b22"} ], "address":"5809a4ee9868c41ca5e007f3", "customer":"58097cd698686961f6fada50" }
-
-Output: {
-  "items": [
-    {
-      "q": "3",
-      "productid": "productoneid"
-    }
-  ],
-  "address": "5809a4ee9868c41ca5e007f3",
-  "customer": "58097cd698686961f6fada50",
-  "comfirm": "SDFS-SDFW-LFKJ-WEFD-OPOL",
-  "status": "Processed"
-}
 ```
 
 # Documentation

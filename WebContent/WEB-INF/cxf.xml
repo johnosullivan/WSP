@@ -13,30 +13,40 @@
   <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
   	
   <bean id="jacksonProvider" class="org.codehaus.jackson.jaxrs.JacksonJaxbJsonProvider" />
-      	
-  <jaxrs:server name="CustomerService" address="http://localhost:8081">
+  <!-- http://localhost:8081 -->	
+  <jaxrs:server name="WSPService" address="/api/">
 		<jaxrs:serviceBeans>
 			<ref bean="customerServiceRest" />
 			<ref bean="partnerServiceRest" />
 			<ref bean="productServiceRest" />
 			<ref bean="orderServiceRest" />
+			<ref bean="paymentServiceRest" />
+			<ref bean="reviewServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
 		</jaxrs:providers> 
 
 		<jaxrs:schemaLocations>
-			<jaxrs:schemaLocation>com.ws.project.customer.service.representation.CustomerRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.partner.service.representation.PartnerRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.product.service.representation.ProductRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.product.service.representation.SearchRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.product.order.representation.OrderRepresentation</jaxrs:schemaLocation>
-			<jaxrs:schemaLocation>com.ws.project.product.order.representation.OrderItemRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.customer.representation.CustomerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.partner.representation.PartnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.product.representation.ProductRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.product.representation.SearchRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderItemRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.payment.representation.PaymentBTRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.payment.representation.PaymentPPRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.payment.representation.PaymentCCRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.review.representation.ReviewRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.review.representation.ProductReviewsRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.review.representation.ProductReviewRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
-  	<bean id="customerServiceRest" class="com.ws.project.customer.service.service.CustomerResource" />
-  	<bean id="partnerServiceRest" class="com.ws.project.partner.service.service.PartnerResource" />
-  	<bean id="productServiceRest" class="com.ws.project.product.service.service.ProductResource" />
-  	<bean id="orderServiceRest" class="com.ws.project.order.service.service.OrderResource" />
+  	<bean id="customerServiceRest" class="service.customer.service.CustomerResource" />
+  	<bean id="partnerServiceRest" class="service.partner.service.PartnerResource" />
+  	<bean id="productServiceRest" class="service.product.service.ProductResource" />
+  	<bean id="orderServiceRest" class="service.order.service.OrderResource" />
+  	<bean id="paymentServiceRest" class="service.payment.service.PaymentResource" />
+  	<bean id="reviewServiceRest" class="service.review.service.ReviewResource" />
 </beans>
