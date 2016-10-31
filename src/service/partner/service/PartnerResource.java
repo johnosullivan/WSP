@@ -33,7 +33,7 @@ public class PartnerResource {
 			PartnerActivity activity = new PartnerActivity();
 			PartnerRepresentation status = activity.getPartner(id);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -50,7 +50,7 @@ public class PartnerResource {
 			PartnerActivity activity = new PartnerActivity();
 			PartnerRepresentation status = activity.createPartner(PartnerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -67,7 +67,7 @@ public class PartnerResource {
 			PartnerActivity activity = new PartnerActivity();
 			PartnerRepresentation status = activity.updatePartner(PartnerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -85,7 +85,7 @@ public class PartnerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -103,7 +103,7 @@ public class PartnerResource {
 			PartnerPhoneRepresentation status = activity.createPartnerPhone(customerRequest);
 			System.out.println(status);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -121,7 +121,7 @@ public class PartnerResource {
 			PartnerAddressRepresentation status = activity.createPartnerAddress(req);
 			System.out.println(status);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -139,7 +139,7 @@ public class PartnerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -157,7 +157,7 @@ public class PartnerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -174,7 +174,7 @@ public class PartnerResource {
 			PartnerActivity activity = new PartnerActivity();
 			PartnerAddressRepresentation status = activity.updatePartnerAddress(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -191,7 +191,7 @@ public class PartnerResource {
 			PartnerActivity activity = new PartnerActivity();
 			PartnerPhoneRepresentation status = activity.updatePartnerPhone(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}

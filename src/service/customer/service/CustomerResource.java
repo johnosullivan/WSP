@@ -37,7 +37,7 @@ public class CustomerResource {
 		try {
 			CustomerRepresentation temp = activity.getCustomer(id);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -54,7 +54,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerRepresentation status = activity.createCustomer(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -72,7 +72,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerAddressRepresentation status = activity.createCustomerAddress(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -89,7 +89,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerPhoneRepresentation status = activity.createCustomerPhone(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -106,7 +106,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerAddressRepresentation status = activity.updateCustomerAddress(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -123,7 +123,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerPhoneRepresentation status = activity.updateCustomerPhone(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -140,7 +140,7 @@ public class CustomerResource {
 			CustomerActivity activity = new CustomerActivity();
 			CustomerRepresentation status = activity.updateCustomer(customerRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -158,7 +158,7 @@ public class CustomerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -177,7 +177,7 @@ public class CustomerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -196,7 +196,7 @@ public class CustomerResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}

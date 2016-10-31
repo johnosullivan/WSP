@@ -39,7 +39,7 @@ public class ReviewResource {
 			} else {
 				return Response.status(400).build();
 			}
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -56,7 +56,7 @@ public class ReviewResource {
 		try {
 			ReviewRepresentation temp = activity.getReview(id);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -74,7 +74,7 @@ public class ReviewResource {
 		try {
 			ProductReviewsRepresentation temp = activity.getReviews(id);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -92,7 +92,7 @@ public class ReviewResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 
@@ -111,7 +111,7 @@ public class ReviewResource {
 			ReviewActivity activity = new ReviewActivity();
 			ReviewRepresentation temp = activity.updatedReview(req);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}

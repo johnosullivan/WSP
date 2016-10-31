@@ -33,7 +33,7 @@ public class PaymentResource {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.addPaymentCustomer(request);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -51,7 +51,7 @@ public class PaymentResource {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.updatePaymentCustomer(request);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -69,7 +69,7 @@ public class PaymentResource {
 		try {
 			PaymentRepresentationInterface temp = activity.getCustomerPayment(id);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(404).build();
 		}
 	}
@@ -88,7 +88,7 @@ public class PaymentResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -106,7 +106,7 @@ public class PaymentResource {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.addPaymentPartner(request);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -124,7 +124,7 @@ public class PaymentResource {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.updatePaymentPartner(request);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -142,7 +142,7 @@ public class PaymentResource {
 		try {
 			PaymentRepresentationInterface temp = activity.getPartnerPayment(id);
 			return Response.ok(temp).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(404).build();
 		}
 	}
@@ -161,7 +161,7 @@ public class PaymentResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}

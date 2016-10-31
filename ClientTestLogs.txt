@@ -1,0 +1,792 @@
+[============================================================================================================]
+CLIENT: POST Customer
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:21 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 1
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic"}
+--------------------------------------
+Oct 31, 2016 1:15:24 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 1
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:23 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+--------------------------------------
+POST METHOD Response: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Customer
+Customer's id: 58178a3be4b0d8b2199cdd98
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a3be4b0d8b2199cdd98
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:24 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 2
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a3be4b0d8b2199cdd98
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:15:24 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 2
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:24 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":[],"phones":[]}
+--------------------------------------
+GET METHOD Response: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":[],"phones":[]}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: POST Add Address
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer/address
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:24 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 3
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer/address
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":null,"user":"58178a3be4b0d8b2199cdd98","zip":60091}
+--------------------------------------
+Oct 31, 2016 1:15:25 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 3
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:24 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178a3ce4b0d8b2199cdd99","user":"58178a3be4b0d8b2199cdd98","zip":60091}
+--------------------------------------
+POST Address Response: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178a3ce4b0d8b2199cdd99","user":"58178a3be4b0d8b2199cdd98","zip":60091}
+[============================================================================================================]
+Address id: 58178a3ce4b0d8b2199cdd99
+[============================================================================================================]
+CLIENT: POST Add Payment
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/paymentservice/payment/customer
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:25 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 4
+Address: https://fall2016wsp.herokuapp.com/api/paymentservice/payment/customer
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"user":"58178a3be4b0d8b2199cdd98","type":"CC","billing":"58178a3ce4b0d8b2199cdd99","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123","ppacc":"","btacc":""}
+--------------------------------------
+Oct 31, 2016 1:15:26 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 4
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:26 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: true
+--------------------------------------
+POST Payment Response: true
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Customer's Payment
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/paymentservice/payment/customer/58178a3be4b0d8b2199cdd98
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:26 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 5
+Address: https://fall2016wsp.herokuapp.com/api/paymentservice/payment/customer/58178a3be4b0d8b2199cdd98
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:15:26 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 5
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:26 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"billing":"723 Ouilmette Ln Wilmette IL 60091","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123"}
+--------------------------------------
+GET METHOD Response: {"billing":"723 Ouilmette Ln Wilmette IL 60091","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123"}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: PUT Customer
+Client PUT METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Client PUT METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:26 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 6
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Http-Method: PUT
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+--------------------------------------
+Oct 31, 2016 1:15:27 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 6
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:15:27 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+--------------------------------------
+PUT METHOD Response: {"id":"58178a3be4b0d8b2199cdd98","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Customer
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a3be4b0d8b2199cdd98
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:15:27 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 7
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a3be4b0d8b2199cdd98
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:15:27 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 7
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:15:27 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: POST Customer
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:55 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 1
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic"}
+--------------------------------------
+Oct 31, 2016 1:16:55 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 1
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:55 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178a97e4b0d8b2199cdd9b","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+--------------------------------------
+POST METHOD Response: {"id":"58178a97e4b0d8b2199cdd9b","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","propic":"http://www.google.com/somepic","addresses":null,"phones":null}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Customer
+Customer's id: 58178a97e4b0d8b2199cdd9b
+[============================================================================================================]
+CLIENT: POST Add Address
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer/address
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:55 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 2
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer/address
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":null,"user":"58178a97e4b0d8b2199cdd9b","zip":60091}
+--------------------------------------
+Oct 31, 2016 1:16:55 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 2
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:55 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178a97e4b0d8b2199cdd9c","user":"58178a97e4b0d8b2199cdd9b","zip":60091}
+--------------------------------------
+POST Address Response: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178a97e4b0d8b2199cdd9c","user":"58178a97e4b0d8b2199cdd9b","zip":60091}
+[============================================================================================================]
+Address id: 58178a97e4b0d8b2199cdd9c
+[============================================================================================================]
+CLIENT: Post Partner
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:55 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 3
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com"}
+--------------------------------------
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 3
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:55 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178a97e4b0d8b2199cdd9d","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+--------------------------------------
+POST METHOD Response: {"id":"58178a97e4b0d8b2199cdd9d","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+[============================================================================================================]
+Partner's id: 58178a97e4b0d8b2199cdd9d
+[============================================================================================================]
+CLIENT: Post Product
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 4
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"58178a97e4b0d8b2199cdd9d","id":null}
+--------------------------------------
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 4
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:56 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178a98e4b0d8b2199cdd9e"}
+--------------------------------------
+POST Product METHOD Response: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178a98e4b0d8b2199cdd9e"}
+[============================================================================================================]
+Product's id: 58178a98e4b0d8b2199cdd9e
+[============================================================================================================]
+CLIENT: Post Create Order
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/orderservice/order
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 5
+Address: https://fall2016wsp.herokuapp.com/api/orderservice/order
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}],"address":"58178a97e4b0d8b2199cdd9c","customer":"58178a97e4b0d8b2199cdd9b"}
+--------------------------------------
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 5
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:56 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}],"address":"58178a97e4b0d8b2199cdd9c","customer":"58178a97e4b0d8b2199cdd9b","comfirm":"754754667396675466739739","status":"PROCESSED","id":"58178a98e4b0d8b2199cdd9f","total":0}
+--------------------------------------
+POST Order METHOD Response: {"items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}],"address":"58178a97e4b0d8b2199cdd9c","customer":"58178a97e4b0d8b2199cdd9b","comfirm":"754754667396675466739739","status":"PROCESSED","id":"58178a98e4b0d8b2199cdd9f","total":0}
+[============================================================================================================]
+Order's id: 58178a98e4b0d8b2199cdd9f
+[============================================================================================================]
+CLIENT: Get MyOrders Customer
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/orderservice/orders/customer/58178a97e4b0d8b2199cdd9b
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:56 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 6
+Address: https://fall2016wsp.herokuapp.com/api/orderservice/orders/customer/58178a97e4b0d8b2199cdd9b
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:16:57 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 6
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:57 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"orders":[{"items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}],"address":"723 Ouilmette Ln Wilmette IL 60091","customer":"John Nikolas O'Sullivan","comfirm":"754754667396675466739739","status":"PROCESSED","id":"58178a97e4b0d8b2199cdd9b","total":3250}]}
+--------------------------------------
+GET METHOD Response: {"orders":[{"items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}],"address":"723 Ouilmette Ln Wilmette IL 60091","customer":"John Nikolas O'Sullivan","comfirm":"754754667396675466739739","status":"PROCESSED","id":"58178a97e4b0d8b2199cdd9b","total":3250}]}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Partner's Orders
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/orderservice/orders/partner/58178a97e4b0d8b2199cdd9d
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:57 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 7
+Address: https://fall2016wsp.herokuapp.com/api/orderservice/orders/partner/58178a97e4b0d8b2199cdd9d
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 7
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:16:58 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"orders":[{"shipping":"723 Ouilmette Ln Wilmette IL 60091","orderid":"58178a98e4b0d8b2199cdd9f","orderstatus":"PROCESSED","items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}]}]}
+--------------------------------------
+GET METHOD Response: {"orders":[{"shipping":"723 Ouilmette Ln Wilmette IL 60091","orderid":"58178a98e4b0d8b2199cdd9f","orderstatus":"PROCESSED","items":[{"q":5,"productid":"58178a98e4b0d8b2199cdd9e"}]}]}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Customer
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a97e4b0d8b2199cdd9b
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 8
+Address: https://fall2016wsp.herokuapp.com/api/customerservice/customer/58178a97e4b0d8b2199cdd9b
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 8
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:16:58 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Product
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/productservice/product/58178a98e4b0d8b2199cdd9e
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 9
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product/58178a98e4b0d8b2199cdd9e
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 9
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:16:58 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Partner
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178a97e4b0d8b2199cdd9d
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:16:58 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 10
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178a97e4b0d8b2199cdd9d
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:16:59 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 10
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:16:59 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Post Partner
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:27 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 1
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com"}
+--------------------------------------
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 1
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:27 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+--------------------------------------
+POST METHOD Response: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Partner
+Partner's id: 58178ab7e4b0d8b2199cdda1
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ab7e4b0d8b2199cdda1
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 2
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ab7e4b0d8b2199cdda1
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 2
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:28 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":[],"phones":[]}
+--------------------------------------
+GET METHOD Response: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":[],"phones":[]}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: POST Add Address
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner/address
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 3
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner/address
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":null,"user":"58178ab7e4b0d8b2199cdda1","zip":60091}
+--------------------------------------
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 3
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:28 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178ab8e4b0d8b2199cdda2","user":"58178ab7e4b0d8b2199cdda1","zip":60091}
+--------------------------------------
+POST Address Response: {"address":"723 Ouilmette Ln","city":"Wilmette","state":"IL","id":"58178ab8e4b0d8b2199cdda2","user":"58178ab7e4b0d8b2199cdda1","zip":60091}
+[============================================================================================================]
+Address id: 58178ab8e4b0d8b2199cdda2
+[============================================================================================================]
+CLIENT: POST Add Payment
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/paymentservice/payment/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:28 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 4
+Address: https://fall2016wsp.herokuapp.com/api/paymentservice/payment/partner
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"user":"58178ab7e4b0d8b2199cdda1","type":"CC","billing":"58178ab8e4b0d8b2199cdda2","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123","ppacc":"","btacc":""}
+--------------------------------------
+Oct 31, 2016 1:17:29 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 4
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:29 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: true
+--------------------------------------
+POST Payment Response: true
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Partner's Payment
+Client GET METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/paymentservice/payment/partner/58178ab7e4b0d8b2199cdda1
+Client GET METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:29 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 5
+Address: https://fall2016wsp.herokuapp.com/api/paymentservice/payment/partner/58178ab7e4b0d8b2199cdda1
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:29 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 5
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:29 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"billing":"723 Ouilmette Ln Wilmette IL 60091","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123"}
+--------------------------------------
+GET METHOD Response: {"billing":"723 Ouilmette Ln Wilmette IL 60091","ccnum":"1234432112344321","ccexp":"01/12","ccsec":"123"}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: PUT Partner
+Client PUT METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client PUT METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:29 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 6
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Http-Method: PUT
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+--------------------------------------
+Oct 31, 2016 1:17:30 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 6
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:30 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+--------------------------------------
+PUT METHOD Response: {"id":"58178ab7e4b0d8b2199cdda1","lastName":"O'Sullivan","middleName":"Nikolas","email":"josullivan1@luc.edu","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Partner
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ab7e4b0d8b2199cdda1
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:30 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 7
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ab7e4b0d8b2199cdda1
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:30 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 7
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:17:30 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Post Partner
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:56 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 1
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com"}
+--------------------------------------
+Oct 31, 2016 1:17:56 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 1
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:56 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"id":"58178ad4e4b0d8b2199cdda4","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+--------------------------------------
+POST METHOD Response: {"id":"58178ad4e4b0d8b2199cdda4","lastName":"O'Sullivan","middleName":"Nikolas","email":"jnosullivan@mac.com","firstName":"John","company":"O'Tech Software","homepage":"http://otechsoftware.com","addresses":null,"phones":null}
+[============================================================================================================]
+Partner's id: 58178ad4e4b0d8b2199cdda4
+[============================================================================================================]
+CLIENT: Post Product
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 2
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"58178ad4e4b0d8b2199cdda4","id":null}
+--------------------------------------
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 2
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:57 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}
+--------------------------------------
+POST Product METHOD Response: {"name":"iPhone 7 Plus","description":"This is the greatest phone ever.","cost":650,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}
+[============================================================================================================]
+Product's id: 58178ad5e4b0d8b2199cdda5
+[============================================================================================================]
+CLIENT: Put Product
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/productservice/product
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 3
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product
+Http-Method: PUT
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"58178ad4e4b0d8b2199cdda4","id":"58178ad5e4b0d8b2199cdda5"}
+--------------------------------------
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 3
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:57 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"58178ad4e4b0d8b2199cdda4","id":"58178ad5e4b0d8b2199cdda5"}
+--------------------------------------
+POST Product METHOD Response: {"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"58178ad4e4b0d8b2199cdda4","id":"58178ad5e4b0d8b2199cdda5"}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Get Product
+Client GET Product Request URI:  https://fall2016wsp.herokuapp.com/api/productservice/product/58178ad5e4b0d8b2199cdda5
+Client GET Product Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 4
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product/58178ad5e4b0d8b2199cdda5
+Http-Method: GET
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 4
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:57 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}
+--------------------------------------
+GET Product Response: {"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: Post Search Product
+Client POST METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/productservice/search
+Client POST METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:57 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 5
+Address: https://fall2016wsp.herokuapp.com/api/productservice/search
+Http-Method: POST
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+Payload: {"searchterm":"iPhone"}
+--------------------------------------
+Oct 31, 2016 1:17:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 5
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: application/json
+Headers: {connection=[keep-alive], content-type=[application/json], Date=[Mon, 31 Oct 2016 18:17:58 GMT], Server=[Apache-Coyote/1.1], transfer-encoding=[chunked], Via=[1.1 vegur]}
+Payload: {"searchterm":"iPhone","results":[{"name":"iPhone 6 Plus","description":"This is a cool iphone","cost":650,"invein":18,"curcode":"US","partnerid":"Apple, Inc.","id":"58177308e4b0cccc91834031"},{"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}]}
+--------------------------------------
+POST Product METHOD Response: {"searchterm":"iPhone","results":[{"name":"iPhone 6 Plus","description":"This is a cool iphone","cost":650,"invein":18,"curcode":"US","partnerid":"Apple, Inc.","id":"58177308e4b0cccc91834031"},{"name":"iPhone 6 Plus","description":"This is the greatest phone ever.","cost":750,"invein":200,"curcode":"US","partnerid":"O'Tech Software","id":"58178ad5e4b0d8b2199cdda5"}]}
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Product
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/productservice/product/58178ad5e4b0d8b2199cdda5
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:58 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 6
+Address: https://fall2016wsp.herokuapp.com/api/productservice/product/58178ad5e4b0d8b2199cdda5
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 6
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:17:58 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+[============================================================================================================]
+CLIENT: DELETE Partner
+Client DELETE METHOD Request URI:  https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ad4e4b0d8b2199cdda4
+Client DELETE METHOD Request Headers:  {Accept=[application/json], Content-Type=[application/json]}
+Oct 31, 2016 1:17:58 PM org.apache.cxf.interceptor.LoggingOutInterceptor
+INFO: Outbound Message
+---------------------------
+ID: 7
+Address: https://fall2016wsp.herokuapp.com/api/partnerservice/partner/58178ad4e4b0d8b2199cdda4
+Http-Method: DELETE
+Content-Type: application/json
+Headers: {Accept=[application/json], Content-Type=[application/json]}
+--------------------------------------
+Oct 31, 2016 1:17:58 PM org.apache.cxf.interceptor.LoggingInInterceptor
+INFO: Inbound Message
+----------------------------
+ID: 7
+Response-Code: 200
+Encoding: ISO-8859-1
+Content-Type: 
+Headers: {connection=[keep-alive], Content-Length=[0], Date=[Mon, 31 Oct 2016 18:17:58 GMT], Server=[Apache-Coyote/1.1], Via=[1.1 vegur]}
+--------------------------------------
+[============================================================================================================]
+

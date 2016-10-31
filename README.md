@@ -30,7 +30,8 @@ Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokua
 
 Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
 
-The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse.
+The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created.
+
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
@@ -85,7 +86,7 @@ Response: {
 }
 ```
 
-* DELETE "/api/customerservice/customer/{customerid}" Deletes the customer from database.
+* DELETE "/api/customerservice/customer/{customerid}" Delete the customer from database.
 
 ```
 Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
@@ -143,7 +144,7 @@ Response: {
 }
 ```
 
-* DELETE "/api/customerservice/customer/phone/{phoneid}" Deletes an phone number with the phoneid.
+* DELETE "/api/customerservice/customer/phone/{phoneid}" Delete an phone number with the phoneid.
 
 ```
 Call: /api/customerservice/customer/phone/58175989e4b0cccc9183401c
@@ -192,7 +193,7 @@ Response: {
 }
 ```
 
-* DELETE "/api/customerservice/customer/address/{addressid}" Deletes the customer from the database.
+* DELETE "/api/customerservice/customer/address/{addressid}" Delete the customer's address from the database.
 
 ```
 Call: /api/customerservice/customer/address/58175a88e4b0cccc9183401d
@@ -259,7 +260,7 @@ Response: {
 }
 ```
 
-* DELETE "/api/partnerservice/partner/{partnerid}" Deletes the partner from the database.
+* DELETE "/api/partnerservice/partner/{partnerid}" Delete the partner from the database.
 
 ```
 Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e

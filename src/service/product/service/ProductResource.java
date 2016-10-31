@@ -33,7 +33,7 @@ public class ProductResource {
 			ProductActivity activity = new ProductActivity();
 			ProductRepresentation status = activity.getProduct(id);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -51,7 +51,7 @@ public class ProductResource {
 			ProductActivity activity = new ProductActivity();
 			ProductRepresentation status = activity.createProduct(productRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -70,7 +70,7 @@ public class ProductResource {
 			activity.searchProduct(productRequest);
 			SearchRepresentation status = activity.searchProduct(productRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -88,7 +88,7 @@ public class ProductResource {
 			ProductActivity activity = new ProductActivity();
 			ProductRepresentation status = activity.updateProduct(ProductRequest);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -108,7 +108,7 @@ public class ProductResource {
 				return Response.ok().build();
 			}
 			return Response.ok().build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}

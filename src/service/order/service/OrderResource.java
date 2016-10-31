@@ -37,7 +37,7 @@ public class OrderResource {
 			OrderActivity activity = new OrderActivity();
 			OrderRepresentation status = activity.getOrder(id);
 			return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -55,7 +55,7 @@ public class OrderResource {
 		OrderActivity activity = new OrderActivity();
 		OrderRepresentation status = activity.cancelOrder(id);
 		return Response.ok(status).build();
-	} catch (NullPointerException e) {
+	} catch (Exception e) {
 		return Response.status(400).build();
 	}
 	}
@@ -70,7 +70,7 @@ public class OrderResource {
 		OrderActivity activity = new OrderActivity();
 		OrderRepresentation status = activity.postOrder(orderRequest);
 		return Response.ok(status).build();
-	} catch (NullPointerException e) {
+	} catch (Exception e) {
 		return Response.status(400).build();
 	}
 	}
@@ -85,7 +85,7 @@ public class OrderResource {
 		OrderActivity activity = new OrderActivity();
 		OrderStatusRepresentation status = activity.getOrderStatus(id);
 		return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -100,7 +100,7 @@ public class OrderResource {
 		OrderActivity activity = new OrderActivity();
 		OrderPartnerRepresentation status =  activity.getOrdersPartner(id);
 		return Response.ok(status).build();
-	} catch (NullPointerException e) {
+	} catch (Exception e) {
 		return Response.status(400).build();
 	}
 	}
@@ -115,7 +115,7 @@ public class OrderResource {
 		OrderActivity activity = new OrderActivity();
 		OrderCustomerRepresentation status = activity.getOrdersCustomer(id);
 		return Response.ok(status).build();
-	} catch (NullPointerException e) {
+	} catch (Exception e) {
 		return Response.status(400).build();
 	}
 	}
@@ -130,7 +130,7 @@ public class OrderResource {
 		boolean status = activity.updateStatus(req);
 		System.out.println("PUT STATUS :" + status);
 		return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
@@ -145,7 +145,7 @@ public class OrderResource {
 		boolean status = activity.updateStatusCustomer(req);
 		System.out.println("PUT STATUS :" + status);
 		return Response.ok(status).build();
-		} catch (NullPointerException e) {
+		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
