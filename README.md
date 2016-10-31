@@ -24,13 +24,15 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat  
+# API ApacheCXF/Tomcat 
 
-Hosted: <a>https://fall2016wsp.herokuapp.com/</a>
+### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper sure. <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a> </b> 
 
-Note: This is running on a free dyno thus it is unactive. Requests will initially take longer to allow server to boot up.
+Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokuapp.com/</a>
 
-## Customer
+
+
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
 ###### Customer Object 
 The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data object like phone and address.
@@ -197,7 +199,7 @@ Response: 200 Status Code
 ```
 
 
-## Partner
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/partner/service/PartnerResource.java">Partner Service</a>
 
 #### Partner Object
 
@@ -273,20 +275,87 @@ The phone and address supporting object for partner follow the same design patte
 
 ###### Partner's Address Object
 
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/payment/service/PaymentResource.java">Payment Service</a>
+
+* POST /api/paymentservice/payment/customer OR /api/paymentservice/payment/partner
+
+```
+Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"1234432112344321", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Response: 200 Status Code 
+```
+
+* PUT /api/paymentservice/payment/customer OR /api/paymentservice/payment/partner
+
+```
+Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Response: 200 Status Code
+```
+
+* GET /api/paymentservice/payment/customer/{customerid} OR /api/paymentservice/payment/partner/{partnerid}
+
+```
+Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Response: {
+  "billing": "723 Ouilmette Ln Wilmette IL 60091",
+  "ccnum": "0000000000000000",
+  "ccexp": "01/12",
+  "ccsec": "123"
+}
+```
+
+* DELETE /api/paymentservice/payment/customer/{customerid} OR /api/paymentservice/payment/partner/{partnerid}
+
+```
+Call: /api/paymentservice/payment/customer/58176fdee4b0cccc9183402d
+Response: 200 Status Code
+```
 
 
-## Product
+
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/product/service/ProductResource.java">Product Service</a>
 
 ###### Product Object
 
 * POST /api/productservice/product
 
 ```
+Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"5817727ee4b0cccc91834030" }
+Response: {
+  "name": "iPhone 7",
+  "description": "This is a cool iphone",
+  "cost": "750",
+  "invein": "10",
+  "curcode": "US",
+  "partnerid": "Apple, Inc.",
+  "id": "58177308e4b0cccc91834031"
+}
+```
+
+* PUT /api/productservice/product
+
+```
+Payload: { "name":"iPhone 6 Plus", "description":"This is a cool iphone", "cost":650, "curcode":"US", "invein":20, "id":"58177308e4b0cccc91834031" }
 ```
 
 * GET /api/productservice/product/{id}
 
 ```
+Call: /api/productservice/product/58177308e4b0cccc91834031
+Response: {
+  "name": "iPhone 6 Plus",
+  "description": "This is a cool iphone",
+  "cost": "650",
+  "invein": "20",
+  "curcode": "US",
+  "partnerid": "Apple, Inc.",
+  "id": "58177308e4b0cccc91834031"
+}
+```
+* DELETE /api/productservice/product/{id}
+
+```
+Call: /api/productservice/product/58177308e4b0cccc91834031
+Response: 200 Status Code
 ```
 
 ###### Product Search
@@ -294,13 +363,202 @@ The phone and address supporting object for partner follow the same design patte
 * POST /api/productservice/search
 
 ```
+Payload: { "searchterm":"iPhone"}
+Response: {
+  "searchterm": "iPhone",
+  "results": [
+    {
+      "name": "iPhone 6 Plus",
+      "description": "This is a cool iphone",
+      "cost": "650",
+      "invein": "20",
+      "curcode": "US",
+      "partnerid": "Apple, Inc.",
+      "id": "58177308e4b0cccc91834031"
+    }
+  ]
+}
 ```
 
-## Order
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/order/service/OrderResource.java">Order Service</a>
 
 * POST /api/orderservice/order
 
 ```
+Payload: { "items": [ {"q":2,"productid":"58177308e4b0cccc91834031"} ], "address":"58177005e4b0cccc9183402e", "customer":"58176fdee4b0cccc9183402d" }
+Response: {
+  "items": [
+    {
+      "q": "2",
+      "productid": "58177308e4b0cccc91834031"
+    }
+  ],
+  "address": "58177005e4b0cccc9183402e",
+  "customer": "58176fdee4b0cccc9183402d",
+  "comfirm": "754754667396675466739739",
+  "status": "PROCESSED",
+  "id": "581774aee4b0cccc91834032",
+  "total": "0"
+}
+```
+
+* GET /api/orderservice/order/581774aee4b0cccc91834032
+
+```
+Call: /api/orderservice/order/{orderid}
+Response: {
+  "items": [
+    {
+      "q": "2",
+      "productid": "58177308e4b0cccc91834031"
+    }
+  ],
+  "address": "58177005e4b0cccc9183402e",
+  "customer": "Steve Nick Jobs",
+  "comfirm": "754754667396675466739739",
+  "status": "PROCESSED",
+  "id": "581774aee4b0cccc91834032",
+  "total": "1300"
+}
+```
+
+###### Get Customer Orders
+
+GET /api/orderservice/orders/customer/{customerid}
+
+```
+Call: /api/orderservice/orders/customer/58176fdee4b0cccc9183402d
+Response: {
+  "orders": [
+    {
+      "items": [
+        {
+          "q": "2",
+          "productid": "58177308e4b0cccc91834031"
+        }
+      ],
+      "address": "723 Ouilmette Ln Wilmette IL 60091",
+      "customer": "Steve Nick Jobs",
+      "comfirm": "754754667396675466739739",
+      "status": "PROCESSED",
+      "id": "58176fdee4b0cccc9183402d",
+      "total": "1300"
+    }
+  ]
+}
+```
+
+###### Status Code:
+1 => Delivered
+
+* PUT (Delivered Order) /api/orderservice/order/customer
+
+```
+Payload: { "orderid":"581774aee4b0cccc91834032", "code":1 }
+Response: 200 Status Code
+```
+
+###### Get Partners Orders
+
+* GET /api/orderservice/orders/partner/{partnerid}
+
+```
+Call: /api/orderservice/orders/partner/5817727ee4b0cccc91834030
+Response: {
+  "orders": [
+    {
+      "shipping": "723 Ouilmette Ln Wilmette IL 60091",
+      "orderid": "581774aee4b0cccc91834032",
+      "orderstatus": "PROCESSED",
+      "items": [
+        {
+          "q": "2",
+          "productid": "58177308e4b0cccc91834031"
+        }
+      ]
+    }
+  ]
+}
+```
+
+* PUT (Shipped Order) /api/orderservice/order/partner
+
+###### Status Code:
+1 => Shipped
+
+```
+Payload: { "orderid":"581774aee4b0cccc91834032", "code":1 }
+Response: 200 Status Code
+```
+
+###### Simple Status Check
+
+* GET /api/orderservice/order/status/{orderid}
+
+```
+Call: /api/orderservice/order/status/581774aee4b0cccc91834032
+Respsone: {
+  "status": "SHIPPED"
+}
+```
+
+## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/review/service/ReviewResource.java">Review Service</a>
+
+The review will only work if you have purchase a product and the status of the order is delivered.
+
+* POST /api/reviewservice/review
+
+```
+Payload { "order":"581774aee4b0cccc91834032", "review":"this is a good iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
+Response: {
+  "id": "581779c7e4b06220b38227f3",
+  "order": "581774aee4b0cccc91834032",
+  "review": "this is a good iphone",
+  "stars": "5",
+  "product": "58177308e4b0cccc91834031"
+}
+```
+
+* PUT /api/reviewservice/review
+
+```
+Payload: { "id": "581779c7e4b06220b38227f3", "order":"581774aee4b0cccc91834032", "review":"this is a great iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
+Response: {
+  "id": "581779c7e4b06220b38227f3",
+  "order": "581774aee4b0cccc91834032",
+  "review": "this is a great iphone",
+  "stars": "5",
+  "product": "58177308e4b0cccc91834031"
+}
+```
+
+* GET /api/reviewservice/review/{reviewid}
+
+```
+Call: /api/reviewservice/review/581779c7e4b06220b38227f3
+Response: {
+  "id": "581779c7e4b06220b38227f3",
+  "order": "581774aee4b0cccc91834032",
+  "review": "this is a great iphone",
+  "stars": "5",
+  "product": "58177308e4b0cccc91834031"
+}
+```
+
+###### Get Reviews for a Product 
+
+* Get /api/reviewservice/reviews/product/{productid}
+
+```
+Call: /api/reviewservice/reviews/product/58177308e4b0cccc91834031
+Payload: {
+  "reviews": [
+    {
+      "review": "this is a great iphone",
+      "stars": "5"
+    }
+  ]
+}
 ```
 
 # Documentation
