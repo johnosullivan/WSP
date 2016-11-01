@@ -2,11 +2,11 @@
 
 =============================================================================================================================
 
-For project I decided to go the no-sql way. (MongoDB)
+For the project, I decided to go the no-sql way. (MongoDB)
 
 1) Install MongoDB at https://docs.mongodb.com/manual/installation/
 
-2) Once installed launched the monogd server.
+2) Once installed, I launched the monogd server.
 
 3) Run the AppTest.java as a JUnit Test.
 
@@ -24,7 +24,7 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 # API ApacheCXF/Tomcat
 
-### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow server to boot up. If you are running from eclipse please check the client and DAL configs to insure proper use, <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a>. This requests below are examples with mock data. Make sure to have valid IDs or you will get a 400 status code.</b> 
+### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow the server to boot up. If you are running from eclipse, please check the client and DAL configs to ensure proper use, <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a>. The requests below are examples with mock data. Make sure to have valid IDs or you will get a 400 status code.</b> 
 
 Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokuapp.com/</a>
 
@@ -32,14 +32,14 @@ Deployment CLI: <a href="https://github.com/heroku/heroku-cli-deploy">https://gi
 
 Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
 
-The following rest call for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one choose to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without have to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created. For more details please review the API documentation.
+The following REST calls for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one chooses to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without having to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created. For more details please review the API documentation.
 
 # Service Documentation
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
 ###### Customer Object 
-The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data object like phone and address.
+The customer object has the following api calls to which they will allow you to create, edit, delete the customer object and the support object's supporting data objects like phone and address.
 
 Required in request: firstName,lastName,email
 
@@ -59,7 +59,7 @@ Response: {
 }
 ```
 
-* PUT "/api/customerservice/customer" Updates the customer from the payload. Make sure to include the ID or the request will fail.
+* PUT "/api/customerservice/customer" Updates the customer from the payload. Make sure to include the ID or the request will fail with 400.
 
 ```
 Payload: { "id": "5817584ae4b0cccc9183401a", "lastName":"O'Sullivan","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
@@ -210,7 +210,7 @@ Response: 200 Status Code
 
 #### Partner Object
 
-The partner object has the following api calls to which they will allow you to create, edit, delete the partner object and the support object's supporting data object like phone and address.
+The partner object has the following api calls to which they will allow you to create, edit, delete the partner object and the support objects supporting data object like phone and address.
 
 Required in request: firstName,lastName,email
 
@@ -342,7 +342,7 @@ Response: {
 }
 ```
 
-* PUT "/api/productservice/product" Will update the product info with payload, but requires the productid in the payload to allow the server to update the correct product. Once a product is create the partner who owns it cannot change. Only the information about the product can change.
+* PUT "/api/productservice/product" Will update the product info with payload, but requires the productid in the payload to allow the server to update the correct product. Once a product is create the partner who owns it cannot change. Only the information about the product can change like name, description, and inventory.
 
 ```
 Payload: { "name":"iPhone 6 Plus", "description":"This is a cool iphone", "cost":650, "curcode":"US", "invein":20, "id":"58177308e4b0cccc91834031" }
@@ -380,7 +380,7 @@ Response: 200 Status Code
 
 ###### Product Search
 
-* POST "/api/productservice/search" Will use the payload to to search the product table for product related to serach term and return a JSON array of results.
+* POST "/api/productservice/search" Will use the payload to search the product table for product related to serach term and return a JSON array of results.
 
 ```
 Payload: { "searchterm":"iPhone"}
@@ -444,7 +444,7 @@ Response: {
 
 ###### Get Customer Orders
 
-GET "/api/orderservice/orders/customer/{customerid}" This we get all the orders the customer has made and cancelled.
+GET "/api/orderservice/orders/customer/{customerid}" This will get all the orders the customer has made and cancelled.
 
 ```
 Call: /api/orderservice/orders/customer/58176fdee4b0cccc9183402d
@@ -501,7 +501,7 @@ Response: {
 }
 ```
 
-* PUT (Shipped Order) "/api/orderservice/order/partner" Will change the status of the order view to shipped.
+* PUT (Shipped Order) "/api/orderservice/order/partner" Will change the status of the order viewed to shipped.
 
 ###### Status Code:
 1 => Shipped
@@ -527,7 +527,7 @@ Respsone: {
 * DELETE "/api/orderservice/order/{orderid}" Will cancel the order with the orderid
 
 ```
-Call: /api/orderservice/order/status/581774aee4b0cccc91834032
+Call: /api/orderservice/order/581774aee4b0cccc91834032
 Respsone: {
   "orders": [
     {
