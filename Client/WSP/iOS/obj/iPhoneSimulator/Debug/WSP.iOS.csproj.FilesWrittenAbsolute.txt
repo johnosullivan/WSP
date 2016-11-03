@@ -1,0 +1,15 @@
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/Xamarin.iOS,Version=v1.0.AssemblyAttribute.cs
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/ibtool/_BundleResourceWithLogicalName.items
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/actool/_PartialAppManifest.items
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/actool/_BundleResourceWithLogicalName.items
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/optimized/
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.iOS.exe.mdb
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.iOS.exe
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/WSP.iOS.exe
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/WSP.iOS.exe.mdb
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Core.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Platform.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Platform.iOS.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Xaml.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.dll.mdb
