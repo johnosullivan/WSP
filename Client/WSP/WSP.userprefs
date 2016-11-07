@@ -1,7 +1,8 @@
 ﻿<Properties StartupConfiguration="{7F2FB98B-74CE-452D-B1CE-33C2E825C701}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WSP/App.xaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WSP/App.cs">
     <Files>
-      <File FileName="WSP/App.xaml.cs" Line="7" Column="8" />
+      <File FileName="iOS/AppDelegate.cs" Line="14" Column="4" />
+      <File FileName="WSP/App.cs" Line="15" Column="4" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
@@ -9,5 +10,5 @@
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MonoDevelop.Ide.ItemProperties.WSP.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.CB97EE6C-92E3-4BA6-BFE2-8EA3CFB0A1C3" />
+  <MonoDevelop.Ide.ItemProperties.WSP.iOS PreferredExecutionTarget="MonoDevelop.IPhone.IPhoneSimulatorTarget.6979E640-2E64-4E8F-A4F8-1A3E8771505F" />
 </Properties>

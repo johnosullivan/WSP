@@ -1,6 +1,6 @@
-# Version: 10.0.0.6 (xcode8: 6c3fee4)
-# [first argument, ignore] # /Library/Frameworks/Xamarin.iOS.framework/Versions/10.0.0.6/lib/mtouch/mtouch.exe
-/Library/Frameworks/Xamarin.iOS.framework/Versions/10.0.0.6/lib/mtouch/mtouch.exe \
+# Version: 10.2.0.4 (xcode8.1: b638977)
+# [first argument, ignore] # /Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.0.4/lib/mtouch/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.0.4/lib/mtouch/mtouch.exe \
 	--cache \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/mtouch-cache \
 	--sim \
@@ -14,7 +14,7 @@
 	--sdkroot \
 	/Applications/Xcode.app/Contents/Developer \
 	--sdk \
-	10.0 \
+	10.1 \
 	--targetver \
 	8.0 \
 	--http-message-handler=HttpClientHandler \

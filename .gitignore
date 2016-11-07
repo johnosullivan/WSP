@@ -1,0 +1,40 @@
+#Autosave files
+*~
+
+
+Client/WSP/iOS/obj/
+Client/WSP/iOS/bin/
+Client/WSP/Droid/obj/
+Client/WSP/Droid/bin/
+Client/WSP/WSP/obj/
+Client/WSP/WSP/bin/
+Client/WSP/Components/
+Client/WSP/packages/
+
+test-results
+
+# VS sometimes writes these for no apparent reason
+_UpgradeReport_Files
+UpgradeLog.*
+
+# Per-user data
+*.DS_Store
+*.sln.cache
+*.suo
+*.userprefs
+*.usertasks
+*.user
+
+# ReSharper
+*_Resharper.*
+*.Resharper
+
+# dotCover
+*.dotCover
+*.dll
+
+*.mdb
+*.dll
+
+[Bb]in
+[Dd]ebug*/

@@ -1,8 +1,4 @@
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/.NETPortable,Version=v4.5,Profile=Profile78.AssemblyAttribute.cs
-/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.App.xaml
-/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.WSPPage.xaml
-/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.App.xaml.g.cs
-/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.WSPPage.xaml.g.cs
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/WSP.dll.mdb
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/WSP.dll
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.dll
