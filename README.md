@@ -22,7 +22,12 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 
 =============================================================================================================================
 
-# API ApacheCXF/Tomcat
+
+# Client + Server(HATEOAS) (Project 4)
+
+
+
+# API ApacheCXF/Tomcat (Project 3)
 
 ### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow the server to boot up. If you are running from eclipse, please check the client and DAL configs to ensure proper use, <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a>. The requests below are examples with mock data. Make sure to have valid IDs or you will get a 400 status code.</b> 
 
@@ -30,7 +35,7 @@ Hosted: <a href="https://fall2016wsp.herokuapp.com/">https://fall2016wsp.herokua
 
 Deployment CLI: <a href="https://github.com/heroku/heroku-cli-deploy">https://github.com/heroku/heroku-cli-deploy</a>
 
-Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
+Jackson Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/client/jacksonClient">Here</a>
 
 The following REST calls for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one chooses to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without having to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created. For more details please review the API documentation.
 
@@ -625,7 +630,7 @@ Payload:
 </reviews>
 ```
 
-# DAL/Model Documentation
+# DAL/Model Documentation (Project 1)
 
 Features:
 
