@@ -7,10 +7,14 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+//import org.codehaus.jackson.annotate.JsonTypeName;
+//import org.codehaus.jackson.map.annotate.JsonRootName;
 
 @XmlRootElement(name = "customer")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
+
+//@JsonRootName("customer")
 public class CustomerRepresentation {
 	
 	private String id;

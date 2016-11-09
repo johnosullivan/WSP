@@ -1,8 +1,10 @@
 ﻿<Properties StartupConfiguration="{7F2FB98B-74CE-452D-B1CE-33C2E825C701}|Default">
-  <MonoDevelop.Ide.Workbench ActiveDocument="WSP/App.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="WSP/MasterPage.cs">
     <Files>
       <File FileName="iOS/AppDelegate.cs" Line="14" Column="4" />
-      <File FileName="WSP/App.cs" Line="15" Column="4" />
+      <File FileName="WSP/App.cs" Line="11" Column="3" />
+      <File FileName="WSP/RootPage.cs" Line="11" Column="4" />
+      <File FileName="WSP/MasterPage.cs" Line="54" Column="2" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />

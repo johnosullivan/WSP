@@ -34,6 +34,9 @@ Postman Test <a href="https://github.com/johnosullivan/WSP/tree/master/src/clien
 
 The following REST calls for the documentation were made with a Mac app called CocoaRestClient which can be downloaded and installed <a href="http://mmattozzi.github.io/cocoa-rest-client/">Here</a>. If one chooses to run in eclipse I would <b>strongly recommended</b> this to build payloads and view responds without having to filter through the server output in eclipse. The ClientTestLogs.txt is the ouput from the Postman test. There are four situations, two are creating,editing,deleting data around the partner and customer objects. One is about creating,editing,deleting products and searching for then. The last Postman test will do a full order and test what the customer and partner see after an order created. For more details please review the API documentation.
 
+### Content-Type Allowed:  "application/xml", "application/json"
+### Accept Allowed:  "application/xml", "application/json"
+
 # Service Documentation
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
@@ -47,55 +50,55 @@ Required in request: firstName,lastName,email
 
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
-Response: {
-  "id": "5817584ae4b0cccc9183401a",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "propic": "http://www.google.com/somepic",
-  "addresses": null,
-  "phones": null
-}
+Response:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>582365b5e4b0e98526a7facb</id>
+    <lastName>Jobs</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <propic>http://www.google.com/somepic</propic>
+</customer>
 ```
 
 * PUT "/api/customerservice/customer" Updates the customer from the payload. Make sure to include the ID or the request will fail with 400.
 
 ```
-Payload: { "id": "5817584ae4b0cccc9183401a", "lastName":"O'Sullivan","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
-Response: {
-  "id": "5817584ae4b0cccc9183401a",
-  "lastName": "O'Sullivan",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "propic": "http://www.google.com/somepic",
-  "addresses": null,
-  "phones": null
-}
+Payload: { "id": "582365b5e4b0e98526a7facb", "lastName":"O'Sullivan","middleName":"Nick","firstName":"Steve","email":"jno@mac.com", "propic":"http://www.google.com/somepic" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>582365b5e4b0e98526a7facb</id>
+    <lastName>O'Sullivan</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <propic>http://www.google.com/somepic</propic>
+</customer>
 ```
 
 * GET "/api/customerservice/customer/{customerid}" Gets the customer with the customerid from url.
 
 ```
 Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
-Response: {
-  "id": "5817584ae4b0cccc9183401a",
-  "lastName": "O'Sullivan",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "propic": "http://www.google.com/somepic",
-  "addresses": null,
-  "phones": null
-}
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>582365b5e4b0e98526a7facb</id>
+    <lastName>O'Sullivan</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <propic>http://www.google.com/somepic</propic>
+</customer>
 ```
 
 * DELETE "/api/customerservice/customer/{customerid}" Delete the customer from database.
 
 ```
-Call: /api/customerservice/customer/5817584ae4b0cccc9183401a
-Response: 
+Call: /api/customerservice/customer/582365b5e4b0e98526a7facb
+Response: 200 Status Code
 ```
 ###### Customer's Phone Object
 
@@ -103,25 +106,28 @@ Response:
 * POST "/api/customerservice/customer/phone" Creates a new phone for customer from the payload.
 
 ```
-Payload: { "type":"Cell","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
-Response: {
-  "phone": "1-847-256-7071",
-  "type": "Cell",
-  "id": "58175989e4b0cccc9183401c",
-  "user": "58175932e4b0cccc9183401b"
-}
+Payload: { "type":"Cell","phone":"1-847-256-7071","user":"582365b5e4b0e98526a7facb" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<phone>
+    <phone>1-847-256-7071</phone>
+    <type>Cell</type>
+    <id>5823662de4b0e98526a7facc</id>
+    <user>582365b5e4b0e98526a7facb</user>
+</phone>
 ```
 
 * PUT "/api/customerservice/customer/phone" Updates the phone of customer from the payload.
 
 ```
-Payload: { "id": "58175989e4b0cccc9183401c", "type":"Home","phone":"1-847-256-7071","user":"58175932e4b0cccc9183401b" }
-Response: {
-  "phone": "1-847-256-7071",
-  "type": "Home",
-  "id": "58175989e4b0cccc9183401c",
-  "user": "58175932e4b0cccc9183401b"
-}
+Payload: { "id": "5823662de4b0e98526a7facc", "type":"Home","phone":"1-847-256-7071" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<phone>
+    <phone>1-847-256-7071</phone>
+    <type>Home</type>
+    <id>5823662de4b0e98526a7facc</id>
+</phone>
 ```
 
 * GET "/api/customerservice/customer/{customerid}" Gets the customer from customerid in url to shows the phones in response.
@@ -129,30 +135,28 @@ Response: {
 
 ```
 Call: /api/customerservice/customer/58175932e4b0cccc9183401b
-Response: {
-  "id": "58175932e4b0cccc9183401b",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "propic": "http://www.google.com/somepic",
-  "addresses": [
-  ],
-  "phones": [
-    {
-      "phone": "1-847-256-7071",
-      "type": "Home",
-      "id": "58175989e4b0cccc9183401c",
-      "user": "58175932e4b0cccc9183401b"
-    }
-  ]
-}
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>582365b5e4b0e98526a7facb</id>
+    <lastName>O'Sullivan</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <propic>http://www.google.com/somepic</propic>
+    <phones>
+        <phone>1-847-256-7071</phone>
+        <type>Home</type>
+        <id>5823662de4b0e98526a7facc</id>
+        <user>582365b5e4b0e98526a7facb</user>
+    </phones>
+</customer>
 ```
 
 * DELETE "/api/customerservice/customer/phone/{phoneid}" Delete an phone number with the phoneid.
 
 ```
-Call: /api/customerservice/customer/phone/58175989e4b0cccc9183401c
+Call: /api/customerservice/customer/phone/5823662de4b0e98526a7facc
 Respsonse: 200 Status Code
 ```
 
@@ -161,47 +165,47 @@ Respsonse: 200 Status Code
 * POST "/api/customerservice/customer/address" Creates a new address for the customer from the payload.
 
 ```
-Payload: { "address":"700 Ouilmette Ln","city":"Wilmette","state":"WI","user":"","zip":60091, "user":"58175932e4b0cccc9183401b" }
-Response: {
-  "address": "700 Ouilmette Ln",
-  "city": "Wilmette",
-  "state": "WI",
-  "id": "58175a88e4b0cccc9183401d",
-  "user": "58175932e4b0cccc9183401b",
-  "zip": "60091"
-}
+Payload: { "address":"700 Ouilmette Ln","city":"Wilmette","state":"WI","user":"","zip":60091, "user":"582365b5e4b0e98526a7facb" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<address>
+    <address>700 Ouilmette Ln</address>
+    <city>Wilmette</city>
+    <state>WI</state>
+    <id>582366f2e4b0e98526a7facd</id>
+    <user>582365b5e4b0e98526a7facb</user>
+    <zip>60091</zip>
+</address>
 ```
 
 * GET "/api/customerservice/customer/{customerid}" Gets the customer from customerid in url to shows the addresses in response.
 
 ```
-Call: /api/customerservice/customer/58175932e4b0cccc9183401b
-Response: {
-  "id": "58175932e4b0cccc9183401b",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "propic": "http://www.google.com/somepic",
-  "addresses": [
-    {
-      "address": "700 Ouilmette Ln",
-      "city": "Wilmette",
-      "state": "WI",
-      "id": "58175a88e4b0cccc9183401d",
-      "user": "58175932e4b0cccc9183401b",
-      "zip": "60091"
-    }
-  ],
-  "phones": [
-  ]
-}
+Call: /api/customerservice/customer/582365b5e4b0e98526a7facb
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>582365b5e4b0e98526a7facb</id>
+    <lastName>O'Sullivan</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <propic>http://www.google.com/somepic</propic>
+    <addresses>
+        <address>700 Ouilmette Ln</address>
+        <city>Wilmette</city>
+        <state>WI</state>
+        <id>582366f2e4b0e98526a7facd</id>
+        <user>582365b5e4b0e98526a7facb</user>
+        <zip>60091</zip>
+    </addresses>
+</customer>
 ```
 
 * DELETE "/api/customerservice/customer/address/{addressid}" Delete the customer's address from the database.
 
 ```
-Call: /api/customerservice/customer/address/58175a88e4b0cccc9183401d
+Call: /api/customerservice/customer/address/582365b5e4b0e98526a7facb
 Response: 200 Status Code
 ```
 
@@ -218,59 +222,57 @@ Required in request: firstName,lastName,email
 
 ```
 Payload: { "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
-Response: {
-  "id": "58175ba4e4b0cccc9183401e",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jno@mac.com",
-  "firstName": "Steve",
-  "company": "Apple, Inc.",
-  "homepage": "http://www.apple.com",
-  "addresses": null,
-  "phones": null
-}
+Response:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<partner>
+    <id>58236741e4b0e98526a7face</id>
+    <lastName>Jobs</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <company>Apple, Inc.</company>
+    <homepage>http://www.apple.com</homepage>
+</partner>
 ```
 
 * PUT "/api/partnerservice/partner" Takes the payload and uses the ID to update the partner information.
 
 ```
-Payload: { "id": "58175ba4e4b0cccc9183401e", "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
-Response: {
-  "id": "58175ba4e4b0cccc9183401e",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jimmy@mac.com",
-  "firstName": "Jimmy",
-  "company": "Apple, Inc.",
-  "homepage": "http://www.iphone.com",
-  "addresses": null,
-  "phones": null
-}
+Payload: { "id": "58236741e4b0e98526a7face", "lastName":"Jobs","middleName":"Nick","firstName":"Steve","email":"jno@mac.com","homepage":"http://www.apple.com", "company":"Apple, Inc." }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<partner>
+    <id>58236741e4b0e98526a7face</id>
+    <lastName>Jobs</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <company>Apple, Inc.</company>
+    <homepage>http://www.apple.com</homepage>
+</partner>
 ```
 
 * GET "/api/partnerservice/partner/{partnerid}" Gets the partner info from the ID in the url.
 
 ```
-Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
-Response: {
-  "id": "58175ba4e4b0cccc9183401e",
-  "lastName": "Jobs",
-  "middleName": "Nick",
-  "email": "jimmy@mac.com",
-  "firstName": "Jimmy",
-  "company": "Apple, Inc.",
-  "homepage": "http://www.apple.com",
-  "addresses": [
-  ],
-  "phones": [
-  ]
-}
+Call: /api/partnerservice/partner/58236741e4b0e98526a7face
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<partner>
+    <id>58236741e4b0e98526a7face</id>
+    <lastName>Jobs</lastName>
+    <middleName>Nick</middleName>
+    <email>jno@mac.com</email>
+    <firstName>Steve</firstName>
+    <company>Apple, Inc.</company>
+    <homepage>http://www.apple.com</homepage>
+</partner>
 ```
 
 * DELETE "/api/partnerservice/partner/{partnerid}" Delete the partner from the database.
 
 ```
-Call: /api/partnerservice/partner/58175ba4e4b0cccc9183401e
+Call: /api/partnerservice/partner/58236741e4b0e98526a7face
 Respsonse: 200 Status Code
 ```
 
@@ -289,33 +291,35 @@ The phone and address supporting object for partner follow the same design patte
 * POST "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will create a new payment for the customer or partner. Be sure to include the user's ID or an 400 status code will return.
 
 ```
-Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"1234432112344321", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Payload: { "type":"CC","user":"582365b5e4b0e98526a7facb", "ccnum":"1234432112344321", "ccexp":"01/12", "ccsec":"123", "billing":"582366f2e4b0e98526a7facd" }
 Response: 200 Status Code 
 ```
 
 * PUT "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will take the payload an update the payment information in file, be sure to include the user's ID or an 400 status code will return.
 
 ```
-Payload: { "type":"CC","user":"58176fdee4b0cccc9183402d", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"58177005e4b0cccc9183402e" }
+Payload: { "type":"CC","user":"582365b5e4b0e98526a7facb", "ccnum":"0000000000000000", "ccexp":"01/12", "ccsec":"123", "billing":"582366f2e4b0e98526a7facd" }
 Response: 200 Status Code
 ```
 
 * GET "/api/paymentservice/payment/customer/{customerid}" OR "/api/paymentservice/payment/partner/{partnerid}" This gets the customer's or partner's payment information. 
 
 ```
-Call: /api/paymentservice/payment/customer/58176fdee4b0cccc9183402d
-Response: {
-  "billing": "723 Ouilmette Ln Wilmette IL 60091",
-  "ccnum": "0000000000000000",
-  "ccexp": "01/12",
-  "ccsec": "123"
-}
+Call: /api/paymentservice/payment/customer/582365b5e4b0e98526a7facb
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<payment>
+    <billing>700 Ouilmette Ln Wilmette WI 60091</billing>
+    <ccnum>1234432112344321</ccnum>
+    <ccexp>01/12</ccexp>
+    <ccsec>123</ccsec>
+</payment>
 ```
 
 * DELETE "/api/paymentservice/payment/customer/{customerid}" OR "/api/paymentservice/payment/partner/{partnerid}" Will remove the customer's or partner's payment information from the server.
 
 ```
-Call: /api/paymentservice/payment/customer/58176fdee4b0cccc9183402d
+Call: /api/paymentservice/payment/customer/582365b5e4b0e98526a7facb
 Response: 200 Status Code
 ```
 
@@ -330,74 +334,88 @@ Response: 200 Status Code
 Required in request: All parameters
 
 ```
-Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"5817727ee4b0cccc91834030" }
-Response: {
-  "name": "iPhone 7",
-  "description": "This is a cool iphone",
-  "cost": "750",
-  "invein": "10",
-  "curcode": "US",
-  "partnerid": "Apple, Inc.",
-  "id": "58177308e4b0cccc91834031"
-}
+Payload: { "name":"iPhone 7", "description":"This is a cool iphone", "cost":750, "curcode":"US", "invein":10, "partnerid":"58236741e4b0e98526a7face" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product>
+    <name>iPhone 7</name>
+    <description>This is a cool iphone</description>
+    <cost>750</cost>
+    <invein>10</invein>
+    <curcode>US</curcode>
+    <partnerid>Apple, Inc.</partnerid>
+    <id>58236a9ae4b0e98526a7fad2</id>
+</product>
 ```
 
 * PUT "/api/productservice/product" Will update the product info with payload, but requires the productid in the payload to allow the server to update the correct product. Once a product is create the partner who owns it cannot change. Only the information about the product can change like name, description, and inventory.
 
 ```
-Payload: { "name":"iPhone 6 Plus", "description":"This is a cool iphone", "cost":650, "curcode":"US", "invein":20, "id":"58177308e4b0cccc91834031" }
-Response: {
-  "name": "iPhone 6 Plus",
-  "description": "This is a cool iphone",
-  "cost": "650",
-  "invein": "20",
-  "curcode": "US",
-  "partnerid": "Apple, Inc.",
-  "id": "58177308e4b0cccc91834031"
-}
+Payload: { "name":"iPhone 6 Plus", "description":"This is a cool iphone", "cost":650, "curcode":"US", "invein":20, "id":"58236a9ae4b0e98526a7fad2" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product>
+    <name>iPhone 6 Plus</name>
+    <description>This is a cool iphone</description>
+    <cost>650</cost>
+    <invein>20</invein>
+    <curcode>US</curcode>
+    <id>58236a9ae4b0e98526a7fad2</id>
+</product>
 ```
 
 * GET "/api/productservice/product/{productid}" Will get the product with the productid in url.
 
 ```
-Call: /api/productservice/product/58177308e4b0cccc91834031
-Response: {
-  "name": "iPhone 6 Plus",
-  "description": "This is a cool iphone",
-  "cost": "650",
-  "invein": "20",
-  "curcode": "US",
-  "partnerid": "Apple, Inc.",
-  "id": "58177308e4b0cccc91834031"
-}
+Call: /api/productservice/product/58236a9ae4b0e98526a7fad2
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product>
+    <name>iPhone 6 Plus</name>
+    <description>This is a cool iphone</description>
+    <cost>650</cost>
+    <invein>20</invein>
+    <curcode>US</curcode>
+    <partnerid>Apple, Inc.</partnerid>
+    <id>58236a9ae4b0e98526a7fad2</id>
+</product>
 ```
 * DELETE "/api/productservice/product/{productid}" Will delete the product with the given productid.
 
 ```
-Call: /api/productservice/product/58177308e4b0cccc91834031
+Call: /api/productservice/product/58236a9ae4b0e98526a7fad2
 Response: 200 Status Code
 ```
 
 ###### Product Search
 
-* POST "/api/productservice/search" Will use the payload to search the product table for product related to serach term and return a JSON array of results.
+* POST "/api/productservice/search" Will use the payload to search the product table for product related to serach term and return an array of results.
 
 ```
 Payload: { "searchterm":"iPhone"}
-Response: {
-  "searchterm": "iPhone",
-  "results": [
-    {
-      "name": "iPhone 6 Plus",
-      "description": "This is a cool iphone",
-      "cost": "650",
-      "invein": "20",
-      "curcode": "US",
-      "partnerid": "Apple, Inc.",
-      "id": "58177308e4b0cccc91834031"
-    }
-  ]
-}
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<search>
+    <searchterm>iPhone</searchterm>
+    <results>
+        <name>iPhone 7</name>
+        <description>This is a cool iphone</description>
+        <cost>750</cost>
+        <invein>10</invein>
+        <curcode>US</curcode>
+        <partnerid>Apple, Inc.</partnerid>
+        <id>5817a0b5e4b0a35a32e331ad</id>
+    </results>
+    <results>
+        <name>iPhone 6 Plus</name>
+        <description>This is a cool iphone</description>
+        <cost>650</cost>
+        <invein>20</invein>
+        <curcode>US</curcode>
+        <partnerid>Apple, Inc.</partnerid>
+        <id>58236a9ae4b0e98526a7fad2</id>
+    </results>
+</search>
 ```
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/order/service/OrderResource.java">Order Service</a>
@@ -405,41 +423,41 @@ Response: {
 * POST "/api/orderservice/order" Will create an order with the payload. This payload requires a valid address and customer ID. The items are an JSON array with an valid product ID and the number ordered.
 
 ```
-Payload: { "items": [ {"q":2,"productid":"58177308e4b0cccc91834031"} ], "address":"58177005e4b0cccc9183402e", "customer":"58176fdee4b0cccc9183402d" }
-Response: {
-  "items": [
-    {
-      "q": "2",
-      "productid": "58177308e4b0cccc91834031"
-    }
-  ],
-  "address": "58177005e4b0cccc9183402e",
-  "customer": "58176fdee4b0cccc9183402d",
-  "comfirm": "754754667396675466739739",
-  "status": "PROCESSED",
-  "id": "581774aee4b0cccc91834032",
-  "total": "0"
-}
+Payload: { "items": [ {"q":2,"productid":"58236a9ae4b0e98526a7fad2"} ], "address":"582366f2e4b0e98526a7facd", "customer":"582365b5e4b0e98526a7facb" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <items>
+        <q>2</q>
+        <productid>58236a9ae4b0e98526a7fad2</productid>
+    </items>
+    <address>582366f2e4b0e98526a7facd</address>
+    <customer>582365b5e4b0e98526a7facb</customer>
+    <comfirm>754754667396675466739739</comfirm>
+    <status>PROCESSED</status>
+    <id>58236deae4b0e98526a7fad9</id>
+    <total>0</total>
+</order>
 ```
 
 * GET "/api/orderservice/order/{orderid}" Will get the order with the orderid.
 
 ```
-Call: /api/orderservice/order/581774aee4b0cccc91834032
-Response: {
-  "items": [
-    {
-      "q": "2",
-      "productid": "58177308e4b0cccc91834031"
-    }
-  ],
-  "address": "58177005e4b0cccc9183402e",
-  "customer": "Steve Nick Jobs",
-  "comfirm": "754754667396675466739739",
-  "status": "PROCESSED",
-  "id": "581774aee4b0cccc91834032",
-  "total": "1300"
-}
+Call: /api/orderservice/order/58236deae4b0e98526a7fad9
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <items>
+        <q>2</q>
+        <productid>58236a9ae4b0e98526a7fad2</productid>
+    </items>
+    <address>582366f2e4b0e98526a7facd</address>
+    <customer>Steve Nick O'Sullivan</customer>
+    <comfirm>754754667396675466739739</comfirm>
+    <status>PROCESSED</status>
+    <id>58236deae4b0e98526a7fad9</id>
+    <total>1300</total>
+</order>
 ```
 
 ###### Get Customer Orders
@@ -447,25 +465,23 @@ Response: {
 GET "/api/orderservice/orders/customer/{customerid}" This will get all the orders the customer has made and cancelled.
 
 ```
-Call: /api/orderservice/orders/customer/58176fdee4b0cccc9183402d
-Response: {
-  "orders": [
-    {
-      "items": [
-        {
-          "q": "2",
-          "productid": "58177308e4b0cccc91834031"
-        }
-      ],
-      "address": "723 Ouilmette Ln Wilmette IL 60091",
-      "customer": "Steve Nick Jobs",
-      "comfirm": "754754667396675466739739",
-      "status": "PROCESSED",
-      "id": "58176fdee4b0cccc9183402d",
-      "total": "1300"
-    }
-  ]
-}
+Call: /api/orderservice/orders/customer/582365b5e4b0e98526a7facb
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<orders>
+    <orders>
+        <items>
+            <q>2</q>
+            <productid>58236a9ae4b0e98526a7fad2</productid>
+        </items>
+        <address>700 Ouilmette Ln Wilmette WI 60091</address>
+        <customer>Steve Nick O'Sullivan</customer>
+        <comfirm>754754667396675466739739</comfirm>
+        <status>PROCESSED</status>
+        <id>582365b5e4b0e98526a7facb</id>
+        <total>1300</total>
+    </orders>
+</orders>
 ```
 
 ###### Status Code:
@@ -474,7 +490,7 @@ Response: {
 * PUT (Delivered Order) "/api/orderservice/order/customer" Will change the status of the order for the customer to delivered. This will allow the customer to write a review on the product in said order.
 
 ```
-Payload: { "orderid":"581774aee4b0cccc91834032", "code":1 }
+Payload: { "orderid":"58236deae4b0e98526a7fad9", "code":1 }
 Response: 200 Status Code
 ```
 
@@ -483,22 +499,20 @@ Response: 200 Status Code
 * GET "/api/orderservice/orders/partner/{partnerid}" Will get all the order that relate to the products the partner has in the database.
 
 ```
-Call: /api/orderservice/orders/partner/5817727ee4b0cccc91834030
-Response: {
-  "orders": [
-    {
-      "shipping": "723 Ouilmette Ln Wilmette IL 60091",
-      "orderid": "581774aee4b0cccc91834032",
-      "orderstatus": "PROCESSED",
-      "items": [
-        {
-          "q": "2",
-          "productid": "58177308e4b0cccc91834031"
-        }
-      ]
-    }
-  ]
-}
+Call: /api/orderservice/orders/partner/58236741e4b0e98526a7face
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<orders>
+    <orders>
+        <shipping>700 Ouilmette Ln Wilmette WI 60091</shipping>
+        <orderid>58236deae4b0e98526a7fad9</orderid>
+        <orderstatus>PROCESSED</orderstatus>
+        <items>
+            <q>2</q>
+            <productid>58236a9ae4b0e98526a7fad2</productid>
+        </items>
+    </orders>
+</orders>
 ```
 
 * PUT (Shipped Order) "/api/orderservice/order/partner" Will change the status of the order viewed to shipped.
@@ -507,7 +521,7 @@ Response: {
 1 => Shipped
 
 ```
-Payload: { "orderid":"581774aee4b0cccc91834032", "code":1 }
+Payload: { "orderid":"58236deae4b0e98526a7fad9", "code":1 }
 Response: 200 Status Code
 ```
 
@@ -516,10 +530,12 @@ Response: 200 Status Code
 * GET "/api/orderservice/order/status/{orderid}" Will get the order from the orderid and return just the status.
 
 ```
-Call: /api/orderservice/order/status/581774aee4b0cccc91834032
-Respsone: {
-  "status": "SHIPPED"
-}
+Call: /api/orderservice/order/status/582365b5e4b0e98526a7facb
+Respsone:
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <status>DELIVERED</status>
+</order>
 ```
 
 ###### Cancel Order
@@ -528,24 +544,20 @@ Respsone: {
 
 ```
 Call: /api/orderservice/order/581774aee4b0cccc91834032
-Respsone: {
-  "orders": [
-    {
-      "items": [
-        {
-          "q": "2",
-          "productid": "58177308e4b0cccc91834031"
-        }
-      ],
-      "address": "723 Ouilmette Ln Wilmette IL 60091",
-      "customer": "Steve Nick Jobs",
-      "comfirm": "754754667396675466739739",
-      "status": "CANCELED",
-      "id": "58176fdee4b0cccc9183402d",
-      "total": "1300"
-    }
-  ]
-}
+Respsone: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <items>
+        <q>2</q>
+        <productid>58236a9ae4b0e98526a7fad2</productid>
+    </items>
+    <address>582366f2e4b0e98526a7facd</address>
+    <customer>Steve Nick O'Sullivan</customer>
+    <comfirm>754754667396675466739739</comfirm>
+    <status>CANCELED</status>
+    <id>58236deae4b0e98526a7fad9</id>
+    <total>1300</total>
+</order>
 ```
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/review/service/ReviewResource.java">Review Service</a>
@@ -555,40 +567,46 @@ The review will only work if you have purchase a product and the status of the o
 * POST "/api/reviewservice/review" Posting to this address will create a new product review from the payload and return the review with its unique id. 
 
 ```
-Payload { "order":"581774aee4b0cccc91834032", "review":"this is a good iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
-Response: {
-  "id": "581779c7e4b06220b38227f3",
-  "order": "581774aee4b0cccc91834032",
-  "review": "this is a good iphone",
-  "stars": "5",
-  "product": "58177308e4b0cccc91834031"
-}
+Payload { "order":"58236deae4b0e98526a7fad9", "review":"this is a good iphone", "stars":5, "product":"58236a9ae4b0e98526a7fad2" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<review>
+    <id>5823741125ac10aaa5e3a915</id>
+    <order>58236deae4b0e98526a7fad9</order>
+    <review>this is a good iphone</review>
+    <stars>5</stars>
+    <product>58236a9ae4b0e98526a7fad2</product>
+</review>
 ```
 
 * PUT "/api/reviewservice/review" This will update the review with the new payload of information. Make sure to include the review id or the request will failed, due to not knowing what review to actually update.
 
 ```
-Payload: { "id": "581779c7e4b06220b38227f3", "order":"581774aee4b0cccc91834032", "review":"this is a great iphone", "stars":5, "product":"58177308e4b0cccc91834031" }
-Response: {
-  "id": "581779c7e4b06220b38227f3",
-  "order": "581774aee4b0cccc91834032",
-  "review": "this is a great iphone",
-  "stars": "5",
-  "product": "58177308e4b0cccc91834031"
-}
+Payload: { "id": "5823741125ac10aaa5e3a915", "order":"58236deae4b0e98526a7fad9", "review":"this is a great iphone", "stars":5, "product":"58236a9ae4b0e98526a7fad2" }
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<review>
+    <id>5823741125ac10aaa5e3a915</id>
+    <order>58236deae4b0e98526a7fad9</order>
+    <review>this is a great iphone</review>
+    <stars>5</stars>
+    <product>58236a9ae4b0e98526a7fad2</product>
+</review>
 ```
 
 * GET "/api/reviewservice/review/{reviewid}" This will get the single review from the reviewid in the url.
 
 ```
-Call: /api/reviewservice/review/581779c7e4b06220b38227f3
-Response: {
-  "id": "581779c7e4b06220b38227f3",
-  "order": "581774aee4b0cccc91834032",
-  "review": "this is a great iphone",
-  "stars": "5",
-  "product": "58177308e4b0cccc91834031"
-}
+Call: /api/reviewservice/review/5823741125ac10aaa5e3a915
+Response: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<review>
+    <id>5823741125ac10aaa5e3a915</id>
+    <order>58236deae4b0e98526a7fad9</order>
+    <review>this is a great iphone</review>
+    <stars>5</stars>
+    <product>58236a9ae4b0e98526a7fad2</product>
+</review>
 ```
 
 ###### Get Reviews for a Product 
@@ -596,15 +614,15 @@ Response: {
 * Get "/api/reviewservice/reviews/product/{productid}" This request will gets all the reviews for the productid that is in the url.
 
 ```
-Call: /api/reviewservice/reviews/product/58177308e4b0cccc91834031
-Payload: {
-  "reviews": [
-    {
-      "review": "this is a great iphone",
-      "stars": "5"
-    }
-  ]
-}
+Call: /api/reviewservice/reviews/product/58236a9ae4b0e98526a7fad2
+Payload: 
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<reviews>
+    <reviews>
+        <review>this is a great iphone</review>
+        <stars>5</stars>
+    </reviews>
+</reviews>
 ```
 
 # DAL/Model Documentation

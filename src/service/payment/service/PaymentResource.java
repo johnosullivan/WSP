@@ -25,8 +25,8 @@ public class PaymentResource {
 	 * payload.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({  "application/json", "application/xml" })
+	@Produces({  "application/json", "application/xml" })
 	@Path("/payment/customer")
 	public Response createCustomerPayment(PaymentRequest request) throws UnknownHostException {
 		try {
@@ -61,7 +61,7 @@ public class PaymentResource {
 	 * with the the customerId
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/payment/customer/{customerId}")
 	public Response getCustomerPayment(@PathParam("customerId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -79,7 +79,7 @@ public class PaymentResource {
 	 * from online
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/payment/customer/{customerId}")
 	public Response deleteCustomer(@PathParam("customerId") String id) throws UnknownHostException {
 		try {
@@ -98,8 +98,8 @@ public class PaymentResource {
 	 * payload.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({  "application/json", "application/xml" })
+	@Produces({  "application/json", "application/xml" })
 	@Path("/payment/partner")
 	public Response createPartnerPayment(PaymentRequest request) throws UnknownHostException {
 		try {
@@ -116,7 +116,7 @@ public class PaymentResource {
 	 * payload.
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
+	@Consumes({  "application/json", "application/xml" })
 	@Produces({ "application/json", "application/xml" })
 	@Path("/payment/partner")
 	public Response updateCustomerPartner(PaymentRequest request) throws UnknownHostException {
@@ -134,7 +134,7 @@ public class PaymentResource {
 	 * the the customerId
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/payment/partner/{partnerId}")
 	public Response getPartnerPayment(@PathParam("partnerId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -152,7 +152,7 @@ public class PaymentResource {
 	 * online
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/payment/partner/{partnerId}")
 	public Response deletePartner(@PathParam("partnerId") String id) throws UnknownHostException {
 		try {

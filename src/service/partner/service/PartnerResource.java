@@ -26,7 +26,7 @@ public class PartnerResource {
 	 * GET /partner/{partnerId} Will get the partner object with id
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/{partnerId}")
 	public Response getPartner(@PathParam("partnerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		try {
@@ -42,8 +42,8 @@ public class PartnerResource {
 	 * POST /partner Will create new partner object with id
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner")
 	public Response createPartner(PartnerRequest PartnerRequest) throws UnknownHostException {
 		try {
@@ -59,8 +59,8 @@ public class PartnerResource {
 	 * PUT /partner Will update the partner object from the payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner")
 	public Response updatePartner(PartnerRepresentation PartnerRequest) throws UnknownHostException {
 		try {
@@ -76,7 +76,7 @@ public class PartnerResource {
 	 * DELETE /partner/{partnerId} Will delete the partner with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/{partnerId}")
 	public Response deletePartner(@PathParam("partnerId") String id) throws UnknownHostException {
 		try {
@@ -94,8 +94,8 @@ public class PartnerResource {
 	 * POST /partner/phone Will create a customer's phone object
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/phone")
 	public Response createPartnerPhone(PartnerPhoneRequest customerRequest) throws UnknownHostException {
 		try {
@@ -112,8 +112,8 @@ public class PartnerResource {
 	 * POST /partner/address Will create a customer's address object
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/address")
 	public Response createPartnerAddress(PartnerAddressRequest req) throws UnknownHostException {
 		try {
@@ -130,7 +130,7 @@ public class PartnerResource {
 	 * DELETE /partner/address/{addressId} Will delete partner's address with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/address/{addressId}")
 	public Response deletePartnerAddress(@PathParam("addressId") String id) throws UnknownHostException {
 		try {
@@ -148,7 +148,7 @@ public class PartnerResource {
 	 * DELETE /partner/phone/{phoneId} Will delete partner's phone with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/phone/{phoneId}")
 	public Response deletePartnerPhone(@PathParam("phoneId") String id) throws UnknownHostException {
 		try {
@@ -166,8 +166,8 @@ public class PartnerResource {
 	 * PUT partner/address Will update partner's address with payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/address")
 	public Response updatePartnerAddress(PartnerAddressRepresentation customerRequest) throws UnknownHostException {
 		try {
@@ -183,8 +183,8 @@ public class PartnerResource {
 	 * PUT partner/phone Will update partner's phone with payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/partner/phone")
 	public Response updatePartnerPhone(PartnerPhoneRepresentation customerRequest) throws UnknownHostException {
 		try {

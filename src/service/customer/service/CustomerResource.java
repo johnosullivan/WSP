@@ -10,6 +10,7 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+//import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 //import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.PathParam;
@@ -26,13 +27,13 @@ import service.customer.workflow.CustomerActivity;
 public class CustomerResource {
 	/*
 	 * GET /customer/{customerId} This will get the customer with the the
-	 * customerId
+	 * customerId 
 	 */
+	
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/{customerId}")
-	public Response getCustomer(@PathParam("customerId") @WebParam(name = "arg0") String id)
-			throws UnknownHostException {
+	public Response getCustomer(@PathParam("customerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		CustomerActivity activity = new CustomerActivity();
 		try {
 			CustomerRepresentation temp = activity.getCustomer(id);
@@ -46,8 +47,8 @@ public class CustomerResource {
 	 * POST /customer This will create a new customer object from the payload.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer")
 	public Response createCustomer(CustomerRequest customerRequest) throws UnknownHostException {
 		try {
@@ -64,8 +65,8 @@ public class CustomerResource {
 	 * customer
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/address")
 	public Response createCustomerAddress(CustomerAddressRequest customerRequest) throws UnknownHostException {
 		try {
@@ -81,8 +82,8 @@ public class CustomerResource {
 	 * POST /customer/phone This will create a new phone object for the customer
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/phone")
 	public Response createCustomerPhone(CustomerPhoneRequest customerRequest) throws UnknownHostException {
 		try {
@@ -98,8 +99,8 @@ public class CustomerResource {
 	 * PUT /customer/address Will update the address object with payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/address")
 	public Response updateCustomerAddress(CustomerAddressRepresentation customerRequest) throws UnknownHostException {
 		try {
@@ -115,8 +116,8 @@ public class CustomerResource {
 	 * PUT /customer/phone Will update the phone object with payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/phone")
 	public Response updateCustomerPhone(CustomerPhoneRepresentation customerRequest) throws UnknownHostException {
 		try {
@@ -132,8 +133,8 @@ public class CustomerResource {
 	 * PUT /customer Will update the customer object with payload
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer")
 	public Response updateCustomer(CustomerRepresentation customerRequest) throws UnknownHostException {
 		try {
@@ -149,7 +150,7 @@ public class CustomerResource {
 	 * DELETE /customer/{customerId} Will delete the customer object with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/{customerId}")
 	public Response deleteCustomer(@PathParam("customerId") String id) throws UnknownHostException {
 		try {
@@ -168,7 +169,7 @@ public class CustomerResource {
 	 * with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/phone/{phoneId}")
 	public Response deleteCustomerPhone(@PathParam("phoneId") String id) throws UnknownHostException {
 		try {
@@ -187,7 +188,7 @@ public class CustomerResource {
 	 * object with id
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/customer/address/{addressId}")
 	public Response deleteCustomerAddress(@PathParam("addressId") String id) throws UnknownHostException {
 		try {

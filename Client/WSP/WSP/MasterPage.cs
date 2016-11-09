@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace WSP
 {
-	public class MasterPageCS : ContentPage
+	public class MasterPage : ContentPage
 	{
 		public ListView ListView { get { return listView; } }
 
 		ListView listView;
 
-		public MasterPageCS ()
+		public MasterPage ()
 		{
 			var masterPageItems = new List<MasterPageItem> ();
 			masterPageItems.Add (new MasterPageItem {
@@ -39,7 +39,7 @@ namespace WSP
 				VerticalOptions = LayoutOptions.FillAndExpand,
 				SeparatorVisibility = SeparatorVisibility.None
 			};
-
+			BackgroundColor = Color.Gray;
 			Padding = new Thickness (0, 40, 0, 0);
 			Icon = "hamburger.png";
 			Title = "Menu";

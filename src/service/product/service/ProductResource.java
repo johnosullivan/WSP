@@ -25,7 +25,7 @@ public class ProductResource {
 	 * GET /product/{productId} This get the product at an id.
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/product/{productId}")
 	public Response getProduct(@PathParam("productId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		try {
@@ -42,8 +42,8 @@ public class ProductResource {
 	 * POST /product This will create the product from the payload of request.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/product")
 	public Response createProduct(ProductRequest productRequest) throws UnknownHostException {
 		try {
@@ -60,8 +60,8 @@ public class ProductResource {
 	 * POST /search This will take the payload info and search the database.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/search")
 	public Response productSearch(SearchRequest productRequest) throws UnknownHostException {
 		try {
@@ -79,8 +79,8 @@ public class ProductResource {
 	 * PUT /product This will update the products info in the database.
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/product")
 	public Response updateProduct(ProductRepresentation ProductRequest) throws UnknownHostException {
 		try {
@@ -98,7 +98,7 @@ public class ProductResource {
 	 * id.
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/product/{productId}")
 	public Response deleteProduct(@PathParam("productId") String id) throws UnknownHostException {
 		try {

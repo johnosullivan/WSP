@@ -6,7 +6,7 @@ namespace WSP
 	{
 		public App ()
 		{
-			MainPage = new WSP.MainPage ();
+			MainPage = new WSP.RootPage ();
 		}
 
 		protected override void OnStart ()

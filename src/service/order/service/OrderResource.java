@@ -29,7 +29,7 @@ public class OrderResource {
 	 * GET /order/{orderId} Gets the order with the id.
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/{orderId}")
 	public Response getOrder(@PathParam("orderId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		try {
@@ -46,7 +46,7 @@ public class OrderResource {
 	 * DELETE /order/{orderId} This is to cancel on order with order id.
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/{orderId}")
 	public Response cancelOrder(@PathParam("orderId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -61,8 +61,8 @@ public class OrderResource {
 	}
 
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order")
 	public Response orderPost(OrderRequest orderRequest) throws UnknownHostException {
 		try {
@@ -76,7 +76,7 @@ public class OrderResource {
 	}
 
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/status/{orderId}")
 	public Response getOrderStatus(@PathParam("orderId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -91,7 +91,7 @@ public class OrderResource {
 	}
 
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/orders/partner/{partnerId}")
 	public Response getPartnerOrders(@PathParam("partnerId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -106,7 +106,7 @@ public class OrderResource {
 	}
 
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/orders/customer/{customerId}")
 	public Response getCustomerOrders(@PathParam("customerId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -121,38 +121,38 @@ public class OrderResource {
 	}
 
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/partner")
 	public Response orderUpdatePartner(OrderPartnerStatusRequest req) throws UnknownHostException {
 		try {
 		OrderActivity activity = new OrderActivity();
 		boolean status = activity.updateStatus(req);
 		System.out.println("PUT STATUS :" + status);
-		return Response.ok(status).build();
+		return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
 	
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/customer")
 	public Response orderUpdateCustomer(OrderPartnerStatusRequest req) throws UnknownHostException {
 		try {
 		OrderActivity activity = new OrderActivity();
 		boolean status = activity.updateStatusCustomer(req);
 		System.out.println("PUT STATUS :" + status);
-		return Response.ok(status).build();
+		return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
 
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/order/customer")
 	public Response orderUpdateCustomer(CustomerRepresentation customerRequest) throws UnknownHostException {
 

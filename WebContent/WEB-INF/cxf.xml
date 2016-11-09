@@ -34,6 +34,11 @@
 			<jaxrs:schemaLocation>service.product.representation.SearchRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.order.representation.OrderRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.order.representation.OrderItemRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderCustomerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderPartnerRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderItemRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderStatusRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.order.representation.OrderPartnerStatusRequest</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.payment.representation.PaymentBTRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.payment.representation.PaymentPPRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.payment.representation.PaymentCCRepresentation</jaxrs:schemaLocation>

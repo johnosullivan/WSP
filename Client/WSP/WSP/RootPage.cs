@@ -3,13 +3,13 @@ using Xamarin.Forms;
 
 namespace WSP
 {
-	public class MainPage : MasterDetailPage
+	public class RootPage : MasterDetailPage
 	{
-		MasterPageCS masterPage;
+		MasterPage masterPage;
 
-		public MainPage ()
+		public RootPage ()
 		{
-			masterPage = new MasterPageCS ();
+			masterPage = new MasterPage ();
 			Master = masterPage;
 			Detail = new NavigationPage (new ContactsPageCS ());
 

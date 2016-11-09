@@ -31,8 +31,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="App.cs" />
     <Compile Include="ContactsPageCS.cs" />
-    <Compile Include="MainPageCS.cs" />
-    <Compile Include="MasterPageCS.cs" />
+    <Compile Include="RootPage.cs" />
+    <Compile Include="MasterPage.cs" />
     <Compile Include="MasterPageItem.cs" />
     <Compile Include="ReminderPageCS.cs" />
     <Compile Include="TodoListPageCS.cs" />

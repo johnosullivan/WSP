@@ -25,8 +25,8 @@ public class ReviewResource {
 	 * POST /review This will create the review from the payload of request.
 	 */
 	@POST
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/review")
 	public Response createProduct(ReviewRequest req) throws UnknownHostException {
 		try {
@@ -48,7 +48,7 @@ public class ReviewResource {
 	 * GET /review/{reviewId} This get the review at an id.
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/review/{reviewId}")
 	public Response getReview(@PathParam("reviewId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		System.out.println("GET METHOD (Product) :" + id);
@@ -65,7 +65,7 @@ public class ReviewResource {
 	 * GET /reviews/product/{productId} This get the reviews at an id.
 	 */
 	@GET
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/reviews/product/{productId}")
 	public Response getProductReviews(@PathParam("productId") @WebParam(name = "arg0") String id)
 			throws UnknownHostException {
@@ -83,7 +83,7 @@ public class ReviewResource {
 	 * DELETE /review This will remove the customer's review
 	 */
 	@DELETE
-	@Produces({ "application/json", "application/xml" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/review/{reviewId}")
 	public Response deleteCustomer(@PathParam("reviewId") String id) throws UnknownHostException {
 		try {
@@ -102,8 +102,8 @@ public class ReviewResource {
 	 * PUT /review This will update the reviewed info in the database.
 	 */
 	@PUT
-	@Consumes({ "application/json", "application/xml" })
-	@Produces({ "application/json", "application/xml" })
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
 	@Path("/review")
 	public Response updateReview(ReviewRequest req) throws UnknownHostException {
 		System.out.println("PUT METHOD");
