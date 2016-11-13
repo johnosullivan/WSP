@@ -13,3 +13,4 @@
 /Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Xamarin.Forms.Xaml.dll
 /Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.dll
 /Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/WSP.dll.mdb
+/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/bin/iPhoneSimulator/Debug/Newtonsoft.Json.dll

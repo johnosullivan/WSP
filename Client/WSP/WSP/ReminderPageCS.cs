@@ -4,6 +4,9 @@ namespace WSP
 {
 	public class ReminderPageCS : ContentPage
 	{
+
+
+
 		public ReminderPageCS ()
 		{
 			Title = "Reminder Page";

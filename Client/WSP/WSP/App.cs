@@ -1,17 +1,25 @@
 ﻿using Xamarin.Forms;
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
+using System.Net;
 
 namespace WSP
 {
 	public class App : Application
 	{
-		public App ()
+		public static Manager Manager { get; private set; }
+		public App () 
 		{
-			MainPage = new WSP.RootPage ();
+			MainPage = new WSP.RootPage();
+			Manager = new Manager(new RestService());
 		}
 
-		protected override void OnStart ()
-		{
-			// Handle when your app starts
+	    protected override void OnStart () {
+			
 		}
 
 		protected override void OnSleep ()

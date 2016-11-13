@@ -1,9 +1,13 @@
 ﻿using Xamarin.Forms;
 
+
 namespace WSP
 {
 	public class TodoListPageCS : ContentPage
 	{
+
+
+
 		public TodoListPageCS ()
 		{
 			Title = "TodoList Page";
@@ -16,6 +20,8 @@ namespace WSP
 					}
 				}
 			};
+
+
 		}
 	}
 }

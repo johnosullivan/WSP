@@ -1,6 +1,6 @@
-# Version: 10.2.0.4 (xcode8.1: b638977)
-# [first argument, ignore] # /Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.0.4/lib/mtouch/mtouch.exe
-/Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.0.4/lib/mtouch/mtouch.exe \
+# Version: 10.2.1.5 (xcode8.1: 44931ae)
+# [first argument, ignore] # /Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.1.5/lib/mtouch/mtouch.exe
+/Library/Frameworks/Xamarin.iOS.framework/Versions/10.2.1.5/lib/mtouch/mtouch.exe \
 	--cache \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/iOS/obj/iPhoneSimulator/Debug/mtouch-cache \
 	--sim \
@@ -39,6 +39,8 @@
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Xamarin.Forms.2.3.1.114/lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.dll \
 	-r \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Xamarin.Forms.2.3.1.114/lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll \
+	-r \
+	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Newtonsoft.Json.9.0.1/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll \
 	-r \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/WSP.dll \
 	-r \
@@ -307,6 +309,8 @@
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Xamarin.Forms.2.3.1.114/lib/Xamarin.iOS10/Xamarin.Forms.Platform.iOS.dll \
 	-r \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Xamarin.Forms.2.3.1.114/lib/Xamarin.iOS10/Xamarin.Forms.Xaml.dll \
+	-r \
+	/Users/johnosullivan/Desktop/WSP/Client/WSP/packages/Newtonsoft.Json.9.0.1/lib/portable-net45+wp80+win8+wpa81/Newtonsoft.Json.dll \
 	-r \
 	/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/WSP.dll \
 	--target-framework \
