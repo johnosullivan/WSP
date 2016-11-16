@@ -1,16 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WSP
 {
 	public interface IRestService
 	{
-		// Customer Calls
-		Task<customer> GetCustomer(String id);
+		// Customer API
+		Task<customer> GetCustomer(string id);
 		Task<customer> PostCustomer(customer payload);
 		Task<customer> PutCustomer(customer payload);
-		//Task<Boolean> DeleteCustomer(String id);
-
+		Task<bool> DeleteCustomer(string id);
+		// Partner API
+		Task<partner> GetPartner(string id);
+		Task<partner> PostPartner(partner payload);
+		Task<partner> PutPartner(partner payload);
+		Task<bool> DeletePartner(string id);
+		// Product API
+		Task<product> GetProduct(string id);
+		Task<search> Search(string term);
 	}
 }

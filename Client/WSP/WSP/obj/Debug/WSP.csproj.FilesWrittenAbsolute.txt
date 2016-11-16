@@ -10,3 +10,5 @@
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/System.Net.Http.Extensions.dll
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/System.Net.Http.Primitives.dll
 /Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/bin/Debug/Newtonsoft.Json.dll
+/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.Search.xaml
+/Users/johnosullivan/Desktop/WSP/Client/WSP/WSP/obj/Debug/WSP.Search.xaml.g.cs

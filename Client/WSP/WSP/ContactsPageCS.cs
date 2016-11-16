@@ -2,10 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net;
 
 namespace WSP
 {
@@ -13,43 +9,120 @@ namespace WSP
 	{
 		async void OnButtonClicked(object sender, EventArgs e)
 		{
-			//customer data = await App.Manager.GetCustomer("5816dd63e4b08fa7f4a1e258");
-			customer cus = new customer();
-			cus.firstName = "Branka";
-			cus.middleName = "Emma";
-			cus.lastName = "O'Sullivan";
-			cus.email = "brankaosullivan@mac.com";
-			cus.propic = "http://www.bing.com/";
-			customer data = await App.Manager.PostCustomer(cus);
-			Debug.WriteLine(data.id);
+			/*product data = await App.Manager.GetProduct("58236a9ae4b0e98526a7fad2");
+			Debug.WriteLine(data.name);
+			Debug.WriteLine(data.description);
+			foreach(link x in data.link)
+			{
+				Debug.WriteLine(x.action);
+				Debug.WriteLine(x.url);
+			}*/
+			//search data = await App.Manager.Search("iPhone");
+			//Debug.WriteLine(data.searchterm);
 		}
 
+
+		protected async override void OnAppearing()
+		{
+			base.OnAppearing();
+
+			search data = await App.Manager.Search("iPhone");
+			Debug.WriteLine(data.searchterm);
+
+			listView.ItemsSource = data.results;
+		}
+
+		public void OnClick(object sender, EventArgs e)
+		{
+			Debug.WriteLine("Item Clicked!");
+		}
+
+		ListView listView;
 		public ContactsPageCS()
 		{
 
 
-			Button button = new Button
-			{
-				Text = "Click Me!",
-				Font = Font.SystemFontOfSize(NamedSize.Large),
-				BorderWidth = 1,
-				HorizontalOptions = LayoutOptions.Center,
-				VerticalOptions = LayoutOptions.CenterAndExpand
-			};
-			button.Clicked += OnButtonClicked;
-
-		
-			this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
-
-			this.Content = new StackLayout
-			{
-				Children =
+			/*	Button button = new Button
 				{
-					
-					button
+					Text = "Submit",
+					Font = Font.SystemFontOfSize(NamedSize.Large),
+					BorderWidth = 1,
+					HorizontalOptions = LayoutOptions.Center,
+					VerticalOptions = LayoutOptions.CenterAndExpand
+				};
+				button.Clicked += OnButtonClicked;
 
+
+
+
+
+
+
+
+				this.Padding = new Thickness(10, Device.OnPlatform(20, 0, 0), 10, 5);
+
+				this.Content = new StackLayout
+				{
+					Children =
+					{
+
+						button
+
+					}
+				};	*/
+
+
+
+			ContentView search = new ContentView();
+			search.Padding = 4;
+			var searchBar = new SearchBar
+			{
+				Placeholder = "Search",
+				BackgroundColor = Color.White,
+				CancelButtonColor = Color.Black,
+			};
+
+			searchBar.HeightRequest = 30.0;
+			searchBar.Focused += (sender, e) =>
+			{
+				var focusedSearchBar = (SearchBar)e.VisualElement;
+				focusedSearchBar.HeightRequest = 50.0;
+			};
+			searchBar.Unfocused += (sender, e) =>
+			{
+				var focusedSearchBar = (SearchBar)e.VisualElement;
+				focusedSearchBar.HeightRequest = 30.0;
+			};
+			search.Content = searchBar;
+
+			listView = new ListView
+			{
+				HasUnevenRows = true,
+				ItemTemplate = new DataTemplate(typeof(SearchViewCell)),
+			};
+
+			listView.ItemSelected += (sender, e) =>
+			{
+
+				if (e.SelectedItem == null) return; // don't do anything if we just de-selected the row
+
+
+				((ListView)sender).SelectedItem = null; // de-select the row
+
+
+
+
+			};
+
+			var layout = new StackLayout
+			{
+				Children = {
+					search,
+					listView
 				}
 			};
+
+			Content = layout;
 
 		}
 

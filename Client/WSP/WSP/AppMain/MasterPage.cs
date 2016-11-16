@@ -13,9 +13,9 @@ namespace WSP
 		{
 			var masterPageItems = new List<MasterPageItem> ();
 			masterPageItems.Add (new MasterPageItem {
-				Title = "Contacts",
+				Title = "Search",
 				IconSource = "contacts.png",
-				TargetType = typeof(ContactsPageCS)
+				TargetType = typeof(Search)
 			});
 			masterPageItems.Add (new MasterPageItem {
 				Title = "TodoList",

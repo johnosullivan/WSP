@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace WSP
 {
@@ -14,7 +12,7 @@ namespace WSP
 			restService = service;
 		}
 
-		public Task<customer> GetCustomer(String id)
+		public Task<customer> GetCustomer(string id)
 		{
 			return restService.GetCustomer(id);
 		}
@@ -29,6 +27,40 @@ namespace WSP
 			return restService.PutCustomer(payload);
 		}
 
+		public Task<bool> DeleteCustomer(string id)
+		{
+			return restService.DeleteCustomer(id);
+		}
+
+		public Task<partner> GetPartner(string id)
+		{
+			return restService.GetPartner(id);
+		}
+
+		public Task<partner> PostPartner(partner payload)
+		{
+			return restService.PostPartner(payload);
+		}
+
+		public Task<partner> PutPartner(partner payload)
+		{
+			return restService.PutPartner(payload);
+		}
+
+		public Task<bool> DeletePartner(string id)
+		{
+			return restService.DeletePartner(id);
+		}
+
+		public Task<product> GetProduct(string id)
+		{
+			return restService.GetProduct(id);
+		}
+
+		public Task<search> Search(string term)
+		{
+			return restService.Search(term);
+		} 
 
 	}
 }
