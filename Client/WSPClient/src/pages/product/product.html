@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{ title }}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+   <ion-card>
+
+  <ion-item>
+    <h2>{{ json.name }} ({{ json.cost }} {{json.curcode}})</h2>
+    <p>{{ json.partnerid }} </p>
+    <p>Available In Stock: {{json.invein}} </p>
+    <button *ngFor="let l of json.link" ion-button (click)="add()" color="light" full>{{link(l)}}</button>
+  </ion-item>
+
+
+</ion-card>
+
+
+<ion-grid>
+  <ion-row>
+    <ion-col width-50><button ion-button (click)="decrease()" full><b>-</b></button></ion-col>
+    <ion-col width-50><button ion-button (click)="increase()" full><b>+</b></button></ion-col>
+  </ion-row>
+</ion-grid>
+
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="book"></ion-icon> &nbsp; Addresses</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content>
+  <ion-card *ngFor="let item of data.getAddresses()">
+   <ion-item>
+     <h2>{{ item.address }} {{ item.city }}</h2>
+     <p>{{ item.state }}, {{ item.zip }} </p>
+     <ion-grid>
+       <ion-row>
+         <ion-col width-50><button (click)="edit()" ion-button color="danger" full><ion-icon name="cut"></ion-icon> &nbsp; Delete</button></ion-col>
+         <ion-col width-50><button (click)="edit()" ion-button color="light" full><ion-icon name="create"></ion-icon> &nbsp; Edit</button></ion-col>
+       </ion-row>
+     </ion-grid>
+   </ion-item>
+
+  </ion-card>
+<div>
+<button (click)="create()" ion-button full><ion-icon name="add"></ion-icon> &nbsp; Add Address</button>
+</div>
+</ion-content>

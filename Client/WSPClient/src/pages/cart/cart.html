@@ -1,0 +1,45 @@
+<!--
+  Generated template for the Cart page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="cart"></ion-icon> &nbsp; Cart</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+<div *ngIf="prodata.getCart().length >= 1">
+
+ <ion-card *ngFor="let item of prodata.getCart()">
+
+  <ion-item>
+    <h2>{{ item.name }} ({{ item.amount }})</h2>
+    <p>{{ item.partnerid }} - {{ item.cost }} {{ item.curcode }}  </p>
+    <ion-grid>
+  <ion-row>
+    <ion-col width-50><button (click)="delete(item)" ion-button full color="danger">Delete</button></ion-col>
+    <ion-col width-25><button (click)="increase(item)" ion-button full color="light">+</button></ion-col>
+    <ion-col width-25><button (click)="decrease(item)" ion-button full color="light">-</button></ion-col>
+  </ion-row>
+</ion-grid>
+
+  </ion-item>
+
+</ion-card>
+
+
+<br>
+<button (click)="checkout()" ion-button full>Checkout</button>
+
+
+</div>
+
+</ion-content>

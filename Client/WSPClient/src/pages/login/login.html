@@ -1,0 +1,144 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="person"></ion-icon> &nbsp; Account</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content *ngIf="!prodata.getLogin()">
+
+      <div padding>
+        <ion-segment [(ngModel)]="authType">
+          <ion-segment-button value="login">
+             Login
+          </ion-segment-button>
+          <ion-segment-button value="signup">
+            Signup
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+      <div *ngIf="authType == 'login'">
+
+
+  <ion-item>
+    <ion-label>Username</ion-label>
+    <ion-input [(ngModel)]="logindata.username" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input [(ngModel)]="logindata.password" type="password"></ion-input>
+  </ion-item>
+
+
+<div>
+  <br>
+  <button (click)="login()" ion-button full>
+<ion-icon name="log-in"></ion-icon>&nbsp;  Login</button>
+</div>
+
+      </div>
+
+
+
+      <div *ngIf="authType == 'signup'">
+
+
+
+  <ion-item>
+    <ion-label>First Name</ion-label>
+    <ion-input [(ngModel)]="signupdata.first" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Middle Name</ion-label>
+    <ion-input [(ngModel)]="signupdata.middle" type="text"></ion-input>
+  </ion-item>
+
+   <ion-item>
+    <ion-label>Last Name</ion-label>
+    <ion-input [(ngModel)]="signupdata.last" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Email</ion-label>
+    <ion-input [(ngModel)]="signupdata.email" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Username</ion-label>
+    <ion-input [(ngModel)]="signupdata.username" type="text"></ion-input>
+  </ion-item>
+
+   <ion-item>
+    <ion-label>Password</ion-label>
+    <ion-input [(ngModel)]="signupdata.password" type="password"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Re-enter Password</ion-label>
+    <ion-input [(ngModel)]="signupdata.repassword" type="password"></ion-input>
+  </ion-item>
+
+
+         <div padding>
+        <ion-segment [(ngModel)]="signupdata.accountType">
+          <ion-segment-button value="customer">
+            Customer
+          </ion-segment-button>
+          <ion-segment-button value="partner">
+            Partner
+          </ion-segment-button>
+        </ion-segment>
+      </div>
+
+
+        <div *ngIf="signupdata.accountType == 'partner'">
+
+             <ion-item>
+    <ion-label>Company</ion-label>
+    <ion-input [(ngModel)]="signupdata.company" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Homepage</ion-label>
+    <ion-input [(ngModel)]="signupdata.homepage" type="text"></ion-input>
+  </ion-item>
+
+        </div>
+
+
+
+
+      <div>
+  <button (click)="signup()" ion-button full> <ion-icon name="add"></ion-icon> &nbsp; Signup</button>
+</div>
+
+
+      </div>
+
+</ion-content>
+
+
+
+
+<ion-content *ngIf="prodata.getLogin()">
+
+<div padding>
+  <!--<button (click)="logout()" ion-button full>My Details</button>
+  <button (click)="logout()" ion-button full>My Addresses</button>
+  <button (click)="logout()" ion-button full>My Phones</button>-->
+  <h2></h2>
+  <h2>Welcome, {{ prodata.getObject().first }} {{ prodata.getObject().last }}</h2>
+
+  <button (click)="logout()" ion-button full>My Details</button>
+  <button (click)="address()" ion-button full>My Addresses</button>
+  <button (click)="phone()" ion-button full>My Phones</button>
+  <button (click)="logout()" ion-button full><ion-icon name="log-out"></ion-icon> &nbsp; Log Out</button>
+</div>
+
+</ion-content>

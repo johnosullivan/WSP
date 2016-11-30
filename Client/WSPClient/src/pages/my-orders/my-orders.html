@@ -1,0 +1,28 @@
+<!--
+  Generated template for the MyOrders page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="list-box"></ion-icon> &nbsp; My Orders</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let item of orders">
+
+   <ion-item>
+     <h2>{{ item.customer }} - </h2>
+     <p>{{ item.address }} ({{ item.status }})</p>
+     <p>Confirm#: {{ item.id }}</p>
+   </ion-item>
+
+ </ion-card>
+
+</ion-content>
