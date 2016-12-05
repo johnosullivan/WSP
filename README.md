@@ -1,6 +1,7 @@
 # Web Services Project (Fall 2016) John O'Sullivan 
 
-=============================================================================================================================
+----
+----
 
 For the project, I decided to go the no-sql way. (MongoDB)
 
@@ -10,7 +11,7 @@ For the project, I decided to go the no-sql way. (MongoDB)
 
 3) Run the AppTest.java as a JUnit Test.
 
-Supporting Libraries Needed For Java Project (Located in Jars folder at root)
+<b>Supporting Libraries Needed For Java Project (Web Services)</b>
 
 - bson-2.13.3.jar
 - hamcrest-core-1.3.jar
@@ -20,14 +21,59 @@ Supporting Libraries Needed For Java Project (Located in Jars folder at root)
 - Apache Tomcat 9.0
 - JRE System Library [Java SE 8 [1.8.0_101]]
 
-=============================================================================================================================
+<b>Supporting Libraries Needed For Client Project (Client)</b>
 
+- npm
+- node.js
+- ionic
+- Cordova
+- TypeScript
+- Xcode (For iOS Client Only)
 
-# Client + Server(HATEOAS) (Project 4)
+----
+----
 
+# Client + Server(HATEOAS) 
 
+### Pre-Requisites Install
 
-# API ApacheCXF/Tomcat (Project 3)
+<b>ionic (v2): <a href="http://ionicframework.com/docs/guide/installation.html">http://ionicframework.com/docs/guide/installation.html</a></b>
+
+<b>TypeScript (Current): <a href="https://www.typescriptlang.org/#download-links">https://www.typescriptlang.org/#download-links</a></b>
+
+Client wrote <a href="https://www.typescriptlang.org/">TypeScript</a> with the use of <a href="https://ionic.io/">Cordova / Ionic</a>.
+
+The Client is a web application which with the support of the Cordova and Ionic framework can be built to run on the iOS, Android, and Web Browsers.
+
+The HATEOAS diagram can be found: <a href="">Here</a>
+
+To run the client make sure your broswer has the cross orgin feature of its security <b>DISABLE</b>.
+<b>If you do not enable cross-orgin the client for the web browser it will not work at all. The cross orgin enable the browser to call the web service to process your requests. </b> 
+
+To run navigate to the client folder and run the following:
+
+<b>Build Client:</b>
+
+```
+ionic build
+```
+
+<b>For Web Application:</b>
+
+```
+ionic serve
+```
+
+<b>For iOS Devices (<a href="https://developer.apple.com/xcode/">Xcode</a> Required)</b>
+
+```
+ionic run ios
+```
+
+----
+----
+
+# API ApacheCXF/Tomcat 
 
 ### <b>Note: This is running on a free dyno (Heroku). Requests will initially take longer to allow the server to boot up. If you are running from eclipse, please check the client and DAL configs to ensure proper use, <a href="https://github.com/johnosullivan/WSP/blob/master/src/client/jacksonClient/ClientConfig.java">ClientConfig</a> and <a href="https://github.com/johnosullivan/WSP/blob/master/src/dal/Configs.java">Configs</a>. The requests below are examples with mock data. Make sure to have valid IDs or you will get a 400 status code.</b> 
 
@@ -43,6 +89,9 @@ The following REST calls for the documentation were made with a Mac app called C
 ### Accept Allowed:  "application/xml", "application/json"
 
 # Service Documentation
+
+----
+----
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
@@ -214,7 +263,8 @@ Call: /api/customerservice/customer/address/582365b5e4b0e98526a7facb
 Response: 200 Status Code
 ```
 
-
+----
+----
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/partner/service/PartnerResource.java">Partner Service</a>
 
 #### Partner Object
@@ -289,8 +339,8 @@ The phone and address supporting object for partner follow the same design patte
 
 "customerid" changes to "partnerid"
 
-###### Partner's Address Object
-
+----
+----
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/payment/service/PaymentResource.java">Payment Service</a>
 
 * POST "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will create a new payment for the customer or partner. Be sure to include the user's ID or an 400 status code will return.
@@ -329,7 +379,8 @@ Response: 200 Status Code
 ```
 
 
-
+----
+----
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/product/service/ProductResource.java">Product Service</a>
 
 ###### Product Object
@@ -422,6 +473,8 @@ Response:
     </results>
 </search>
 ```
+----
+----
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/order/service/OrderResource.java">Order Service</a>
 
@@ -564,6 +617,8 @@ Respsone:
     <total>1300</total>
 </order>
 ```
+----
+----
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/review/service/ReviewResource.java">Review Service</a>
 
@@ -629,8 +684,9 @@ Payload:
     </reviews>
 </reviews>
 ```
-
-# DAL/Model Documentation (Project 1)
+----
+----
+# DAL/Model Documentation 
 
 Features:
 
@@ -645,7 +701,8 @@ Features:
 For detailed documentation of our architecture and implementation. View <a href="https://github.com/johnosullivan/WSP/blob/master/Documentation.md">Here</a>. UML diagram <a href="https://github.com/johnosullivan/WSP/blob/master/diagram.png">Here</a>
 
 
-=============================================================================================================================
+----
+----
 
 # The JUnit Tests 
 
@@ -704,7 +761,8 @@ The order test cancel is the same of the last test but the customer cancel the o
 The review test create two product and one order with one of them. The order is processed and simulated as shipped and delivered. The review test check to make sure the reviewer got the product before allowing the submission as well as checking if the customer bought the product in the first place.
 
 
-=============================================================================================================================
+----
+----
 
 
 
