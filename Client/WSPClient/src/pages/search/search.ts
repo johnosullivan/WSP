@@ -28,10 +28,10 @@ export class Search {
   ionViewDidLoad() {  }
   getName(data) { return data.getAttribute('name'); }
   linkexcute(ob) {
-    if (ob.action == "GET") {
+    if (ob.method == "GET") {
 			var headers = new Headers();
 			headers.append('Accept', 'application/json');
-			this.http.get(ob.url, { headers: headers }).subscribe(
+			this.http.get(ob.uri, { headers: headers }).subscribe(
       		response => this.nav.push(Product, { item: response })
 			);
 		}
@@ -44,6 +44,7 @@ export class Search {
    	var res = data._body;
    	var datas = JSON.parse(res);
     this.searchresults = datas.results;
+    console.log(this.searchresults);
   }
   search() {
     var headers = new Headers();

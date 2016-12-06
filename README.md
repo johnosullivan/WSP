@@ -1,7 +1,6 @@
 # Web Services Project (Fall 2016) John O'Sullivan 
 
 ----
-----
 
 For the project, I decided to go the no-sql way. (MongoDB)
 
@@ -31,7 +30,6 @@ For the project, I decided to go the no-sql way. (MongoDB)
 - Xcode (For iOS Client Only)
 
 ----
-----
 
 # Client + Server(HATEOAS) 
 
@@ -49,6 +47,7 @@ The HATEOAS diagram can be found: <a href="">Here</a>
 
 To run the client make sure your broswer has the cross orgin feature of its security <b>DISABLE</b>.
 <b>If you do not enable cross-orgin the client for the web browser it will not work at all. The cross orgin enable the browser to call the web service to process your requests. </b> 
+
 
 To run navigate to the client folder and run the following:
 
@@ -70,7 +69,139 @@ ionic serve
 ionic run ios
 ```
 
-----
+## HATEOAS Links
+
+### Customer Links 
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<customer>
+    <id>5845ecb49ba697b4cec20baa</id>
+    <lastName>O'Sullivan</lastName>
+    <middleName>Kane</middleName>
+    <email>jim@mac.com</email>
+    <firstName>Jimmy</firstName>
+    <propic></propic>
+    <addresses>
+        <link>
+            <mediatype>application/json</mediatype>
+            <method>GET</method>
+            <ref>View</ref>
+            <uri>http://localhost:8080/WSP/api/customerservice/customer/address/5845ecffe4b061d6a655debf</uri>
+        </link>
+        <link>
+            <mediatype></mediatype>
+            <method>DELETE</method>
+            <ref>Delete</ref>
+            <uri>http://localhost:8080/WSP/api/customerservice/customer/address/5845ecffe4b061d6a655debf</uri>
+        </link>
+        <address>723 Ouilmette</address>
+        <city>Wilmette</city>
+        <state>IL</state>
+        <id>5845ecffe4b061d6a655debf</id>
+        <user>5845ecb49ba697b4cec20baa</user>
+        <zip>60091</zip>
+    </addresses>
+    <phones>
+        <link>
+            <mediatype>application/json</mediatype>
+            <method>GET</method>
+            <ref>View</ref>
+            <uri>http://localhost:8080/WSP/api/customerservice/customer/phone/5845ecd5e4b061d6a655debe</uri>
+        </link>
+        <link>
+            <mediatype></mediatype>
+            <method>DELETE</method>
+            <ref>Delete</ref>
+            <uri>http://localhost:8080/WSP/api/customerservice/customer/phone/5845ecd5e4b061d6a655debe</uri>
+        </link>
+        <phone>18472567071</phone>
+        <type>Cell</type>
+        <id>5845ecd5e4b061d6a655debe</id>
+        <user>5845ecb49ba697b4cec20baa</user>
+    </phones>
+</customer>
+```
+
+### Product Search Links
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<search>
+    <searchterm>iPhone 300</searchterm>
+    <results>
+        <link>
+            <mediatype>application/json</mediatype>
+            <method>GET</method>
+            <ref>View</ref>
+            <uri>http://localhost:8080/WSP/api/productservice/product/5845eda69ba697b4cec20bae</uri>
+        </link>
+        <name>iPhone 300</name>
+        <cost>750</cost>
+        <invein>0</invein>
+        <curcode>US</curcode>
+        <partnerid>Mimmy, Inc</partnerid>
+    </results>
+</search>
+``` 
+
+### Product Links
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<product>
+    <link>
+        <mediatype>application/json</mediatype>
+        <method>GET</method>
+        <ref>View Partner</ref>
+        <uri>http://localhost:8080/WSP/api/partnerservice/partner/5845ed659ba697b4cec20bac</uri>
+    </link>
+    <link>
+        <mediatype>application/json</mediatype>
+        <method>GET</method>
+        <ref>Reviews</ref>
+        <uri>http://localhost:8080/WSP/api/reviewservice/reviews/product/5845eda69ba697b4cec20bae</uri>
+    </link>
+    <name>iPhone 300</name>
+    <description>This is a cool iphone</description>
+    <cost>750</cost>
+    <invein>997</invein>
+    <curcode>US</curcode>
+    <partnerid>Mimmy, Inc</partnerid>
+    <id>5845eda69ba697b4cec20bae</id>
+</product>
+```
+
+### Order Links
+
+```
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<order>
+    <link>
+        <mediatype>application/json</mediatype>
+        <method>GET</method>
+        <ref>View</ref>
+        <uri>http://localhost:8080/WSP/api/orderservice/order/58461a859ba6643a1a231661</uri>
+    </link>
+    <link>
+        <mediatype></mediatype>
+        <method>DELETE</method>
+        <ref>Cancel</ref>
+        <uri>http://localhost:8080/WSP/api/orderservice/order/58461a859ba6643a1a231661</uri>
+    </link>
+    <items>
+        <q>1</q>
+        <productid>5817a0b5e4b0a35a32e331ad</productid>
+        <productname>iPhone 7</productname>
+    </items>
+    <address>5845ecffe4b061d6a655debf</address>
+    <customer>Jimmy Kane O'Sullivan</customer>
+    <status>CREATED</status>
+    <id>58461a859ba6643a1a231661</id>
+    <total>750</total>
+</order>
+```
+
 ----
 
 # API ApacheCXF/Tomcat 
@@ -91,7 +222,7 @@ The following REST calls for the documentation were made with a Mac app called C
 # Service Documentation
 
 ----
-----
+
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/customer/service/CustomerResource.java">Customer Service</a>
 
@@ -264,7 +395,7 @@ Response: 200 Status Code
 ```
 
 ----
-----
+
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/partner/service/PartnerResource.java">Partner Service</a>
 
 #### Partner Object
@@ -340,7 +471,7 @@ The phone and address supporting object for partner follow the same design patte
 "customerid" changes to "partnerid"
 
 ----
-----
+
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/payment/service/PaymentResource.java">Payment Service</a>
 
 * POST "/api/paymentservice/payment/customer" OR "/api/paymentservice/payment/partner" This will create a new payment for the customer or partner. Be sure to include the user's ID or an 400 status code will return.
@@ -380,7 +511,7 @@ Response: 200 Status Code
 
 
 ----
-----
+
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/product/service/ProductResource.java">Product Service</a>
 
 ###### Product Object
@@ -474,7 +605,7 @@ Response:
 </search>
 ```
 ----
-----
+
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/order/service/OrderResource.java">Order Service</a>
 
@@ -618,7 +749,7 @@ Respsone:
 </order>
 ```
 ----
-----
+
 
 ## <a href="https://github.com/johnosullivan/WSP/blob/master/src/service/review/service/ReviewResource.java">Review Service</a>
 
@@ -685,7 +816,7 @@ Payload:
 </reviews>
 ```
 ----
-----
+
 # DAL/Model Documentation 
 
 Features:
@@ -702,7 +833,7 @@ For detailed documentation of our architecture and implementation. View <a href=
 
 
 ----
-----
+
 
 # The JUnit Tests 
 
@@ -760,9 +891,8 @@ The order test cancel is the same of the last test but the customer cancel the o
 
 The review test create two product and one order with one of them. The order is processed and simulated as shipped and delivered. The review test check to make sure the reviewer got the product before allowing the submission as well as checking if the customer bought the product in the first place.
 
+----
 
-----
-----
 
 
 

@@ -3,13 +3,15 @@ package service.customer.workflow;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import javax.ws.rs.core.UriInfo;
+
 import dal.address.AddressDAO;
 import dal.customer.CustomerDAO;
 import dal.phone.PhoneDAO;
 import model.customer.Customer;
 import model.customer.CustomerAddress;
 import model.customer.CustomerPhone;
-
+import service.Link;
 import service.customer.representation.CustomerAddressRepresentation;
 import service.customer.representation.CustomerAddressRequest;
 import service.customer.representation.CustomerPhoneRepresentation;
@@ -19,7 +21,27 @@ import service.customer.representation.CustomerRequest;
 
 public class CustomerActivity {
 
-	public CustomerRepresentation getCustomer(String id) throws UnknownHostException {
+	public static String customerservice = "customerservice/customer";
+	
+	
+	
+	public CustomerAddressRepresentation getAddress(String id, UriInfo uri) throws UnknownHostException {
+		CustomerAddress address = new CustomerAddress(id);
+		
+		CustomerAddressRepresentation temp = new CustomerAddressRepresentation();
+		temp.setAddress(address.getAddress());
+		temp.setCity(address.getCity());
+		temp.setState(address.getState());
+		temp.setZip(address.getZip());
+		temp.setUser(address.getUser());
+		Link linkview = new Link("Update",uri.getBaseUri() + customerservice + "/address/" + address.getID(),"PUT","application/json");
+		Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/address/" + address.getID(),"DELETE","application/json");
+		temp.setLinks(linkview,linkdelete);
+		
+		return temp;
+	}
+	
+	public CustomerRepresentation getCustomer(String id,UriInfo uri) throws UnknownHostException {
 		Customer customer = new Customer(id);
 		CustomerRepresentation cusRep = new CustomerRepresentation();
 		cusRep.setFirstName(customer.getFirst());
@@ -38,6 +60,11 @@ public class CustomerActivity {
 			tempa.setId(temp.getID());
 			tempa.setUser(temp.getUser());
 			tempa.setZip(temp.getZip());
+			
+			Link linkview = new Link("View",uri.getBaseUri() + customerservice + "/address/" + temp.getID(),"GET","application/json");
+			Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/address/" + temp.getID(),"DELETE","application/json");
+			tempa.setLinks(linkview,linkdelete);
+			
 			addressdata.add(tempa);
 		}
 
@@ -49,6 +76,11 @@ public class CustomerActivity {
 			tempa.setType(temp.getType());
 			tempa.setId(temp.getID());
 			tempa.setUser(temp.getUser());
+			
+			Link linkview = new Link("View",uri.getBaseUri() + customerservice + "/phone/" + temp.getID(),"GET","application/json");
+			Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/phone/" + temp.getID(),"DELETE","application/json");
+			tempa.setLinks(linkview,linkdelete);
+			
 			phonedata.add(tempa);
 		}
 
@@ -58,7 +90,7 @@ public class CustomerActivity {
 		return cusRep;
 	}
 
-	public CustomerAddressRepresentation addressCustomer(CustomerAddressRequest request) throws UnknownHostException {
+	public CustomerAddressRepresentation addressCustomer(CustomerAddressRequest request, UriInfo uri) throws UnknownHostException {
 		CustomerAddress req = new CustomerAddress();
 		req.setAddress(request.getAddress());
 		req.setCity(request.getCity());
@@ -73,6 +105,9 @@ public class CustomerActivity {
 		ret.setZip(request.getZip());
 		ret.setUser(request.getUser());
 		ret.setId(id);
+		Link linkview = new Link("View",uri.getBaseUri() + customerservice + "/phone/" + ret.getId(),"GET","application/json");
+		Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/phone/" + ret.getId(),"DELETE","application/json");
+		ret.setLinks(linkview,linkdelete);
 		return ret;
 	}
 
@@ -176,7 +211,7 @@ public class CustomerActivity {
 		return cusRep;
 	}
 
-	public CustomerAddressRepresentation createCustomerAddress(CustomerAddressRequest request)
+	public CustomerAddressRepresentation createCustomerAddress(CustomerAddressRequest request,UriInfo uri)
 			throws UnknownHostException {
 		CustomerAddress canew = new CustomerAddress();
 		canew.setAddress(request.getAddress());
@@ -193,10 +228,13 @@ public class CustomerActivity {
 		rep.setUser(request.getUser());
 		rep.setZip(request.getZip());
 		rep.setId(id);
+		Link linkview = new Link("View",uri.getBaseUri() + customerservice + "/phone/" + rep.getId(),"GET","application/json");
+		Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/phone/" + rep.getId(),"DELETE","application/json");
+		rep.setLinks(linkview,linkdelete);
 		return rep;
 	}
 
-	public CustomerPhoneRepresentation createCustomerPhone(CustomerPhoneRequest request) throws UnknownHostException {
+	public CustomerPhoneRepresentation createCustomerPhone(CustomerPhoneRequest request, UriInfo uri) throws UnknownHostException {
 		CustomerPhone canew = new CustomerPhone();
 		canew.setPhone(request.getPhone());
 		canew.setType(request.getType());
@@ -208,6 +246,9 @@ public class CustomerActivity {
 		req.setType(request.getType());
 		req.setUser(request.getUser());
 		req.setId(id);
+		Link linkview = new Link("View",uri.getBaseUri() + customerservice + "/phone/" + req.getId(),"GET","application/json");
+		Link linkdelete = new Link("Delete",uri.getBaseUri() + customerservice + "/phone/" + req.getId(),"DELETE","application/json");
+		req.setLinks(linkview,linkdelete);
 		return req;
 	}
 

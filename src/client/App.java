@@ -1,54 +1,51 @@
 package client;
 
-import model.partner.Partner;
-import model.product.Product;
-import static org.junit.Assert.*;
+
+
+import java.security.SecureRandom;
+
+import dal.order.OrderDAO;
 
 public class App {
 
+	
+	static final String CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	static SecureRandom rnd = new SecureRandom();
+
+	public static String randomString( int len ){
+	   StringBuilder sb = new StringBuilder( len );
+	   for( int i = 0; i < len; i++ ) 
+	      sb.append( CHARS.charAt( rnd.nextInt(CHARS.length()) ) );
+	   return sb.toString();
+	}
+
+	static public String[] splitEach(String s, int interval) {
+	    int arrayLength = (int) Math.ceil(((s.length() / (double)interval)));
+	    String[] result = new String[arrayLength];
+	    int j = 0;
+	    int lastIndex = result.length - 1;
+	    for (int i = 0; i < lastIndex; i++) {
+	        result[i] = s.substring(j, j + interval);
+	        j += interval;
+	    }
+	    result[lastIndex] = s.substring(j);
+	    return result;
+	}
+	
+	public static String genComfirmation(int size, int split) {
+		String data = randomString(size);
+		String confirmstring = "";
+		for (String str : splitEach(data,split)) {
+			confirmstring = confirmstring + str + "-";
+		}
+		return confirmstring.substring(0, size + split);
+	}
+	
 	public static void main(final String[] args) throws Exception {
-		Partner partnerpost = new Partner();
-		partnerpost.setFirst("Steve");
-		partnerpost.setMiddle("Apple");
-		partnerpost.setLast("Jobs");
-		partnerpost.setCompany("Apple, Inc.");
-		assertNotEquals(partnerpost.create(), "");
-		// Creates the new product 1
-		Product productone = new Product();
-		productone.setName("iPhone 5s");
-		productone.setDescription("This is the iPhone 5s");
-		productone.setCost(10000);
-		productone.setCostCode("USD");
-		productone.setSeller(partnerpost.getID());
-		productone.setInventory(5);
-		assertNotEquals(productone.create(), "");
-		// Creates the new product 2
-		Product producttwo = new Product();
-		producttwo.setName("iPhone 6s");
-		producttwo.setDescription("This is the iPhone 6s");
-		producttwo.setCost(10000);
-		producttwo.setCostCode("USD");
-		producttwo.setSeller(partnerpost.getID());
-		producttwo.setInventory(5);
-		assertNotEquals(producttwo.create(), "");
-		// Creates the new product 3
-		Product productthree = new Product();
-		productthree.setName("iPhone 7 plus");
-		productthree.setDescription("This is the iPhone 7 plus");
-		productthree.setCost(10000);
-		productthree.setCostCode("USD");
-		productthree.setSeller(partnerpost.getID());
-		productthree.setInventory(5);
-		assertNotEquals(productthree.create(), "");
-		// Creates the new product 4
-		Product productfour = new Product();
-		productfour.setName("iPad 2");
-		productfour.setDescription("This is the iPad 2");
-		productfour.setCost(10000);
-		productfour.setCostCode("USD");
-		productfour.setSeller(partnerpost.getID());
-		productfour.setInventory(5);
-		assertNotEquals(productfour.create(), "");
+						
+		OrderDAO db = OrderDAO.getInstance();
+		db.deleteOrderById("583f33ef9ba69cfc68ddd8a9");
+		
 	}
 
 }

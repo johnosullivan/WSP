@@ -126,7 +126,7 @@ public class AddressDAO {
 		DBCursor cursor = address.find(query);
 		while (cursor.hasNext()) {
 			DBObject s = cursor.next();
-			System.out.println(s);
+			//System.out.println(s);
 			CustomerAddress temp = new CustomerAddress();
 			temp.setAddress("" + (String) s.get("address"));
 			temp.setCity("" + (String) s.get("city"));

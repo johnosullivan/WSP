@@ -10,12 +10,17 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import dal.Configs;
+import model.customer.Customer;
+import model.partner.Partner;
 import model.product.Product;
+import service.user.representation.Account;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import java.util.regex.Pattern;
+
+import org.bson.types.ObjectId;
 
 // Database object for Object Relation Mapping
 public class MainDatabaseDAO {
@@ -103,6 +108,45 @@ public class MainDatabaseDAO {
 		}
 		return "";
 	}
+	
+	public Account login(String username,String password) throws UnknownHostException {
+		
+		BasicDBObject query = new BasicDBObject();
+		query.put("username", username);
+		query.put("password", password);
+		DBObject dbObj = user.findOne(query);
+		
+		Account acc = new Account();
+		System.out.println(dbObj.get("type"));
+		System.out.println(dbObj.get("typeid"));
+		int t = (int)dbObj.get("type");
+		String id = (String)dbObj.get("typeid");
+		if (t == 0) {
+			Customer cus = new Customer(id);
+			acc.setFirst(cus.getFirst());
+			acc.setMiddle(cus.getMiddle());
+			acc.setLast(cus.getLast());
+			acc.setEmail(cus.getEmail());
+			acc.setId(id);
+			acc.setType(t);
+			acc.setCompany("");
+			acc.setHomepage("");
+		}
+		if (t == 1) {
+			Partner cus = new Partner(id);
+			acc.setFirst(cus.getFirst());
+			acc.setMiddle(cus.getMiddle());
+			acc.setLast(cus.getLast());
+			acc.setEmail(cus.getEmail());
+			acc.setId(id);
+			acc.setType(t);
+			acc.setCompany(cus.getCompany());
+			acc.setHomepage(cus.getHomepage());
+		}
+		
+		
+		return acc;
+	}
 
 	// Registers the user in the database for login.
 	public boolean registerUser(String username, String password, String email) {
@@ -113,6 +157,18 @@ public class MainDatabaseDAO {
 		user.insert(newcustomer);
 		return true;
 	}
+	
+	public boolean register(String username, String password, String email,int type, String id) {
+		BasicDBObject newcustomer = new BasicDBObject();
+		newcustomer.append("username", username);
+		newcustomer.append("password", password);
+		newcustomer.append("email", email);
+		newcustomer.append("type", type);
+		newcustomer.append("typeid", id);
+		user.insert(newcustomer);
+		return true;
+	}
+	
 
 	// Close the database
 	public void close() {

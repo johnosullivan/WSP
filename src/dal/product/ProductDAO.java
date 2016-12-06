@@ -1,7 +1,9 @@
 package dal.product;
 
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 import org.bson.types.ObjectId;
 
@@ -56,6 +58,26 @@ public class ProductDAO {
 		return "" + newreport.get("_id");
 	}
 
+	public ArrayList<Product> getPartnerProducts(String id) {
+		BasicDBObject query = new BasicDBObject();
+		query.put("partnerid", id);
+		DBCursor cursor = products.find(query);
+		ArrayList<Product> pproduct = new ArrayList<Product>();
+		while (cursor.hasNext()) {
+			DBObject object = cursor.next();
+			Product pro = new Product();
+			pro.setID("" + object.get("_id"));
+			pro.setName((String)object.get("name"));
+			pro.setDescription((String)object.get("des"));
+			pro.setCost((int)object.get("cost"));
+			pro.setCostCode((String)object.get("costcode"));
+			pro.setInventory((int)object.get("inventory"));
+			pro.setSeller((String)object.get("partnerid"));
+			pproduct.add(pro);
+		}
+		return pproduct;
+	}
+	
 	// Create a report
 	public Report createReportForProduct(Product product) {
 		Report report = new Report();

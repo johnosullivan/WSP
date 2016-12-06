@@ -26,6 +26,7 @@ public class ReviewActivity {
 		review.setStars(req.getStars());
 		review.setProduct(req.getProduct());
 		review.setReview(req.getReview());
+		review.setName(req.getName());
 		
 		String reviewid = review.submit();
 		
@@ -35,6 +36,7 @@ public class ReviewActivity {
 		rep.setStars(req.getStars());
 		rep.setProduct(req.getProduct());
 		rep.setReview(req.getReview());
+		rep.setName(req.getName());
 		rep.setId(reviewid);
 		
 		
@@ -49,6 +51,7 @@ public class ReviewActivity {
 			ProductReviewRepresentation temp = new ProductReviewRepresentation();
 			temp.setReview(rev.getReview());
 			temp.setStars(rev.getStars());
+			temp.setName(rev.getName());
 			results.add(temp);
 		}
 		respond.setResults(results);
@@ -67,6 +70,7 @@ public class ReviewActivity {
 			rep.setStars(review.getStars());
 			rep.setProduct(review.getProduct());
 			rep.setReview(review.getReview());
+			rep.setName(review.getName());
 			rep.setId(req.getId());
 			return rep;
 		}

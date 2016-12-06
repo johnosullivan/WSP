@@ -12,6 +12,15 @@ public class OrderItemRepresentation {
 
 	private int q;
 	private String productid;
+	private String productname;
+	
+	public String getProductname() {
+		return this.productname;
+	}
+
+	public void setProductname(String productname) {
+		this.productname = productname;
+	}
 	
 	public int getQ() {
 		return this.q;

@@ -1,0 +1,32 @@
+<!--
+  Generated template for the MyProducts page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title><ion-icon name="options"></ion-icon> &nbsp; My Products</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let item of data">
+
+ <ion-item>
+ <h2>{{ item.name }} ({{ item.cost }} {{item.curcode}})</h2>
+ <p>{{ item.partnerid }}</p>
+ </ion-item>
+ <div padding>
+ <button (click)="edit(item)" ion-button full>Edit</button>
+ </div>
+</ion-card>
+  <div>
+  <button (click)="create()" ion-button full><ion-icon name="add"></ion-icon> &nbsp; New Product</button>
+  </div>
+</ion-content>

@@ -19,7 +19,6 @@ export class NewAddressPage {
     this.nav = navCtrl;
     this.http = h;
     var userid = this.data.getObject()['id'];
-    console.log(userid);
     this.addressdata = {'address':'','city':'','state':'','zip':'','user':userid};
   }
   ionViewDidLoad() {  }
@@ -32,9 +31,18 @@ export class NewAddressPage {
     }
   }
   create() {
-    var headers = new Headers();
-    headers.append('Content-Type', 'application/json');
-    headers.append('Accept', 'application/json');
-    this.http.post(this.url + '/customerservice/customer/address', this.addressdata, { headers: headers }).subscribe( response => this.process(response));
+    if (this.data.getType() == 0) {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
+      this.http.post(this.url + '/customerservice/customer/address', this.addressdata, { headers: headers }).subscribe( response => this.process(response));
+    }
+    if (this.data.getType() == 1) {
+      var headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
+      this.http.post(this.url + '/partnerservice/partner/address', this.addressdata, { headers: headers }).subscribe( response => this.process(response));
+    }
+
   }
 }

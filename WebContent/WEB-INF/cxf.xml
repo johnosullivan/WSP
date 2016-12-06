@@ -22,6 +22,7 @@
 			<ref bean="orderServiceRest" />
 			<ref bean="paymentServiceRest" />
 			<ref bean="reviewServiceRest" />
+			<ref bean="authServiceRest" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="jacksonProvider" />
@@ -45,6 +46,11 @@
 			<jaxrs:schemaLocation>service.review.representation.ReviewRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.review.representation.ProductReviewsRepresentation</jaxrs:schemaLocation>
 			<jaxrs:schemaLocation>service.review.representation.ProductReviewRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.user.representation.RegistrationRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.user.representation.Account</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.user.representation.LoginRepresentation</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.Link</jaxrs:schemaLocation>
+			<jaxrs:schemaLocation>service.product.representation.PartnerProductsRepresentation</jaxrs:schemaLocation>
 		</jaxrs:schemaLocations>
 
 	</jaxrs:server>
@@ -54,4 +60,5 @@
   	<bean id="orderServiceRest" class="service.order.service.OrderResource" />
   	<bean id="paymentServiceRest" class="service.payment.service.PaymentResource" />
   	<bean id="reviewServiceRest" class="service.review.service.ReviewResource" />
+  	<bean id="authServiceRest" class="service.user.service.Auth" />
 </beans>

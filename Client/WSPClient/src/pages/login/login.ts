@@ -3,6 +3,10 @@ import { NavController } from 'ionic-angular';
 import { MyData } from "../../providers/my-data";
 import { Http , Headers } from '@angular/http';
 import { AddressPage } from '../address/address';
+import { PhonePage } from '../phone/phone';
+
+import { AccountDetailsPage } from '../account-details/account-details';
+
 
 @Component({
   selector: 'page-login',
@@ -37,6 +41,9 @@ export class LoginPage {
     headers.append('Accept', 'application/json');
     this.http.post(this.url + '/auth/login', this.logindata, { headers: headers }).subscribe( response => this.parseobject(response));
   }
+  details() {
+    this.nav.push(AccountDetailsPage);
+  }
   parseobject(o) {
     var json = JSON.parse(o._body);
     if (json.type == 0) {
@@ -54,7 +61,7 @@ export class LoginPage {
     this.nav.push(AddressPage, { item: '' })
   }
   phone() {
-
+    this.nav.push(PhonePage, { item: '' })
   }
   signup() {
     var payload = {'first':this.signupdata.first,'middle':this.signupdata.middle,'last':this.signupdata.last,'company':this.signupdata.company,'homepage':this.signupdata.homepage,'username':this.signupdata.username,'password':this.signupdata.password,'email':this.signupdata.email};

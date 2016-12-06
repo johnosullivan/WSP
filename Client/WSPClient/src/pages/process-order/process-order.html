@@ -1,0 +1,41 @@
+<!--
+  Generated template for the ProcessOrder page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Review Order</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-card *ngFor="let item of data.items">
+
+
+
+   <ion-item>
+     <h2>{{ item.productname }} Q: {{ item.q }}</h2>
+   </ion-item>
+
+ </ion-card>
+ <ion-item>
+   <h3>{{data.customer}}</h3>
+ </ion-item>
+ <ion-item>
+   <h3>{{data.address}}</h3>
+ </ion-item>
+ <ion-item>
+   <h3>Total: {{data.total}}</h3>
+ </ion-item>
+
+<div padding>
+ <button *ngFor="let l of data.link" ion-button (click)="linkexcute(l)" color="light" full>{{l.ref}}</button>
+</div>
+
+</ion-content>

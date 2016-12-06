@@ -1,0 +1,47 @@
+<!--
+  Generated template for the EditProduct page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title> Edit Product</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Name</ion-label>
+    <ion-input [(ngModel)]="data.name" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Description</ion-label>
+    <ion-input [(ngModel)]="data.description" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Inventory</ion-label>
+    <ion-input [(ngModel)]="data.invein" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Cost</ion-label>
+    <ion-input [(ngModel)]="data.cost" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>CurCode</ion-label>
+    <ion-input [(ngModel)]="data.curcode" type="text"></ion-input>
+  </ion-item>
+
+  <div>
+  <button (click)="update()" ion-button full>Update</button>
+  </div>
+
+</ion-content>

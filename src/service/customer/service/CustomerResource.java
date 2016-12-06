@@ -10,8 +10,10 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 //import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 //import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.PathParam;
 
@@ -25,6 +27,8 @@ import service.customer.workflow.CustomerActivity;
 
 @Path("/customerservice/")
 public class CustomerResource {
+	@Context
+	UriInfo uri;
 	/*
 	 * GET /customer/{customerId} This will get the customer with the the
 	 * customerId 
@@ -36,7 +40,7 @@ public class CustomerResource {
 	public Response getCustomer(@PathParam("customerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
 		CustomerActivity activity = new CustomerActivity();
 		try {
-			CustomerRepresentation temp = activity.getCustomer(id);
+			CustomerRepresentation temp = activity.getCustomer(id,uri);
 			return Response.ok(temp).build();
 		} catch (Exception e) {
 			return Response.status(400).build();
@@ -71,8 +75,21 @@ public class CustomerResource {
 	public Response createCustomerAddress(CustomerAddressRequest customerRequest) throws UnknownHostException {
 		try {
 			CustomerActivity activity = new CustomerActivity();
-			CustomerAddressRepresentation status = activity.createCustomerAddress(customerRequest);
+			CustomerAddressRepresentation status = activity.createCustomerAddress(customerRequest, uri);
 			return Response.ok(status).build();
+		} catch (Exception e) {
+			return Response.status(400).build();
+		}
+	}
+	
+	@GET
+	@Produces({ "application/xml", "application/json" })
+	@Path("/customer/address/{addressId}")
+	public Response getAddress(@PathParam("addressId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+		CustomerActivity activity = new CustomerActivity();
+		try {
+			CustomerAddressRepresentation temp = activity.getAddress(id,uri);
+			return Response.ok(temp).build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
@@ -88,7 +105,7 @@ public class CustomerResource {
 	public Response createCustomerPhone(CustomerPhoneRequest customerRequest) throws UnknownHostException {
 		try {
 			CustomerActivity activity = new CustomerActivity();
-			CustomerPhoneRepresentation status = activity.createCustomerPhone(customerRequest);
+			CustomerPhoneRepresentation status = activity.createCustomerPhone(customerRequest,uri);
 			return Response.ok(status).build();
 		} catch (Exception e) {
 			return Response.status(400).build();

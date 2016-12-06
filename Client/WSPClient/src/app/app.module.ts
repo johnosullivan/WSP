@@ -12,6 +12,16 @@ import { PhonePage } from '../pages/phone/phone';
 import { NewAddressPage } from '../pages/new-address/new-address';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
 import { EditAddressPage } from '../pages/editaddress/editaddress';
+import { ViewAddressPage } from '../pages/view-address/view-address';
+import { ProcessOrderPage } from '../pages/process-order/process-order';
+import { MyProductsPage } from '../pages/my-products/my-products';
+import { OrdersPage } from '../pages/orders/orders';
+import { NewProductPage } from '../pages/new-product/new-product';
+import { AccountDetailsPage } from '../pages/account-details/account-details';
+import { NewPhonePage } from '../pages/new-phone/new-phone';
+import { ViewOrderPage } from '../pages/view-order/view-order';
+import { ReviewOrderPage } from '../pages/review-order/review-order';
+import { EditProductPage } from '../pages/edit-product/edit-product';
 
 @NgModule({
   declarations: [
@@ -25,7 +35,17 @@ import { EditAddressPage } from '../pages/editaddress/editaddress';
     PhonePage,
     NewAddressPage,
     MyOrdersPage,
-    EditAddressPage
+    EditAddressPage,
+    ViewAddressPage,
+    ProcessOrderPage,
+    MyProductsPage,
+    OrdersPage,
+    NewProductPage,
+    AccountDetailsPage,
+    NewPhonePage,
+    ViewOrderPage,
+    ReviewOrderPage,
+    EditProductPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -42,7 +62,17 @@ import { EditAddressPage } from '../pages/editaddress/editaddress';
     PhonePage,
     NewAddressPage,
     MyOrdersPage,
-    EditAddressPage
+    EditAddressPage,
+    ViewAddressPage,
+    ProcessOrderPage,
+    MyProductsPage,
+    OrdersPage,
+    NewProductPage,
+    AccountDetailsPage,
+    NewPhonePage,
+    ViewOrderPage,
+    ReviewOrderPage,
+    EditProductPage
   ],
   providers: [
   MyData

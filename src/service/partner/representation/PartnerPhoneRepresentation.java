@@ -5,10 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import service.AbstractRepresentation;
+
 @XmlRootElement(name = "phone")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class PartnerPhoneRepresentation {
+public class PartnerPhoneRepresentation extends AbstractRepresentation {
 
 	private String phone;
 	private String type;

@@ -13,13 +13,14 @@ public class Review {
 	private String productid;
 	private String review;
 	private String orderid;
+	private String name;
 	private int stars;
 	private String id;
 	public String getId() { return this.id; }
 	//Helper class for order code
 	public int statuscode(OrderStatusType ord) {
 		switch(ord) {
-			case PROCESSING: 	return 1;
+			case CREATED: 	return 1;
 			case PROCESSED:		return 2;
 			case SHIPPED:		return 3;
 			case INROUTE:		return 4;
@@ -31,6 +32,9 @@ public class Review {
 		}
 		return 0;
 	}
+	
+	public void setName(String name) { this.name = name; }
+	public String getName() { return this.name; }
 	//Gets and sets product
 	public void setProduct(String productid) { this.productid = productid; }
 	public String getProduct() { return this.productid; }
@@ -45,7 +49,9 @@ public class Review {
 	public int getStars() { return this.stars; }
 	//Submit the review in the database
 	public String submit() throws UnknownHostException {
+		/*System.out.println("T:" + this.orderid);
 		Order order = new Order(this.orderid);
+		System.out.println("Order Got" + order.getID());
 		if (order.isProductInOrder(this.productid)) {
 			int x = this.statuscode(order.getOrderStatus());
 			if (x == 5) {
@@ -54,8 +60,9 @@ public class Review {
 			} else {
 				return "";
 			}
-		}
-		return "";
+		}*/
+		ReviewDAO db = ReviewDAO.getInstance();
+		return db.createReviews(this);
 	}
 	public Review() { }
 	//Updates the review

@@ -7,11 +7,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import service.AbstractRepresentation;
+
 
 @XmlRootElement(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class OrderRepresentation {
+public class OrderRepresentation extends AbstractRepresentation {
 
 	private ArrayList<OrderItemRepresentation> items;
 	private String address;

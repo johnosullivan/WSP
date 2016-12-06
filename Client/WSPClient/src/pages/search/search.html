@@ -9,8 +9,8 @@
 
 <ion-content>
 
-<ion-searchbar  primary [(ngModel)]="searchQuery" 
-               show-cancel="true" 
+<ion-searchbar  primary [(ngModel)]="searchQuery"
+               show-cancel="true"
                placeholder="Search"
                showCancelButton="true">
 </ion-searchbar>
@@ -29,7 +29,7 @@
   <ion-item>
     <h2>{{ item.name }} ({{ item.cost }} {{item.curcode}})</h2>
     <p>{{ item.partnerid }}</p>
-     <button *ngFor="let l of item.link" (click)="linkexcute(l)" ion-button color="light" full>{{link(l)}}</button>
+     <button *ngFor="let l of item.link" (click)="linkexcute(l)" ion-button color="light" full>{{l.ref}}</button>
   </ion-item>
 
 </ion-card>
@@ -41,12 +41,12 @@
 <!--<ion-list *ngFor="let data of displayData" no-lines>
 <ion-card>
 <ion-card-header>
-    
+
 </ion-card-header>
 <ion-card-content>
-   
+
 </ion-card-content>
 </ion-card>
 </ion-list>-->
-  
+
 </ion-content>

@@ -6,6 +6,9 @@ import { LoginPage } from '../pages/login/login';
 import { MyData } from "../providers/my-data";
 import { CartPage } from '../pages/cart/cart';
 import { MyOrdersPage } from '../pages/my-orders/my-orders';
+import { MyProductsPage } from '../pages/my-products/my-products';
+import { OrdersPage } from '../pages/orders/orders';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -32,9 +35,8 @@ export class MyApp {
       { title: 'My Account', component: LoginPage, icon:'person' },
     ];
     this.ppartner = [
-      { title: 'Search', component: Search, icon:'search' },
-      { title: 'Orders', component: LoginPage, icon:'list-box' },
-      { title: 'My Products', component: LoginPage, icon:'options' },
+      { title: 'Orders', component: OrdersPage, icon:'list-box' },
+      { title: 'My Products', component: MyProductsPage, icon:'options' },
       { title: 'My Account', component: LoginPage, icon:'person' }
     ];
   }

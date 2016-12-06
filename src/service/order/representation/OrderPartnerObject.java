@@ -7,15 +7,18 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import service.AbstractRepresentation;
+
 
 @XmlRootElement(name = "order")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class OrderPartnerObject {
+public class OrderPartnerObject extends AbstractRepresentation {
 
 	private String shipping;
 	private String orderid;
 	private String orderstatus;
+	private String comfirm;
 	private ArrayList<OrderItemRepresentation> items;
 	
 	public ArrayList<OrderItemRepresentation> getItems() {
@@ -32,6 +35,14 @@ public class OrderPartnerObject {
 
 	public void setShipping(String shipping) {
 		this.shipping = shipping;
+	}
+	
+	public String getComfir() {
+		return this.comfirm;
+	}
+
+	public void setComfirm(String comfirm) {
+		this.comfirm = comfirm;
 	}
 	
 	public String getOrderStatus() {

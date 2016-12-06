@@ -3,10 +3,15 @@ package service.product.workflow;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
+import javax.ws.rs.core.UriInfo;
+
+import service.Link;
+
 import dal.main.MainDatabaseDAO;
 import dal.product.ProductDAO;
 import model.partner.Partner;
 import model.product.Product;
+import service.product.representation.PartnerProductsRepresentation;
 import service.product.representation.ProductRepresentation;
 import service.product.representation.ProductRequest;
 import service.product.representation.SearchRepresentation;
@@ -14,7 +19,12 @@ import service.product.representation.SearchRequest;
 
 public class ProductActivity {
 
-	public ProductRepresentation getProduct(String id) throws UnknownHostException {
+	static String productServiceURL = "productservice/product";
+	static String partnerServiceURL = "partnerservice/partner";
+	static String reviewServiceURL = "reviewservice/reviews/product";
+
+	
+	public ProductRepresentation getProduct(String id,UriInfo url) throws UnknownHostException {
 		Product product = new Product(id);
 		Partner part = new Partner(product.getSeller());
 		ProductRepresentation cusRep = new ProductRepresentation();
@@ -25,12 +35,45 @@ public class ProductActivity {
 		cusRep.setInvein(product.getInventory());
 		cusRep.setID(id);
 		cusRep.setPartnerid(part.getCompany());
+				
+		Link view = new Link("View Partner",url.getBaseUri() + partnerServiceURL  + "/" + product.getSeller(),"GET","application/json");
+		Link review = new Link("Reviews",url.getBaseUri() + "reviewservice/reviews/product/" + id,"GET","application/json");
+
+		cusRep.setLinks(view,review);
+		
 		return cusRep;
 	}
+	
 	
 	public boolean deleteProduct(String id) throws UnknownHostException {
 		ProductDAO db = ProductDAO.getInstance();
 		return db.deleteProductById(id);	
+	}
+	
+	public PartnerProductsRepresentation getPartnerProducts(String id,UriInfo url)  throws UnknownHostException {
+		
+		Partner partner = new Partner(id);
+		PartnerProductsRepresentation p =  new PartnerProductsRepresentation();
+		ArrayList<ProductRepresentation> data = new ArrayList<ProductRepresentation>();
+		
+		ArrayList<Product> results = partner.getMyProduct();
+		for (Product x : results) {
+			ProductRepresentation temp = new ProductRepresentation();
+			temp.setName(x.getName());
+			temp.setCost(x.getCost());
+			temp.setCurcode(x.getCostCode());
+			temp.setID(x.getID());
+			temp.setDescription(x.getDescription());
+			Partner a = new Partner(x.getSeller());
+			temp.setPartnerid(a.getCompany());
+			temp.setInvein(x.getInventory());
+			Link edit = new Link("Edit",url.getBaseUri() + productServiceURL,"PUT","application/json");
+			temp.setLinks(edit);
+			
+			data.add(temp);
+		}
+		p.setProducts(data);
+		return p;
 	}
 	
 	public ProductRepresentation updateProduct(ProductRepresentation request) throws UnknownHostException {
@@ -48,7 +91,7 @@ public class ProductActivity {
 	}
 	
 	
-	public SearchRepresentation searchProduct(SearchRequest request) throws UnknownHostException {		
+	public SearchRepresentation searchProduct(SearchRequest request,UriInfo url) throws UnknownHostException {		
 		MainDatabaseDAO db = MainDatabaseDAO.getInstance();
 		ArrayList<ProductRepresentation> data = new ArrayList<ProductRepresentation>();
 		
@@ -56,13 +99,12 @@ public class ProductActivity {
 		for (Product x : results) {
 			ProductRepresentation temp = new ProductRepresentation();
 			temp.setName(x.getName());
-			temp.setDescription(x.getDescription());
 			temp.setCost(x.getCost());
 			temp.setCurcode(x.getCostCode());
-			temp.setInvein(x.getInventory());
-			temp.setID(x.getID());
 			Partner a = new Partner(x.getSeller());
 			temp.setPartnerid(a.getCompany());
+			Link view = new Link("View",url.getBaseUri() + productServiceURL  + "/" + x.getID(),"GET","application/json");	
+			temp.setLinks(view);
 			data.add(temp);
 		}
 		

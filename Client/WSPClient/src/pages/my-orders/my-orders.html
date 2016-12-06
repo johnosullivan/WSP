@@ -20,9 +20,12 @@
    <ion-item>
      <h2>{{ item.customer }} - </h2>
      <p>{{ item.address }} ({{ item.status }})</p>
-     <p>Confirm#: {{ item.id }}</p>
+     <p>Confirmation#:</p>
+     <p>{{ item.comfirm }}</p>
    </ion-item>
-
+   <div padding>
+    <button *ngFor="let l of item.link" ion-button (click)="linkexcute(l,item)" color="light" full>{{l.ref}}</button>
+   </div>
  </ion-card>
 
 </ion-content>

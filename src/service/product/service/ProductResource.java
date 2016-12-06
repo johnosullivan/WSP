@@ -11,8 +11,11 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
+import service.product.representation.PartnerProductsRepresentation;
 import service.product.representation.ProductRepresentation;
 import service.product.representation.ProductRequest;
 import service.product.representation.SearchRepresentation;
@@ -21,6 +24,9 @@ import service.product.workflow.ProductActivity;
 
 @Path("/productservice/")
 public class ProductResource {
+	
+	@Context
+	UriInfo uri;
 	/*
 	 * GET /product/{productId} This get the product at an id.
 	 */
@@ -31,7 +37,7 @@ public class ProductResource {
 		try {
 			System.out.println("GET METHOD (Product) :" + id);
 			ProductActivity activity = new ProductActivity();
-			ProductRepresentation status = activity.getProduct(id);
+			ProductRepresentation status = activity.getProduct(id,uri);
 			return Response.ok(status).build();
 		} catch (Exception e) {
 			return Response.status(400).build();
@@ -67,14 +73,30 @@ public class ProductResource {
 		try {
 			System.out.println("POST SEARCH");
 			ProductActivity activity = new ProductActivity();
-			activity.searchProduct(productRequest);
-			SearchRepresentation status = activity.searchProduct(productRequest);
+			//activity.searchProduct(productRequest);
+			SearchRepresentation status = activity.searchProduct(productRequest,uri);
 			return Response.ok(status).build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
 	}
 
+	/*
+	 * Get Products for the partnerid
+	 */
+	@GET
+	@Produces({ "application/xml", "application/json" })
+	@Path("/products/partner/{partnerId}")
+	public Response getProductsForPartner(@PathParam("partnerId") @WebParam(name = "arg0") String id) throws UnknownHostException {
+		try {
+			ProductActivity activity = new ProductActivity();
+			PartnerProductsRepresentation status = activity.getPartnerProducts(id,uri);
+			return Response.ok(status).build();
+		} catch (Exception e) {
+			return Response.status(400).build();
+		}
+	}
+	
 	/*
 	 * PUT /product This will update the products info in the database.
 	 */

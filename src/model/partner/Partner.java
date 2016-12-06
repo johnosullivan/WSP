@@ -11,9 +11,11 @@ import com.mongodb.DBObject;
 import dal.address.AddressDAO;
 import dal.partner.PartnerDAO;
 import dal.phone.PhoneDAO;
+import dal.product.ProductDAO;
 import model.order.Order;
 import model.order.OrderItem;
 import model.payment.Payment;
+import model.product.Product;
 
 public class Partner {
 	//attrs
@@ -56,6 +58,12 @@ public class Partner {
 		db.updatePartnerById(this);
 		return true;
 	}
+	
+	public ArrayList<Product> getMyProduct() throws UnknownHostException {
+		ProductDAO db = ProductDAO.getInstance();
+		return db.getPartnerProducts(this.id);
+	}
+	
 	public ArrayList<PartnerAddress> getAllAddress() throws UnknownHostException {
 		return this.alladdress;
 	}

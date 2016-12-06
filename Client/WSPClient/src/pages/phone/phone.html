@@ -9,11 +9,22 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title><ion-icon name="cart"></ion-icon> &nbsp; Phones</ion-title>
+    <ion-title><ion-icon name="call"></ion-icon> &nbsp; Phones</ion-title>
   </ion-navbar>
 </ion-header>
 
 
 <ion-content >
 
+  <ion-card *ngFor="let item of data.getPhones()">
+   <ion-item>
+     <h2>{{ item.type }}</h2>
+     <p>{{ item.phone }}</p>
+     <button *ngFor="let l of item.link" (click)="linkexcute(l)" ion-button color="light" full>{{l.ref}}</button>
+   </ion-item>
+
+  </ion-card>
+  <div>
+  <button (click)="create()" ion-button full><ion-icon name="add"></ion-icon> &nbsp; Add Phone</button>
+  </div>
 </ion-content>

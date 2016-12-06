@@ -16,16 +16,20 @@ export class MyData {
   object: any;
   cart: any;
   addresses: any;
+  phones: any;
   htto: any;
-  url: string = 'https://fall2016wsp.herokuapp.com/api';
-  //url: string = 'http://localhost:8080/WSP/api';
+  type: any;
+  //url: string = 'https://fall2016wsp.herokuapp.com/api';
+  url: string = 'http://localhost:8080/WSP/api';
   constructor(public http: Http) {
     this.data = '';
     this.isLogin = false;
     this.object = {};
     this.cart = [];
     this.addresses = [];
+    this.phones = [];
     this.http = http;
+    this.type = 0;
   }
 
   addAddress(v) {
@@ -58,11 +62,40 @@ export class MyData {
     for (var i = 0; i < addressarray.length; i++) {
       this.addresses.push(addressarray[i]);
     }
-    console.log(this.addresses);
+
+    var phonearray = json['phones'];
+    for (var i = 0; i < phonearray.length; i++) {
+      this.phones.push(phonearray[i]);
+    }
+    console.log(phonearray);
+    console.log(addressarray);
+  }
+
+  addPhones(v) {
+    this.phones.push(v);
+  }
+
+  getPhones() {
+    return this.phones;
+  }
+
+  getType() {
+    return this.type;
   }
 
   processprofilep(v) {
+    var json = JSON.parse(v._body);
+    var addressarray = json['addresses'];
+    for (var i = 0; i < addressarray.length; i++) {
+      this.addresses.push(addressarray[i]);
+    }
 
+    var phonearray = json['phones'];
+    for (var i = 0; i < phonearray.length; i++) {
+      this.phones.push(phonearray[i]);
+    }
+    console.log(phonearray);
+    console.log(addressarray);
   }
 
   cartitemI(item) {
@@ -99,7 +132,17 @@ export class MyData {
     this.cart = [];
   }
 
+  update(v) {
 
+    /*this.object['first'] = v['firstname'];
+    this.object['last'] = v['lastname'];
+    this.object['middle'] = v['middlename'];
+    this.object['email'] = v['email'];
+    if (this.type == 1) {
+      this.object['company'] = v['company'];
+      this.object['homepage'] = v['homepage'];
+    }*/
+  }
 
   setObject(v) {
     var t = v['type'];
@@ -123,6 +166,7 @@ export class MyData {
   logout() {
     this.object = {};
     this.addresses = [];
+    this.phones = [];
     this.isLogin = false;
   }
 

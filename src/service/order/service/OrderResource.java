@@ -11,13 +11,16 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Context;
 //import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriInfo;
 
 import service.customer.representation.CustomerRepresentation;
 import service.order.representation.OrderCustomerRepresentation;
 import service.order.representation.OrderPartnerRepresentation;
 import service.order.representation.OrderPartnerStatusRequest;
+import service.order.representation.OrderProcessRepresentation;
 import service.order.representation.OrderRepresentation;
 import service.order.representation.OrderRequest;
 import service.order.representation.OrderStatusRepresentation;
@@ -25,6 +28,9 @@ import service.order.workflow.OrderActivity;
 
 @Path("/orderservice/")
 public class OrderResource {
+	// Gets the server uri info
+	@Context
+	UriInfo uri;
 	/*
 	 * GET /order/{orderId} Gets the order with the id.
 	 */
@@ -35,7 +41,7 @@ public class OrderResource {
 		try {
 			System.out.println("GET METHOD (Order) :" + id);
 			OrderActivity activity = new OrderActivity();
-			OrderRepresentation status = activity.getOrder(id);
+			OrderRepresentation status = activity.getOrder(id,uri);
 			return Response.ok(status).build();
 		} catch (Exception e) {
 			return Response.status(400).build();
@@ -68,7 +74,7 @@ public class OrderResource {
 		try {
 		System.out.println("POST ORDER");
 		OrderActivity activity = new OrderActivity();
-		OrderRepresentation status = activity.postOrder(orderRequest);
+		OrderRepresentation status = activity.postOrder(orderRequest,uri);
 		return Response.ok(status).build();
 	} catch (Exception e) {
 		return Response.status(400).build();
@@ -98,7 +104,7 @@ public class OrderResource {
 		try {
 		System.out.println("GET METHOD (Order) :" + id);
 		OrderActivity activity = new OrderActivity();
-		OrderPartnerRepresentation status =  activity.getOrdersPartner(id);
+		OrderPartnerRepresentation status =  activity.getOrdersPartner(id,uri);
 		return Response.ok(status).build();
 	} catch (Exception e) {
 		return Response.status(400).build();
@@ -113,12 +119,29 @@ public class OrderResource {
 		try {
 		System.out.println("GET METHOD (Order) :" + id);
 		OrderActivity activity = new OrderActivity();
-		OrderCustomerRepresentation status = activity.getOrdersCustomer(id);
+		OrderCustomerRepresentation status = activity.getOrdersCustomer(id,uri);
 		return Response.ok(status).build();
 	} catch (Exception e) {
 		return Response.status(400).build();
 	}
 	}
+	
+	@PUT
+	@Consumes({ "application/xml", "application/json" })
+	@Produces({ "application/xml", "application/json" })
+	@Path("/order/status")
+	public Response orderProcess(OrderProcessRepresentation req) throws UnknownHostException {
+		try {
+			System.out.println("Order Id:" + req.getOrder());
+			System.out.println("Action:" + req.getAction());
+			OrderActivity activity = new OrderActivity();
+			OrderRepresentation processed = activity.processOrder(req,uri);
+			return Response.ok(processed).build();
+		} catch (Exception e) {
+			return Response.status(400).build();
+		}
+	}
+	
 
 	@PUT
 	@Consumes({ "application/xml", "application/json" })

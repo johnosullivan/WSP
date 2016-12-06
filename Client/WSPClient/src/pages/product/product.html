@@ -15,7 +15,8 @@
     <h2>{{ json.name }} ({{ json.cost }} {{json.curcode}})</h2>
     <p>{{ json.partnerid }} </p>
     <p>Available In Stock: {{json.invein}} </p>
-    <button *ngFor="let l of json.link" ion-button (click)="add()" color="light" full>{{link(l)}}</button>
+    <button *ngFor="let l of json.link" ion-button (click)="linkexcute(l)" color="light" full>{{l.ref}}</button>
+
   </ion-item>
 
 
@@ -24,9 +25,32 @@
 
 <ion-grid>
   <ion-row>
+    <ion-col width-100>    <button ion-button (click)="add()" full> Add To Cart ({{ count }})</button>
+</ion-col>
+  </ion-row>
+  <ion-row>
     <ion-col width-50><button ion-button (click)="decrease()" full><b>-</b></button></ion-col>
     <ion-col width-50><button ion-button (click)="increase()" full><b>+</b></button></ion-col>
   </ion-row>
 </ion-grid>
+  
+<ion-card *ngIf="reviews.length >= 1">
+
+  <ion-card-header>
+     <h1>Reviews</h1>
+   </ion-card-header>
+
+   <ion-card-content>
+     <ion-card *ngFor="let l of reviews">
+       <ion-card-header>
+          {{l.name}}
+        </ion-card-header>
+        <ion-card-content padding>
+       <p>Stars: {{l.stars}} - {{l.review}}</p>
+       </ion-card-content>
+     </ion-card>
+   </ion-card-content>
+
+</ion-card>
 
 </ion-content>

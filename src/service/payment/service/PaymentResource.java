@@ -32,7 +32,8 @@ public class PaymentResource {
 		try {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.addPaymentCustomer(request);
-			return Response.ok(status).build();
+			System.out.println(status);
+			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
@@ -50,7 +51,8 @@ public class PaymentResource {
 		try {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.updatePaymentCustomer(request);
-			return Response.ok(status).build();
+			System.out.println(status);
+			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
@@ -105,7 +107,8 @@ public class PaymentResource {
 		try {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.addPaymentPartner(request);
-			return Response.ok(status).build();
+			System.out.println(status);
+			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}
@@ -123,7 +126,8 @@ public class PaymentResource {
 		try {
 			PaymentActivity activity = new PaymentActivity();
 			boolean status = activity.updatePaymentPartner(request);
-			return Response.ok(status).build();
+			System.out.println(status);
+			return Response.ok().build();
 		} catch (Exception e) {
 			return Response.status(400).build();
 		}

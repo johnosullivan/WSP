@@ -12,7 +12,7 @@ import model.helper.Helper;
 
 public class Order {
 	//Different order types
-	public enum OrderStatusType { PROCESSING, PROCESSED, SHIPPED, INROUTE, DELIVERED, CANCELED, PAYMENTFAILED }
+	public enum OrderStatusType { CREATED, PROCESSED, SHIPPED, INROUTE, DELIVERED, CANCELED, PAYMENTFAILED }
 	//attrs
 	private ArrayList<OrderItem> product;
 	private Customer buyer;
@@ -48,7 +48,7 @@ public class Order {
 	//Helper class 
 	public String orderStatusString() {
 			switch(this.orderstatus) {
-			case PROCESSING:	return "PROCESSING";
+			case CREATED:	return "CREATED";
 			case PROCESSED:		return "PROCESSED";
 			case SHIPPED:		return "SHIPPED";
 			case INROUTE:		return "INROUTE";
@@ -62,11 +62,11 @@ public class Order {
 		}
 	//Checks if a product is in the order
 	public boolean isProductInOrder(String proid) {
-		for (OrderItem or: this.product) {
-			if (or.getProduct().getID().equals(proid)) {
-				return true;
-			}
-		}
+		for (OrderItem or: this.product) { 
+			if (or.getProduct().getID().equals(proid)) { 
+				return true; 
+			} 
+		} 
 		return false;
 	}
 	//Sets the order and products as delivered
@@ -76,13 +76,22 @@ public class Order {
 		db.updateOrder(this);
 		return true;
 	}
+	
+	public boolean process() throws UnknownHostException {
+		this.orderstatus = OrderStatusType.PROCESSED;
+		this.comfirmnumber = Helper.genComfirmation(30, 5);
+		OrderDAO db = OrderDAO.getInstance();
+		db.updateOrder(this);
+		return true;
+	}
+	
 	//Processes the order
-	public String process() throws UnknownHostException {
-		this.orderstatus = OrderStatusType.PROCESSING;
+	public String create() throws UnknownHostException {
+		this.orderstatus = OrderStatusType.CREATED;
 		OrderDAO db = OrderDAO.getInstance();
 		//if (this.buyer.getPayment().makepayment(this.product)) {
-		this.orderstatus = OrderStatusType.PROCESSED;
-		this.comfirmnumber = "754754667396675466739739";
+		//this.orderstatus = OrderStatusType.PROCESSED;
+		//this.comfirmnumber = "754754667396675466739739";
 		return db.createOrder(this);
 		/*} else {
 			this.orderstatus = OrderStatusType.PAYMENTFAILED;
@@ -100,6 +109,15 @@ public class Order {
 		}
 		return data;
 	}
+	
+	public boolean restock() throws UnknownHostException {
+		
+		for (OrderItem o: this.product) {
+			o.getProduct().restock(o.getQuantity());
+		}
+		
+		return true;
+	}
 	//Cancels the order and refund the customer
 	public boolean cancelOrder() throws UnknownHostException {
 		OrderDAO db = OrderDAO.getInstance();
@@ -112,7 +130,7 @@ public class Order {
 	//Helper function for the order status
 	public OrderStatusType getStatusTypeFInt(int x) {
 		if (x == 1) {
-			return OrderStatusType.PROCESSING;
+			return OrderStatusType.CREATED;
 		}
 		if (x == 2) {
 			return OrderStatusType.PROCESSED;
@@ -133,18 +151,27 @@ public class Order {
 			return OrderStatusType.PAYMENTFAILED;
 		}
 		
-		return OrderStatusType.PROCESSING;
+		return OrderStatusType.CREATED;
 	}
 	//Creates a order object from a database document with id	
 	public Order(String ordernumber) throws UnknownHostException {
+		System.out.println("A");
 		OrderDAO db = OrderDAO.getInstance();
+		System.out.println("B");
 		DBObject object = db.findOrderById(ordernumber);
+		System.out.println("C");
 		this.comfirmnumber = (String)object.get("comfirmnumber");
+		System.out.println("D");
 		this.buyer = new Customer((String)object.get("customer"));
+		System.out.println("E");
 		this.shippingaddress = (String)object.get("shipping");
+		System.out.println("F");
 		this.shippingobject = new ShippingAddress(this.shippingaddress);
+		System.out.println("G");
 		this.orderstatus = getStatusTypeFInt((int)object.get("status"));
-		this.id = "" + object.get("_id");
+		System.out.println("H");
+		this.id = ordernumber;
+		System.out.println("I");
 		this.product = new ArrayList<OrderItem>();
 		BasicDBList product = (BasicDBList)object.get("products");
 		for(Object el: product) {

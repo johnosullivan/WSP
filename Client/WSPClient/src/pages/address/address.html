@@ -11,12 +11,7 @@
    <ion-item>
      <h2>{{ item.address }} {{ item.city }}</h2>
      <p>{{ item.state }}, {{ item.zip }} </p>
-     <ion-grid>
-       <ion-row>
-         <ion-col width-50><button (click)="edit()" ion-button color="danger" full><ion-icon name="cut"></ion-icon> &nbsp; Delete</button></ion-col>
-         <ion-col width-50><button (click)="edit()" ion-button color="light" full><ion-icon name="create"></ion-icon> &nbsp; Edit</button></ion-col>
-       </ion-row>
-     </ion-grid>
+     <button *ngFor="let l of item.link" (click)="linkexcute(l)" ion-button color="light" full>{{l.ref}}</button>
    </ion-item>
 
   </ion-card>

@@ -44,6 +44,7 @@ public class ReviewDAO {
 			DBObject object = cursor.next();
 			Review rew = new Review();
 			rew.setReview((String)object.get("review"));
+			rew.setName((String)object.get("name"));
 			rew.setStars((int)object.get("stars"));
 			search.add(rew);
 		}
@@ -72,6 +73,7 @@ public class ReviewDAO {
 		newreview.append("review", data.getReview());
 		newreview.append("product", data.getProduct());
 		newreview.append("order", data.getOrder());
+		newreview.append("name", data.getName());
 		newreview.append("stars", data.getStars());
 		review.insert(newreview);
 		return "" + newreview.get("_id");
@@ -84,6 +86,7 @@ public class ReviewDAO {
 		updated.append("product", data.getProduct());
 		updated.append("order", data.getOrder());
 		updated.append("stars", data.getStars());
+		updated.append("name", data.getName());
 		review.update(new BasicDBObject("_id", new ObjectId(data.getId())), new BasicDBObject("$set", updated));
 		return true;
 	}

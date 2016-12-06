@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MyData } from "../../providers/my-data";
 import { Http , Headers } from '@angular/http';
+import { ProcessOrderPage } from '../process-order/process-order';
 
 @Component({
   selector: 'page-checkout',
@@ -22,8 +23,9 @@ export class CheckoutPage {
   }
   ionViewDidLoad() {  }
   orderprocessed(data) {
-    this.data.clearcart();
-    this.nav.pop();
+    this.nav.push(ProcessOrderPage,{data:data})
+    //this.data.clearcart();
+    //this.nav.pop();
   }
   process() {
     var payload = {};
@@ -40,6 +42,7 @@ export class CheckoutPage {
     }
     payload['items'] = itemarray;
     var headers = new Headers();
+    console.log(payload);
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     this.http.post(this.url + '/orderservice/order', payload, { headers: headers }).subscribe( response => this.orderprocessed(response));

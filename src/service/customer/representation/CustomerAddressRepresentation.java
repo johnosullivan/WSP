@@ -5,10 +5,12 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import service.AbstractRepresentation;
+
 @XmlRootElement(name = "address")
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-public class CustomerAddressRepresentation {
+public class CustomerAddressRepresentation extends AbstractRepresentation {
 
 	private String address;
 	private String city;

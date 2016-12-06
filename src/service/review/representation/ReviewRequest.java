@@ -5,11 +5,15 @@ public class ReviewRequest {
 	private String id;
 	private String order;
 	private String review;
+	private String name;
 	private int stars;
 	private String product;
 	
 	public void setId(String id) { this.id = id; }
 	public String getId() { return this.id; }
+	
+	public void setName(String name) { this.name = name; }
+	public String getName() { return this.name; }
 	
 	public void setOrder(String order) { this.order = order; }
 	public String getOrder() { return this.order; }

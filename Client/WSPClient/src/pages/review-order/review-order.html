@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ReviewOrder page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><ion-icon name="list-box"></ion-icon> &nbsp; Review Order</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-item>
+    <ion-label>Select Product</ion-label>
+
+    <ion-select [(ngModel)]="product">
+      <ion-option *ngFor="let item of products" value="{{item['productid']}}">{{item['productname']}}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Review</ion-label>
+    <ion-input [(ngModel)]="review" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Rate 1-10:</ion-label>
+    <ion-input [(ngModel)]="rate" type="text"></ion-input>
+  </ion-item>
+
+
+  <button (click)="create()" ion-button full>
+<ion-icon name="plus"></ion-icon>&nbsp;  Submit</button>
+
+</ion-content>

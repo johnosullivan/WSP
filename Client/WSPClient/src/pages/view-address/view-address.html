@@ -1,0 +1,40 @@
+<!--
+  Generated template for the ViewAddress page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>View Address</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+<ion-item>
+  <ion-label>Address</ion-label>
+  <ion-input [(ngModel)]="data.address" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>City</ion-label>
+  <ion-input [(ngModel)]="data.city" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>State</ion-label>
+  <ion-input [(ngModel)]="data.state" type="text"></ion-input>
+</ion-item>
+
+<ion-item>
+  <ion-label>Zip</ion-label>
+  <ion-input [(ngModel)]="data.zip" type="text"></ion-input>
+</ion-item>
+<div padding>
+<button *ngFor="let l of data.link" ion-button (click)="linkexcute(l)" color="light" full>{{l.ref}}</button>
+</div>
+</ion-content>
