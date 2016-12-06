@@ -29,6 +29,9 @@ For the project, I decided to go the no-sql way. (MongoDB)
 - TypeScript
 - Xcode (For iOS Client Only)
 
+
+#### Presentation is located: <a href="https://docs.google.com/presentation/d/1FdkfGEJ9qNylTW5RR4fRoOZIHdEclrUIdnkWmpX9Wvs/edit?usp=sharing">Here</a>
+
 ----
 
 # Client + Server(HATEOAS) 
@@ -43,7 +46,7 @@ Client wrote <a href="https://www.typescriptlang.org/">TypeScript</a> with the u
 
 The Client is a web application which with the support of the Cordova and Ionic framework can be built to run on the iOS, Android, and Web Browsers.
 
-The HATEOAS diagram can be found: <a href="">Here</a>
+The HATEOAS diagram can be found: <a href="https://github.com/johnosullivan/WSP/blob/master/HATEAOS.png">Here</a>
 
 To run the client make sure your broswer has the cross orgin feature of its security <b>DISABLE</b>.
 <b>If you do not enable cross-orgin the client for the web browser it will not work at all. The cross orgin enable the browser to call the web service to process your requests. </b> 
